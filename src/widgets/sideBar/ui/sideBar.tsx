@@ -5,7 +5,7 @@ const SideBar: FC = () => {
         <div className="
             relative
             bg-blue-500
-            h-full
+            h-[calc(100%+80px)]
             row-start-1 row-end-3
             col-start-1 col-end-2
         ">

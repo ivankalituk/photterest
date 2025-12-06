@@ -30,7 +30,10 @@ export default function RootLayout({
                 grid grid-rows-[auto_1fr] grid-cols-[80px_auto]
                 ${geistSans.variable} 
                 ${geistMono.variable} 
-                antialiased`}
+                antialiased
+                overflow-y-auto
+                scroll-smooth
+                `}
             >
                 <SideBar />
                 <Header />
