@@ -2,7 +2,7 @@ import { FC } from "react";
 
 const PostPage: FC = () =>{
     return(
-        <div>POST</div>
+        <div className="bg-secondary">POST</div>
     )
 }
 

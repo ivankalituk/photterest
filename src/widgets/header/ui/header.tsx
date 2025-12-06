@@ -4,7 +4,14 @@ import { FC } from "react"
 
 const Header: FC = () => {
     return(
-        <header className="p-8 bg-blue-500 text-white text-xl font-bold">
+        <header className="
+                fixed
+                bg-secondary 
+                left-[80px]
+                h-[80px]
+                w-[100%]
+                z-100
+            ">
             Header
         </header>
     )

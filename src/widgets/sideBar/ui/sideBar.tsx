@@ -2,7 +2,24 @@ import { FC } from "react";
 
 const SideBar: FC = () => {
     return(
-        <div>SideBar</div>
+        <div className="
+            relative
+            bg-blue-500
+            h-full
+            row-start-1 row-end-3
+            col-start-1 col-end-2
+        ">
+            <div className="
+                fixed
+            ">
+                <div>stat</div>
+                <div>stat</div>
+                <div>stat</div>
+                <div>stat</div>
+
+
+            </div>
+        </div>
     )
 }
 
