@@ -3,8 +3,17 @@
 @theme {
     --color-primary: #806621;
     --color-secondary: #15c70c;
-
+    --color-grey: #767676;
+    --color-grey-light: #EFEFEF;
+    
     --spacing-px: 10px;
     --spacing-30: 30px;
     --spacing-50: 50px;
+}
+
+input,
+button,
+textarea,
+select {
+  font-family: var(--font-roboto);
 }

@@ -1,28 +1,36 @@
-import { FC } from "react";
-import searchIcon from '@/shared/assets/icons/search.svg'
-import Image from "next/image";
+import { FC, useState } from "react";
+import SearchSVG from "@/shared/assets/controlledSVG/searchSVG";
 
 const SearchBar: FC = () => {
+
+    const [searchBarFocus, setSearchBarFocus] = useState<boolean>(false)
+
     return(
         <div 
-            className="
-                w-[100px]
+            className={`
+                px-[25px]
+                py-[16px]
+                flex
+                gap-[10px]
+                items-center
+                h-[56px]
                 relative
                 flex-1
-                h-[56px]
-                bg-[rgb(241,241,241)]
-            "
+                rounded-full
+                focus-within:bg-[var(--color-grey)]
+            `}
         >
 
-           <Image src={searchIcon} alt="search" width={20} height={20} />
+           <SearchSVG color={searchBarFocus? 'var(--color-grey-light)' : 'var(--color-grey)'}/>
             
             <input 
-                type="text" 
+                type="text"
+                placeholder="Enter your pin..."
+                onFocus={() => setSearchBarFocus(true)}
+                onBlur={() => setSearchBarFocus(false)}
                 className="
-                    w-[100px]
-                    h-[100%]
-                    absolute
-                    inset-0
+                    w-full
+                    border-none
                     outline-none
                 "
             />
