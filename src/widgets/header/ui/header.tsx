@@ -1,5 +1,6 @@
 'use client'
 
+import { Button } from "@/shared/ui/button"
 import { SearchBar } from "@/widgets/searchBar"
 import { FC } from "react"
 
@@ -12,6 +13,7 @@ const Header: FC = () => {
                 left-[80px]
                 w-[calc(100%-80px)]
                 flex
+                gap-[10px]
                 h-[80px]
                 row-start-1 row-end-2
                 col-start-2 col-end-3
@@ -21,6 +23,8 @@ const Header: FC = () => {
             "
         >
             <SearchBar />
+
+            <Button type='GREY'>dadada</Button>
         </header>
     )
 }
