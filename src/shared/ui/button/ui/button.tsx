@@ -13,11 +13,11 @@ const Button: FC <Props> = ({children, type, className, onClick}) => {
         <button className={`
             flex
             
-            ${type === 'RED' && "bg-[red] p-[16px] rounded-[16px] active:bg-[yellow]"}
-            ${type === 'WHITE' && 'bg-[white] p-[16px] rounded-[16px] active:bg-grey-light'}
-            ${type === 'GREY' && 'bg-grey-light p-[16px] rounded-[16px] active:bg-grey'}            
+            ${type === 'RED' && "bg-[red] active:bg-[yellow]"}
+            ${type === 'WHITE' && 'bg-[white] active:bg-grey-light hover:bg-grey-light'}
+            ${type === 'GREY' && 'bg-grey-light active:bg-grey'}            
 
-            active:scale-95
+            active:scale-90
             transition-all duration-250
 
             ${className}

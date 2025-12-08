@@ -3,6 +3,7 @@
 import { Button } from "@/shared/ui/button"
 import { SearchBar } from "@/widgets/searchBar"
 import { FC } from "react"
+import HeaderAccount from "../components/headerAccount"
 
 const Header: FC = () => {
     return (
@@ -23,8 +24,7 @@ const Header: FC = () => {
             "
         >
             <SearchBar />
-
-            <Button type='GREY'>dadada</Button>
+            <HeaderAccount />
         </header>
     )
 }

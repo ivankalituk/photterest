@@ -15,5 +15,10 @@ input,
 button,
 textarea,
 select {
-  font-family: var(--font-roboto);
+    font-family: var(--font-roboto);
+}
+
+.no-drag{
+    -webkit-user-drag: none;
+    user-drag: none;
 }
