@@ -20,7 +20,7 @@ export default function RootLayout({
                 <div className='
                     grid grid-rows-[auto_1fr] grid-cols-[80px_auto]
                 '>
-                        <SideBar />
+                    <SideBar />
                     <Header />
                     
 

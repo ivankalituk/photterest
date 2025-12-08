@@ -6,7 +6,6 @@ const SearchBar: FC = () => {
     return(
         <div 
             className="
-
                 w-[100px]
                 relative
                 flex-1
