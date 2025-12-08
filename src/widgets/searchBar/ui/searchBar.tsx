@@ -17,6 +17,7 @@ const SearchBar: FC = () => {
                 relative
                 flex-1
                 rounded-full
+                bg-grey-light
                 focus-within:bg-[var(--color-grey)]
             `}
         >
