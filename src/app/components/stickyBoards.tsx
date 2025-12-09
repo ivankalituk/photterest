@@ -56,9 +56,11 @@ const StickyBoards: FC = () => {
                 >
                     <div 
                         className={`
-                            ${currentBoard === board && 'border-b-[2px] border-b-[black] '}
+                            ${currentBoard === board? 'border-b-[black]' : 'border-b-[white]'}
                             cursor-pointer
                             no-drag no-select
+                            border-b-[2px]
+                            transition-border duration-250
                         `}
                         onClick={() => setCurrentBoard(board)}
                     >
