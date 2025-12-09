@@ -1,16 +1,33 @@
-import { FC } from "react";
-import CompasSVG from "@/shared/assets/controlledSVG/compasSVG";
-import HomeSVG from "@/shared/assets/controlledSVG/homeSVG";
-import BoardsSVG from "@/shared/assets/controlledSVG/boardsSVG";
-import CreateSVG from "@/shared/assets/controlledSVG/createSVG";
-import BellSVG from "@/shared/assets/controlledSVG/bellSVG";
+'use client'
+import { FC, useState } from "react";
 import SettingsSVG from "@/shared/assets/controlledSVG/settingsSVG";
 import Image from "next/image";
 import logo from '@/shared/assets/icons/logo.svg'
 import { Button } from "@/shared/ui/button";
 import Link from "next/link";
+import { mockButtons } from "@/widgets/searchBar/model/mockData";
+import SideBarButton from "@/widgets/searchBar/ui/components/sideBarButton";
+import { usePathname } from "next/navigation";
 
 const SideBar: FC = () => {
+
+    const [overrideActiveId, setOverrideActiveId] = useState<string | null>(null);
+
+    const pathname = usePathname()
+
+    const getActiveId = () => {
+        if (overrideActiveId) return overrideActiveId;
+
+        const match = mockButtons.find(
+            b => b.link && pathname === b.link
+        );
+
+        return match?.name ?? null;
+    };
+
+    const activeId = getActiveId();
+
+
     return(
         <div className="
             fixed
@@ -51,112 +68,24 @@ const SideBar: FC = () => {
                         </Button>
                     </Link>
 
-                    <Link href='/'>
-                        <Button 
-                            type='WHITE' 
-                            className="
-                                flex
-                                items-center
-                                justify-around
-                                p-[5px]
-                                rounded-[7px]
-                                w-[55px]
-                                aspect-[1/1]
-                                no-select no-drag
-                            "
-                        >
-                            <HomeSVG />
-                        </Button>
-                    </Link>
-
-                    {/* IF HOVER THEN SPECIAL WINDOW */}
-                    <Link href='/ideas'>
-                        <Button 
-                            type='WHITE' 
-                            className="
-                                flex
-                                items-center
-                                justify-around
-                                p-[5px]
-                                rounded-[7px]
-                                w-[55px]
-                                aspect-[1/1]
-                                no-select no-drag
-                            "
-                        >
-                            <CompasSVG />
-                        </Button>
-                    </Link>
-
-                    <Link href='/profile'>
-                        <Button 
-                            type='WHITE' 
-                            className="
-                                flex
-                                items-center
-                                justify-around
-                                p-[5px]
-                                rounded-[7px]
-                                w-[55px]
-                                aspect-[1/1]
-                                no-select no-drag
-                            "
-                        >
-                             <BoardsSVG />
-                        </Button>
-                    </Link>
-
-                    {/* IF ACTIVE THEN SPECIAL WINDOW */}
-                    <Button 
-                        type='WHITE' 
-                        className="
-                            flex
-                            items-center
-                            justify-around
-                            p-[5px]
-                            rounded-[7px]
-                            w-[55px]
-                            aspect-[1/1]
-                            no-select no-drag
-                        "
-                    >
-                            <CreateSVG />
-                    </Button>
-
-                    {/* IF ACTIVE THEN SPECIAL WINDOW */}
-                    <Button 
-                        type='WHITE' 
-                        className="
-                            flex
-                            items-center
-                            justify-around
-                            p-[5px]
-                            rounded-[7px]
-                            w-[55px]
-                            aspect-[1/1]
-                            no-select no-drag
-                        "
-                    >
-                        <BellSVG />
-                    </Button>
+                    {mockButtons.map((data) => (
+                        <SideBarButton 
+                            element = {data.component} 
+                            key={data.name} 
+                            link={data.link} 
+                            type={data.type}
+                            active = {data.name === activeId}
+                        />
+                    ))}
                 </ul>
             </nav>
 
-            <Button 
-                type='WHITE' 
-                className="
-                    flex
-                    items-center
-                    justify-around
-                    p-[5px]
-                    rounded-[7px]
-                    w-[55px]
-                    aspect-[1/1]
-                    no-select no-drag
-                "
-            >
-                <SettingsSVG />
-            </Button>
+            <SideBarButton 
+                element = {<SettingsSVG />} 
+                key='settings' 
+                type='active'
+                active = {'settings' === activeId}
+            />
         </div>
     )
 }
