@@ -9,6 +9,7 @@ import Image from "next/image";
 import logo from '@/shared/assets/icons/logo.svg'
 import { Button } from "@/shared/ui/button";
 import Link from "next/link";
+
 const SideBar: FC = () => {
     return(
         <div className="
