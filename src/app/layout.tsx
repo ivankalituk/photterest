@@ -39,7 +39,9 @@ export default function RootLayout({
                         className="
                             row-start-2
                             col-start-2
-                        "
+                            relative
+                            top-[80px]
+                            "
                     >{children}</div>
                 </div>
             </body>

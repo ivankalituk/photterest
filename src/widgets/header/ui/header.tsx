@@ -21,6 +21,7 @@ const Header: FC = () => {
                 bg-[white]
                 px-[20px]
                 text-[16px]
+                z-1
             "
         >
             <SearchBar />

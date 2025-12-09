@@ -44,6 +44,7 @@ const SideBar: FC = () => {
             border-r-[1px]
             border-grey-light
             bg-[white]
+            z-1
             
         ">
             <nav>
