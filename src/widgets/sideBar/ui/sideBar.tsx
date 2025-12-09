@@ -1,12 +1,10 @@
-import { Button } from "@/shared/ui/button";
 import { FC } from "react";
-import logo from '@/shared/assets/icons/logo.svg'
-import Image from "next/image";
-import Link from "next/link";
-import board from "@/shared/assets/icons/board.svg"
-import notifications from "@/shared/assets/icons/notifications.svg"
-import compass from "@/shared/assets/icons/compass.svg"
-import create from "@/shared/assets/icons/create.svg"
+import CompasSVG from "@/shared/assets/controlledSVG/compasSVG";
+import HomeSVG from "@/shared/assets/controlledSVG/homeSVG";
+import BoardsSVG from "@/shared/assets/controlledSVG/boardsSVG";
+import CreateSVG from "@/shared/assets/controlledSVG/createSVG";
+import BellSVG from "@/shared/assets/controlledSVG/bellSVG";
+import SettingsSVG from "@/shared/assets/controlledSVG/settingsSVG";
 
 const SideBar: FC = () => {
     return(
@@ -22,90 +20,12 @@ const SideBar: FC = () => {
             border-grey-light
             bg-[white]
         ">
-
-            <nav className="flex flex-col items-center justify-between h-full">
-                <ul className="
-                    flex
-                    flex-col
-                    items-center
-                    gap-[24px]
-
-                ">
-                    <li>
-                        <Button 
-                            type='ELEMENT'
-                            className='w-[56px] h-[56px] aspect 1/1 p-[4px] hover:bg-grey-light rounded-[6px]'
-                        >
-                            <Link href='/'>
-                                <Image src={logo} alt="logo" className="no-select no-drag" />
-                            </Link>
-                        </Button>
-                    </li>
-
-                    <li>
-                        <Button 
-                            type='ELEMENT'
-                            className='w-[56px] h-[56px] aspect 1/1 p-[4px] hover:bg-grey-light rounded-[6px]'
-                        >
-                            <Link href='/'>
-                                <Image src={logo} alt="logo" className="no-select no-drag" />
-                            </Link>
-                        </Button>
-                    </li>
-
-                    <li>
-                        <Button 
-                            type='ELEMENT'
-                            className='w-[56px] h-[56px] aspect 1/1 p-[4px] hover:bg-grey-light rounded-[6px] flex items-center justify-around'
-                        >
-                            <Link href='/ideas'>
-                                <Image src={compass} alt="compass" className="no-select no-drag " />
-                            </Link>
-                        </Button>
-                    </li>
-
-                    <li>
-                        <Button 
-                            type='ELEMENT'
-                            className='w-[56px] h-[56px] aspect 1/1 p-[4px] hover:bg-grey-light rounded-[6px] flex items-center justify-around'
-                        >
-                            <Link href='/profile'>
-                                <Image src={board} alt="board" className="no-select no-drag" />
-                            </Link>
-                        </Button>
-                    </li>
-
-                    <li>
-                        <Button 
-                            type='ELEMENT'
-                            className='w-[56px] h-[56px] aspect 1/1 p-[4px] hover:bg-grey-light rounded-[6px] flex items-center justify-around'
-                        >
-
-                            <Image src={create} alt="create" className="no-select no-drag" />
-                        </Button>
-                    </li>
-
-                    <li>
-                        <Button 
-                            type='ELEMENT'
-                            className='w-[56px] h-[56px] aspect 1/1 p-[4px] hover:bg-grey-light rounded-[6px] flex items-center justify-around'
-                        >
-                            <Image src={notifications} alt="notifications" className="no-select no-drag" />
-                        </Button>
-                    </li>
-                </ul>
-
-                <div>
-                    <Button 
-                        type='ELEMENT'
-                        className='w-[56px] h-[56px] aspect 1/1 p-[4px] hover:bg-grey-light rounded-[6px]'
-                    >
-                        <Link href='/ideas'>
-                            <Image src={logo} alt="logo" className="no-select no-drag" />
-                        </Link>
-                    </Button>
-                </div>
-            </nav>
+            <CompasSVG />
+            <HomeSVG />
+            <BoardsSVG />
+            <CreateSVG />
+            <BellSVG />
+            <SettingsSVG />
         </div>
     )
 }

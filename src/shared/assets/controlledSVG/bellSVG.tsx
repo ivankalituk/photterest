@@ -1,0 +1,30 @@
+import { FC } from "react";
+
+interface Props {
+    active?: boolean
+}
+
+const BellSVG: FC <Props> = ({active}) => {
+
+    if(active){
+        return(
+            <svg aria-hidden="true" aria-label="" height="24" role="img" viewBox="0 0 24 24" width="24">
+                <path d="M20.54 14.24A3.15 3.15 0 0 0 23.66 17H24v2h-8v1h-.02a3.4 3.4 0 0 1-3.38 3h-1.2a3.4 3.4 0 0 1-3.38-3H8v-1H0v-2h.34a3.15 
+                    3.15 0 0 0 3.12-2.76l.8-6.41a7.8 7.8 0 0 1 15.48 0zM10 19.6c0 .77.63 1.4 1.4 1.4h1.2c.77 0 1.4-.63 1.4-1.4a.6.6 0 0 
+                    0-.6-.6h-2.8a.6.6 0 0 0-.6.6">
+                </path>
+            </svg>
+        )
+    } else {
+        return(
+            <svg aria-hidden="true" aria-label="" height="24" role="img" viewBox="0 0 24 24" width="24">
+                <path d="M16 19h8v-2h-.34a3.15 3.15 0 0 1-3.12-2.76l-.8-6.41a7.8 7.8 0 0 0-15.48 0l-.8 6.41A3.15 3.15 0 0 1 .34 17H0v2h8v1h.02a3.4 
+                    3.4 0 0 0 3.38 3h1.2a3.4 3.4 0 0 0 3.38-3H16zm1.75-10.92.8 6.4c.12.95.5 1.81 1.04 2.52H4.4c.55-.7.92-1.57 1.04-2.51l.8-6.41a5.8 
+                    5.8 0 0 1 11.5 0M13.4 19c.33 0 .6.27.6.6 0 .77-.63 1.4-1.4 1.4h-1.2a1.4 1.4 0 0 1-1.4-1.4c0-.33.27-.6.6-.6z">
+                </path>
+            </svg>
+        )
+    }
+}
+
+export default BellSVG
