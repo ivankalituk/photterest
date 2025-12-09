@@ -14,6 +14,7 @@ const mockBoards = [
 const StickyBoards: FC = () => {
     const [lastScroll, setLastScroll] = useState<number>(0);
     const [hidden, setHidden] = useState<boolean>(false)
+    const [currentBoard, setCurrentBoard] = useState<string>('All')
 
     useEffect(() => {
 
@@ -37,9 +38,33 @@ const StickyBoards: FC = () => {
     }, [lastScroll])
 
     return(
-        <div className={`fixed top-[80px] flex gap-[10px] transition-transform duration-250 ${hidden ? "-translate-y-full" : "translate-y-0"}`}>
+        <div className={
+            `sticky top-[80px]
+            flex gap-[10px]
+            h-[54px]
+            bg-[white]
+            transition-transform duration-250 ${hidden ? "-translate-y-full" : "translate-y-0"}
+        `}>
             {mockBoards.map((board: string, index: number) => (
-                <div key={index} className="px-3 py-1 bg-gray-200 rounded">{board}</div>
+                <div 
+                    key={index} 
+                    className="
+                        px-[12px] py-[8px]
+                        text-[black]
+                        font-[500]
+                    "
+                >
+                    <div 
+                        className={`
+                            ${currentBoard === board && 'border-b-[2px] border-b-[black] '}
+                            cursor-pointer
+                            no-drag no-select
+                        `}
+                        onClick={() => setCurrentBoard(board)}
+                    >
+                        {board}
+                    </div>
+                </div>
             ))}
         </div>
     )

@@ -10,8 +10,7 @@ export default function Home() {
                 px-[16px]    
             '
         >
-            {/* стики хуйня */}
-
+            {/* сделать колбек с выбором */}
             <StickyBoards />
 
 
