@@ -6,7 +6,7 @@ const PinsGrid: FC = () => {
     return(
         <div>
             {Array.from({length: 20}).map((_, index: number) => (
-                <PinCard key={index}/>
+                <PinCard key={index} index={index}/>
             ))}
         </div>
     )

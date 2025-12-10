@@ -12,8 +12,6 @@ export default function Home() {
     return (
         <div className='
                 relative
-                bg-[red]
-                h-[10000px]
                 px-[16px]    
             '
         >
