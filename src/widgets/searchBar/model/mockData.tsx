@@ -6,19 +6,19 @@ import HomeSVG from "@/shared/assets/controlledSVG/homeSVG";
 
 export const mockButtons = [
     {
-        name: 'home',
+        name: '/home',
         component: <HomeSVG />,
         type: 'link',
         link: '/'
     },
     {
-        name: 'ideas',
+        name: '/ideas',
         component: <CompasSVG />,
         type: 'hover link',
         link: '/ideas'
     },
     {
-        name: 'boards',
+        name: '/profile',
         component: <BoardsSVG />,
         type: 'link',
         link: '/profile'

@@ -15,39 +15,21 @@ const SideBar: FC = () => {
     const pathname = usePathname();
 
     const handleActivatedSection = (section: string) => {
-        
-        // если переданная секция уже активна, то делаем её не активной
-        // а также проверяем пазнейм для назначения текущей активной секции
-
         if (sectionActive === section){
             console.log(sectionActive === section)
             switch(pathname){
                 case '/':
-                    setSectionActive('home')
+                    setSectionActive('/home')
                     break
                 case '/ideas':
-                    setSectionActive('ideas')
+                    setSectionActive('/ideas')
                     break
                 case '/profile':
-                    setSectionActive('profile')
+                    setSectionActive('/profile')
                     break
             }
         } else {
-            // если передана новая секция, то делаем её активной
-            switch(section){
-                case '/':
-                    setSectionActive('home')
-                    break
-                case '/ideas':
-                    setSectionActive('ideas')
-                    break
-                case '/profile':
-                    setSectionActive('profile')
-                    break
-                default: 
-                    setSectionActive(section)
-                    break
-            }
+            setSectionActive(section)
         }
 
         console.log(sectionActive)
