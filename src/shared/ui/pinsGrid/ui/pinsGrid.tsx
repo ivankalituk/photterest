@@ -1,13 +1,20 @@
-import { FC } from "react";
+"use client"
+import { FC, useState } from "react";
 import { PinCard } from "../../pinCard";
 
 
 const PinsGrid: FC = () => {
+
+    const [length, setLength] = useState<number>(20)
+
+
     return(
-        <div>
-            {Array.from({length: 20}).map((_, index: number) => (
+        <div className="columns-4 gap-4">
+            {Array.from({length: length}).map((_, index: number) => (
                 <PinCard key={index} index={index}/>
             ))}
+
+            <button onClick={() => {setLength(length + 20)}}>ADD</button>
         </div>
     )
 }
