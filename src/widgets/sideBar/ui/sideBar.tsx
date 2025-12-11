@@ -16,10 +16,9 @@ const SideBar: FC = () => {
 
     const handleActivatedSection = (section: string) => {
         if (sectionActive === section){
-            console.log(sectionActive === section)
             switch(pathname){
                 case '/':
-                    setSectionActive('/home')
+                    setSectionActive('/')
                     break
                 case '/ideas':
                     setSectionActive('/ideas')
@@ -36,7 +35,8 @@ const SideBar: FC = () => {
     }
 
     useEffect(() => {
-        handleActivatedSection(pathname)
+        setSectionActive(pathname)
+        console.log(pathname)
     }, [pathname])
 
 
