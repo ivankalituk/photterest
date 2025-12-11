@@ -43,6 +43,7 @@ const StickyBoards: FC = () => {
             flex gap-[10px]
             h-[54px]
             bg-[white]
+            z-[11]
             transition-transform duration-250 ${hidden ? "-translate-y-full" : "translate-y-0"}
         `}>
             {mockBoards.map((board: string, index: number) => (
