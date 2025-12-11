@@ -1,14 +1,19 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { Button } from "../../button";
 
 interface Props{
     pinned?: boolean
 }
 
-const AddPinButton: FC <Props> = ({pinned}) => {
+const AddPinButton: FC <Props> = ({pinned = false}) => {
+
+    const [isPinned, setIsPinned] = useState<boolean>(pinned)
+    
+
     return(
         <Button 
-            type={pinned? "GREY" : "RED"} 
+            onClick={() => setIsPinned(!isPinned)}
+            type={isPinned? "GREY" : "RED"} 
             className="
                 flex-1
                 rounded-[10px]

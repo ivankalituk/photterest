@@ -5,6 +5,7 @@ import { Button } from "../../button";
 import TripleDotSVG from "@/shared/assets/controlledSVG/tripleDotSVG";
 import { ChooseBoardButton } from "../../chooseBoardButton";
 import AddPinButton from "../components/addPinButton";
+import SharePinButton from "../components/sharePinButton";
 
 interface Props {
     index: number
@@ -38,10 +39,16 @@ const PinCard: FC <Props> = ({index}) => {
                     `}
                 />
 
-                {pinHover && <div className="absolute top-[0px] left-[0px] z-[10] flex w-full gap-[10px] p-[10px]">
+                {pinHover && <div className="absolute top-[0px] left-[0px] z-[10] flex w-full gap-[10px] p-[10px] ">
                     <ChooseBoardButton />
 
                     <AddPinButton />
+                </div>}
+
+                {pinHover && <div className="absolute bottom-[0px] left-[0px] z-[10] flex w-full gap-[10px] p-[10px] items-center justify-between">
+                    <Button type="WHITE">Open in...</Button>
+                    
+                    <SharePinButton />
                 </div>}
 
                 <Image src={getPinImgById((String(index)))} alt={`image${index}`} className="no-select no-drag"/>
