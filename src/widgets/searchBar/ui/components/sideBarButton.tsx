@@ -6,15 +6,18 @@ interface Props {
     element: ReactElement<{active?: boolean}>
     type: string
     link?: string
-    active: boolean
+    active?: boolean
+    name: string
+    onClick: (section: string) => void
 }
 
-const SideBarButton: FC <Props> = ({element, type, link, active}) => {
+const SideBarButton: FC <Props> = ({element, type, link, active, onClick, name}) => {
 
     const icon = cloneElement(element, {active})
 
     const buttonElement =
         <Button
+            onClick={() => onClick(name)}
             type='WHITE' 
             className="
                 flex

@@ -1,5 +1,5 @@
 'use client'
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import SettingsSVG from "@/shared/assets/controlledSVG/settingsSVG";
 import Image from "next/image";
 import logo from '@/shared/assets/icons/logo.svg'
@@ -11,21 +11,51 @@ import { usePathname } from "next/navigation";
 
 const SideBar: FC = () => {
 
-    const [overrideActiveId, setOverrideActiveId] = useState<string | null>(null);
+    const [sectionActive, setSectionActive] = useState<string>('/')
+    const pathname = usePathname();
 
-    const pathname = usePathname()
+    const handleActivatedSection = (section: string) => {
+        
+        // если переданная секция уже активна, то делаем её не активной
+        // а также проверяем пазнейм для назначения текущей активной секции
 
-    const getActiveId = () => {
-        if (overrideActiveId) return overrideActiveId;
+        if (sectionActive === section){
+            console.log(sectionActive === section)
+            switch(pathname){
+                case '/':
+                    setSectionActive('home')
+                    break
+                case '/ideas':
+                    setSectionActive('ideas')
+                    break
+                case '/profile':
+                    setSectionActive('profile')
+                    break
+            }
+        } else {
+            // если передана новая секция, то делаем её активной
+            switch(section){
+                case '/':
+                    setSectionActive('home')
+                    break
+                case '/ideas':
+                    setSectionActive('ideas')
+                    break
+                case '/profile':
+                    setSectionActive('profile')
+                    break
+                default: 
+                    setSectionActive(section)
+                    break
+            }
+        }
 
-        const match = mockButtons.find(
-            b => b.link && pathname === b.link
-        );
+        console.log(sectionActive)
+    }
 
-        return match?.name ?? null;
-    };
-
-    const activeId = getActiveId();
+    useEffect(() => {
+        handleActivatedSection(pathname)
+    }, [pathname])
 
 
     return(
@@ -47,6 +77,7 @@ const SideBar: FC = () => {
             z-1
             
         ">
+
             <nav>
                 <ul className="
                     flex
@@ -75,17 +106,21 @@ const SideBar: FC = () => {
                             key={data.name} 
                             link={data.link} 
                             type={data.type}
-                            active = {data.name === activeId}
+                            name={data.name}
+                            active={sectionActive === data.name}
+                            onClick={handleActivatedSection}
                         />
                     ))}
                 </ul>
             </nav>
 
             <SideBarButton 
+                name='settings'
                 element = {<SettingsSVG />} 
                 key='settings' 
                 type='active'
-                active = {'settings' === activeId}
+                active={sectionActive === 'settings'}
+                onClick={handleActivatedSection}
             />
         </div>
     )
