@@ -32,13 +32,13 @@ const Button: FC<Props> = ({ children, type, className, onClick }) => {
                 ${className}
             `}
             
-            whileTap={{ scale: 0.94 }}
+            whileTap={{ scale: 0.97 }}
             
-            whileHover={{ scale: 1.03 }}
+            // whileHover={{ scale: 1.03 }}
             
             transition={{
                 type: "spring",
-                stiffness: 400,
+                stiffness: 1000,
                 damping: 25
             }}
         >
