@@ -1,31 +1,50 @@
 import { FC, ReactNode } from "react";
+import { motion } from "framer-motion";
 
 interface Props {
-    children: ReactNode
-    type: 'ELEMENT' | 'RED' | 'WHITE' | 'GREY'
-    className?: string
-    onClick?: () => void
+    children: ReactNode;
+    type: 'ELEMENT' | 'RED' | 'WHITE' | 'GREY';
+    className?: string;
+    onClick?: () => void;
 }
 
-const Button: FC <Props> = ({children, type, className, onClick}) => {
+const Button: FC<Props> = ({ children, type, className, onClick }) => {
 
-    return(
-        <button className={`
-            ${className}
-            
-            flex            
-            ${type === 'RED' && "bg-[red] active:bg-[yellow]"}
-            ${type === 'WHITE' && 'bg-[transparent] active:bg-grey-light hover:bg-grey-light'}
-            ${type === 'GREY' && 'bg-grey-light active:bg-grey'}            
-            active:scale-90
+    const baseStyles = `
+        flex items-center justify-center
+        rounded-xl
+        select-none
+    `;
 
-            transition-all duration-250
-        `}
+    const typeStyles = {
+        RED: "bg-[red]",
+        WHITE: "bg-transparent hover:bg-grey-light",
+        GREY: "bg-grey-light",
+        ELEMENT: ""
+    };
+
+    return (
+        <motion.button
             onClick={onClick}
+            className={`
+                ${baseStyles}
+                ${typeStyles[type]}
+                ${className}
+            `}
+            
+            whileTap={{ scale: 0.94 }}
+            
+            whileHover={{ scale: 1.03 }}
+            
+            transition={{
+                type: "spring",
+                stiffness: 400,
+                damping: 25
+            }}
         >
             {children}
-        </button>
-    )
-}
+        </motion.button>
+    );
+};
 
-export default Button
+export default Button;

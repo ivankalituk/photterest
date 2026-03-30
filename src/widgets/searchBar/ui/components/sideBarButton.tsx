@@ -4,6 +4,7 @@ import { FC, ReactElement, cloneElement } from "react";
 
 interface Props {
     element: ReactElement<{active?: boolean}>
+    component?: ReactElement
     type: string
     link?: string
     active?: boolean
@@ -11,7 +12,7 @@ interface Props {
     onClick: (section: string) => void
 }
 
-const SideBarButton: FC <Props> = ({element, type, link, active, onClick, name}) => {
+const SideBarButton: FC <Props> = ({element, type, link, active, onClick, name, component}) => {
 
     const icon = cloneElement(element, {active})
 
@@ -37,6 +38,7 @@ const SideBarButton: FC <Props> = ({element, type, link, active, onClick, name})
     if(link && type.includes('link')){
         return <Link href={link}>{buttonElement}</Link>
     }
+    
     return(buttonElement)
 }
 

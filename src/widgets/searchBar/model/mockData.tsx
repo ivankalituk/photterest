@@ -15,7 +15,8 @@ export const mockButtons = [
         name: '/ideas',
         component: <CompasSVG />,
         type: 'hover link',
-        link: '/ideas'
+        link: '/ideas',
+        element: <div>dada</div>
     },
     {
         name: '/profile',
@@ -26,11 +27,13 @@ export const mockButtons = [
     {
         name: 'create',
         component: <CreateSVG />,
-        type: 'active'
+        type: 'active',
+        element: <div>dada</div>
     },
     {
         name: 'notifications',
         component: <BellSVG />,
-        type: 'active'
+        type: 'active',
+        element: <div>dada</div>
     }
 ]
