@@ -1,6 +1,5 @@
 'use client'
 
-import { Button } from "@/shared/ui/button"
 import { SearchBar } from "@/widgets/searchBar"
 import { FC } from "react"
 import HeaderAccount from "../components/headerAccount"

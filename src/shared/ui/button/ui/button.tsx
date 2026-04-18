@@ -4,11 +4,13 @@ import { motion } from "framer-motion";
 interface Props {
     children: ReactNode;
     type: 'ELEMENT' | 'RED' | 'WHITE' | 'GREY';
+    scale?: number
+    hover?: number
     className?: string;
     onClick?: () => void;
 }
 
-const Button: FC<Props> = ({ children, type, className, onClick }) => {
+const Button: FC<Props> = ({ children, type, className, onClick, scale = 0.95, hover = 0 }) => {
 
     const baseStyles = `
         flex items-center justify-center
@@ -32,9 +34,9 @@ const Button: FC<Props> = ({ children, type, className, onClick }) => {
                 ${className}
             `}
             
-            whileTap={{ scale: 0.97 }}
+            whileTap={{ scale: scale }}
             
-            // whileHover={{ scale: 1.03 }}
+            whileHover={ hover !== 0? { scale: hover } : {}}
             
             transition={{
                 type: "spring",
