@@ -1,5 +1,6 @@
 "use client"
-import { FC, useEffect, useState } from "react";
+import { useThrottle } from "@/shared/hooks/useThrottle";
+import { FC, useEffect, useRef, useState } from "react";
 
 const mockBoards = [
     'All',
@@ -12,30 +13,29 @@ const mockBoards = [
 
 
 const StickyBoards: FC = () => {
-    const [lastScroll, setLastScroll] = useState<number>(0);
+    // const [lastScroll, setLastScroll] = useState<number>(0);
     const [hidden, setHidden] = useState<boolean>(false)
     const [currentBoard, setCurrentBoard] = useState<string>('All')
 
-    useEffect(() => {
+    const lastScrollRef = useRef(0)
 
-        const handleScroll = () =>{
-            const currentScroll = window.pageYOffset
-            console.log(currentScroll)
-
-            if(currentScroll > lastScroll && currentScroll > 100){
-                setHidden(true)
-            } else {
-                setHidden(false)
-            }
-
-            setLastScroll(currentScroll)
+    const handleScroll = useThrottle(() => {
+        const currentScroll = window.pageYOffset
+        console.log('ACTION')
+        if (currentScroll > lastScrollRef.current && currentScroll > 100) {
+            setHidden(true)
+        } else {
+            setHidden(false)
         }
 
+        lastScrollRef.current = currentScroll
+    }, 100)
 
+    useEffect(() => {
         window.addEventListener("scroll", handleScroll)
-
         return () => window.removeEventListener("scroll", handleScroll)
-    }, [lastScroll])
+    }, [handleScroll])
+
 
     return(
         <div className={
