@@ -28,21 +28,13 @@ export default function RootLayout({
         <html lang="en" className={roboto.className}>
             <body>
 
-                <div className='
-                    grid grid-rows-[auto_1fr] grid-cols-[80px_auto]
-                '>
+                <div className='flex'>
                     <SideBar />
-                    <Header />
-                    
 
-                    <div 
-                        className="
-                            row-start-2
-                            col-start-2
-                            relative
-                            top-[80px]
-                            "
-                    >{children}</div>
+                    <div className='flex-1'>
+                        <Header />
+                        <main>{children}</main>
+                    </div>                   
                 </div>
             </body>
         </html>

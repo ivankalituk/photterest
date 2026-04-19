@@ -42,68 +42,71 @@ const SideBar: FC = () => {
 
     return(
         <div className="
-            fixed
             flex
-            flex-col
-            items-center
-            justify-between
             h-[100dvh]
             w-[80px]
             py-[12px]
-            row-start-1 row-end-3
-            col-start-1 col-end-1
-            row-end-2
             border-r-[1px]
             border-grey-light
             bg-[white]
-            z-1
+            z-10
             
         ">
-
-            <nav>
-                <ul className="
+            <div 
+                className="
+                    w-[80px]
+                    fixed
                     flex
                     flex-col
                     items-center
-                    gap-[12px]
-                ">
-                    <Link href='/'>
-                        <Button 
-                            type='WHITE' 
-                            className="
-                                p-[5px]
-                                rounded-[7px]
-                                w-[55px]
-                                aspect-[1/1]
-                                no-select no-drag
-                            "
-                        >
-                            <Image src={logo} alt="logo" />
-                        </Button>
-                    </Link>
+                    justify-between
+                "
+            >
+                <nav>
+                    <ul className="
+                        flex
+                        flex-col
+                        items-center
+                        gap-[12px]
+                    ">
+                        <Link href='/'>
+                            <Button 
+                                type='WHITE' 
+                                className="
+                                    p-[5px]
+                                    rounded-[7px]
+                                    w-[55px]
+                                    aspect-[1/1]
+                                    no-select no-drag
+                                "
+                            >
+                                <Image src={logo} alt="logo" />
+                            </Button>
+                        </Link>
 
-                    {mockButtons.map((data) => (
-                        <SideBarButton 
-                            element = {data.component} 
-                            key={data.name} 
-                            link={data.link} 
-                            type={data.type}
-                            name={data.name}
-                            active={sectionActive === data.name}
-                            onClick={handleActivatedSection}
-                        />
-                    ))}
-                </ul>
-            </nav>
+                        {mockButtons.map((data) => (
+                            <SideBarButton 
+                                element = {data.component} 
+                                key={data.name} 
+                                link={data.link} 
+                                type={data.type}
+                                name={data.name}
+                                active={sectionActive === data.name}
+                                onClick={handleActivatedSection}
+                            />
+                        ))}
+                    </ul>
+                </nav>
 
-            <SideBarButton 
-                name='settings'
-                element = {<SettingsSVG />} 
-                key='settings' 
-                type='active'
-                active={sectionActive === 'settings'}
-                onClick={handleActivatedSection}
-            />
+                <SideBarButton 
+                    name='settings'
+                    element = {<SettingsSVG />} 
+                    key='settings' 
+                    type='active'
+                    active={sectionActive === 'settings'}
+                    onClick={handleActivatedSection}
+                />
+            </div>
         </div>
     )
 }
