@@ -29,11 +29,11 @@ export default function RootLayout({
             <body>
 
                 <div className='flex'>
-                    <SideBar />
+                    {/* <SideBar /> */}
 
                     <div className='flex-1'>
                         <Header />
-                        <main>{children}</main>
+                        {/* <main>{children}</main> */}
                     </div>                   
                 </div>
             </body>
