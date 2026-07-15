@@ -1,4 +1,6 @@
 import { FC } from "react";
+import HeaderAccount from "./components/headerAccount";
+import { SearchBar } from "@/features/searchBar";
 
 const Header: FC = () => {
     return(
@@ -11,9 +13,14 @@ const Header: FC = () => {
                 bg-[white]
                 h-[80px]
                 w-[100%]
+                flex
+                items-center
+                gap-[10px]
             "
         >
-            header
+            <SearchBar />    
+
+            <HeaderAccount />
         </header>
     )
 }

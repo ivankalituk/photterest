@@ -1,0 +1,9 @@
+import { FC } from "react";
+
+const SearchSVG: FC = () => {
+    return(
+        <svg aria-label="Значок поиска" height="16" role="img" viewBox="0 0 24 24" width="16"><path d="M17.33 18.74a10 10 0 1 1 1.41-1.41l4.47 4.47-1.41 1.41zM11 3a8 8 0 1 0 0 16 8 8 0 0 0 0-16"></path></svg>
+    )
+}
+
+export default SearchSVG
