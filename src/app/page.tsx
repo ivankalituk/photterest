@@ -1,5 +1,3 @@
-import { PinsGrid } from '@/shared/ui/pinsGrid'
-import StickyBoards from './components/stickyBoards'
 import './globals.css'
 
 
@@ -10,18 +8,8 @@ import './globals.css'
 
 export default function Home() {
     return (
-        <div className='
-                relative
-                px-[16px]    
-            '
-        >
-            {/* сделать колбек с выбором */}
-            <StickyBoards />
-
-            <div className='mt-[0px]'>
-                <PinsGrid />
-            </div>
-
+        <div>
+            gay
         </div>
     )
 }

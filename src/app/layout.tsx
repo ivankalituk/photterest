@@ -1,7 +1,5 @@
 import type { Metadata } from 'next';
-import { Header } from '@/widgets/header';
 import './globals.css'
-import { SideBar } from '@/widgets/sideBar';
 export const metadata: Metadata = {
     title: 'Photterest',
     description: 'Pet project, copy of pinterest',
@@ -27,15 +25,7 @@ export default function RootLayout({
     return (
         <html lang="en" className={roboto.className}>
             <body>
-
-                <div className='flex'>
-                    {/* <SideBar /> */}
-
-                    <div className='flex-1'>
-                        <Header />
-                        {/* <main>{children}</main> */}
-                    </div>                   
-                </div>
+                <main>{children}</main>                 
             </body>
         </html>
     );
