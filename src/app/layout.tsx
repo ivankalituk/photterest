@@ -5,7 +5,7 @@ export const metadata: Metadata = {
     description: 'Pet project, copy of pinterest',
 };
 import { Roboto_Flex } from 'next/font/google';
-import { Header } from '@/components/header';
+import { Header } from '@/widgets/header';
 
 
 const roboto = Roboto_Flex({
