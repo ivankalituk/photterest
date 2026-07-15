@@ -7,6 +7,7 @@ const Header: FC = () => {
         <header
             className="
                 fixed
+                px-[16px]
                 z-[1000]
                 top-[0px]
                 left-[0px]
