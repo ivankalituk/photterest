@@ -8,8 +8,13 @@ import './globals.css'
 
 export default function Home() {
     return (
-        <div>
-            gay
+        <div 
+            className='
+                h-[1000px]
+                bg-[red]
+            '
+        >
+            sample content
         </div>
     )
 }

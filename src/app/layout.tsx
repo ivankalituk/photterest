@@ -5,6 +5,7 @@ export const metadata: Metadata = {
     description: 'Pet project, copy of pinterest',
 };
 import { Roboto_Flex } from 'next/font/google';
+import { Header } from '@/components/header';
 
 
 const roboto = Roboto_Flex({
@@ -24,8 +25,17 @@ export default function RootLayout({
 
     return (
         <html lang="en" className={roboto.className}>
+
             <body>
-                <main>{children}</main>                 
+                <Header />
+
+                <main 
+                    className='
+                        pt-[80px]
+                    '
+                >
+                    {children}
+                </main>                 
             </body>
         </html>
     );
