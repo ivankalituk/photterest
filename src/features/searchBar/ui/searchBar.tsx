@@ -25,13 +25,13 @@ const SearchBar: FC = () => {
             <Input 
                 className="
                     flex-1
-                    bg-[green]
                     h-[100%]
+                    roboto
                 "
-                
+                placeholder="Поиск"
             />
 
-            <Button>
+            <Button square hover="WHITE">
                 <PhotoSearch />
                 {false && <img src="" alt="cross" />}
             </Button>

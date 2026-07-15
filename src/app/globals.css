@@ -5,6 +5,8 @@
     --color-secondary: #15c70c;
     --color-grey: #e5e5e4;
     --color-grey-light: #e5e5e4;
+    --color-border: #c8c8c1;
+    --color-icon: #62625b;
     
     --spacing-px: 10px;
     --spacing-30: 30px;
@@ -14,7 +16,7 @@
 input,
 button,
 textarea,
-select {
+select, input::placeholder {
     font-family: var(--font-roboto);
 }
 

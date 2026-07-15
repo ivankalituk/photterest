@@ -12,7 +12,6 @@ const Input: FC <Props> = ({className, placeholder}) => {
             type="text"
             placeholder = {placeholder}
             className={twMerge(`
-                bg-[red]
                 flex-1
                 outline-none
                 border-0
