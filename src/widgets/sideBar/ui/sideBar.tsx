@@ -11,19 +11,21 @@ const SideBar: FC = () => {
     }
 
     return(
-        <div
+        <aside
             className="
-                fixed
+                
                 left-[0px]
                 top-[0px]
                 bg-[green]
-                h-[100vh]
+                h-[100dvh]
                 w-[70px]
             "
             style={{width: 70 + expand}}
         >
-            <button onClick={toggleExpand}>Expand</button>
-        </div>
+            <div className="sticky top-[0px] left-[0px]">
+                <button onClick={toggleExpand}>Expand</button>
+            </div>
+        </aside>
     )
 }
 
