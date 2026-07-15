@@ -10,10 +10,10 @@ const Header: FC = () => {
                 px-[16px]
                 z-[1000]
                 top-[0px]
-                left-[0px]
+                left-[70px]
                 bg-[white]
                 h-[80px]
-                w-[100%]
+                w-[calc(100%-70px)]
                 flex
                 items-center
                 gap-[10px]
