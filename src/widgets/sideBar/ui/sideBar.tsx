@@ -1,5 +1,4 @@
 'use client'
-
 import { FC, useState } from "react";
 
 const RAIL_WIDTH = 70;
