@@ -15,12 +15,14 @@ const SideBar: FC = () => {
     const location = usePathname()
 
 
-    const handleButton = (id: string) => {
-        if(id === currentButton){
+    const handleButton = (item: SidebarItem) => {
+        if(item.id === currentButton){
             setCurrentButton(sidebarNavData.find((item) => item.href?.includes(location))?.id || '')
         } else {
-            setCurrentButton(id)
+            setCurrentButton(item.id)
         }
+
+        // ЕСЛИ id === тому у которого есть тип панель, то панель должна открываться, если нет, то закрываться 
 
     }
 

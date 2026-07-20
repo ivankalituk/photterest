@@ -26,9 +26,9 @@ export const sidebarNavData: SidebarItem[] = [
     {
         name: 'Boards',
         id: 'BOARDS',
-        type: 'PANEL',
+        type: 'LINK',
+        href: '/boards',
         icon: BoardsSVG,
-        panel: BoardsSVG
     },
     {
         name: 'Create pin',
