@@ -7,7 +7,7 @@ interface Props {
     hover?: 'TRANSPARENT' | 'WHITE' | 'RED' | 'GREY'
     square?: boolean
     className?: string
-    onClick?: () => {}
+    onClick?: () => any
 }
 
 // change hover collors, change types

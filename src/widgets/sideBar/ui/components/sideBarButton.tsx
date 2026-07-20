@@ -4,7 +4,7 @@ import { SidebarItem } from "../../model/mockdata";
 
 interface Props {
     item: SidebarItem
-    onClick: (id: string) => {}
+    onClick: (id: string) => void
     active?: boolean
 }
 

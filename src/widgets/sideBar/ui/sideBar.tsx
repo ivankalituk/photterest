@@ -4,6 +4,7 @@ import { Button } from "@/shared/ui/button";
 import { FC, useState } from "react";
 import { SidebarItem, sidebarNavData } from "../model/mockdata";
 import SideBarButton from "./components/sideBarButton";
+import { usePathname } from "next/navigation";
 
 const RAIL_WIDTH = 70;
 const PANEL_WIDTH = 200;
@@ -11,14 +12,12 @@ const PANEL_WIDTH = 200;
 const SideBar: FC = () => {
     const [isExpanded, setIsExpanded] = useState<boolean>(false);
     const [currentButton, setCurrentButton] = useState<string>('HOME')
+    const location = usePathname()
+
 
     const handleButton = (id: string) => {
-
-        // или если текущая страница === главной, то делать HOME
         if(id === currentButton){
-            setCurrentButton('HOME')
-            console.log('id===current')
-            return
+            setCurrentButton(sidebarNavData.find((item) => item.href?.includes(location))?.id || '')
         } else {
             setCurrentButton(id)
         }
