@@ -2,12 +2,28 @@
 import HomeSVG from "@/shared/assets/controlledSVG/homeSVG";
 import { Button } from "@/shared/ui/button";
 import { FC, useState } from "react";
+import { SidebarItem, sidebarNavData } from "../model/mockdata";
+import SideBarButton from "./components/sideBarButton";
 
 const RAIL_WIDTH = 70;
 const PANEL_WIDTH = 200;
 
 const SideBar: FC = () => {
-    const [isExpanded, setIsExpanded] = useState(false);
+    const [isExpanded, setIsExpanded] = useState<boolean>(false);
+    const [currentButton, setCurrentButton] = useState<string>('HOME')
+
+    const handleButton = (id: string) => {
+
+        // или если текущая страница === главной, то делать HOME
+        if(id === currentButton){
+            setCurrentButton('HOME')
+            console.log('id===current')
+            return
+        } else {
+            setCurrentButton(id)
+        }
+
+    }
 
     return (
         <aside
@@ -42,9 +58,14 @@ const SideBar: FC = () => {
                     Expand
                 </button>
 
-                <Button>
-                    <HomeSVG />
-                </Button>
+                {sidebarNavData.map((item: SidebarItem) => (
+                    <SideBarButton 
+                        item={item} 
+                        key={item.id} 
+                        onClick={handleButton}
+                        active={currentButton === item.id}
+                    />
+                ))}
 
             </div>
 

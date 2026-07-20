@@ -7,12 +7,12 @@ interface Props {
     hover?: 'TRANSPARENT' | 'WHITE' | 'RED' | 'GREY'
     square?: boolean
     className?: string
-    
+    onClick?: () => {}
 }
 
 // change hover collors, change types
 
-const Button: FC <Props> = ({children, square, hover, className}) => {
+const Button: FC <Props> = ({children, square, hover, className, onClick}) => {
     return(
         <button
             className={
@@ -29,6 +29,7 @@ const Button: FC <Props> = ({children, square, hover, className}) => {
                     ${className && className}
                 `)
             }
+            onClick={onClick}
         >
             {children}
         </button>

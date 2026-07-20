@@ -4,7 +4,18 @@ import HomeSVG from "@/shared/assets/controlledSVG/homeSVG";
 import LogoSVG from "@/shared/assets/controlledSVG/logoSVG";
 import MessagesSVG from "@/shared/assets/controlledSVG/messagesSVG";
 import NotificationsSVG from "@/shared/assets/controlledSVG/notificationsSVG";
-export const sidebarNavData = [
+import { FC } from "react";
+
+export interface SidebarItem {
+    id: string,
+    name: string,
+    type: 'LINK' | 'PANEL',
+    href?: string,
+    panel?: FC
+    icon: FC<{active? : boolean}> 
+}
+
+export const sidebarNavData: SidebarItem[] = [
     {
         name: 'Home',
         id: 'HOME',
