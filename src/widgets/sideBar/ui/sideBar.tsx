@@ -1,4 +1,6 @@
 'use client'
+import HomeSVG from "@/shared/assets/controlledSVG/homeSVG";
+import { Button } from "@/shared/ui/button";
 import { FC, useState } from "react";
 
 const RAIL_WIDTH = 70;
@@ -29,16 +31,14 @@ const SideBar: FC = () => {
                     shrink-0
                     flex
                     flex-col
-                    items-center
                     py-4
                     border-r
                 "
             >
-                <button
-                    onClick={() => setIsExpanded(prev => !prev)}
-                >
-                    Expand
-                </button>
+
+                <Button>
+                    <HomeSVG />
+                </Button>
 
             </div>
 
