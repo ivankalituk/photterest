@@ -31,10 +31,16 @@ const SideBar: FC = () => {
                     shrink-0
                     flex
                     flex-col
+
                     py-4
                     border-r
                 "
             >
+                <button
+                    onClick={() => setIsExpanded(prev => !prev)}
+                >
+                    Expand
+                </button>
 
                 <Button>
                     <HomeSVG />
