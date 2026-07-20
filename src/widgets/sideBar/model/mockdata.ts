@@ -11,7 +11,7 @@ export interface SidebarItem {
     name: string,
     type: 'LINK' | 'PANEL',
     href?: string,
-    panel?: FC
+    panel?: FC<{}>
     icon: FC<{active? : boolean}> 
 }
 

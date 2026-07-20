@@ -1,7 +1,7 @@
 'use client'
 import HomeSVG from "@/shared/assets/controlledSVG/homeSVG";
 import { Button } from "@/shared/ui/button";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { SidebarItem, sidebarNavData } from "../model/mockdata";
 import SideBarButton from "./components/sideBarButton";
 import { usePathname } from "next/navigation";
@@ -11,20 +11,49 @@ const PANEL_WIDTH = 200;
 
 const SideBar: FC = () => {
     const [isExpanded, setIsExpanded] = useState<boolean>(false);
-    const [currentButton, setCurrentButton] = useState<string>('HOME')
+    const [currentButton, setCurrentButton] = useState('HOME');
+    const [renderPanel, setRenderPanel] = useState<string | null>(null);
     const location = usePathname()
 
 
     const handleButton = (item: SidebarItem) => {
         if(item.id === currentButton){
-            setCurrentButton(sidebarNavData.find((item) => item.href?.includes(location))?.id || '')
-        } else {
-            setCurrentButton(item.id)
+            setCurrentButton(
+                sidebarNavData.find(
+                    item => item.href?.includes(location)
+                )?.id || ''
+            );
+
+            setIsExpanded(false);
+
+            return;
         }
 
-        // ЕСЛИ id === тому у которого есть тип панель, то панель должна открываться, если нет, то закрываться 
+        setCurrentButton(item.id);
 
+        if(item.panel){
+            setRenderPanel(item.id);
+            setIsExpanded(true);
+        } else {
+            setRenderPanel(null);
+            setIsExpanded(false);
+        }
     }
+
+    useEffect(() => {
+        if(!isExpanded){
+            const timeout = setTimeout(() => {
+                setRenderPanel(null);
+            }, 300);
+
+            return () => clearTimeout(timeout);
+        }
+    }, [isExpanded]);
+
+    const ActivePanel = sidebarNavData.find(
+        item => item.id === renderPanel
+    )?.panel;
+
 
     return (
         <aside
@@ -93,7 +122,7 @@ const SideBar: FC = () => {
                 >
                     <div className="p-5">
                         <h2 className="font-bold mb-4">
-                            Expanded Content
+                            {ActivePanel && <ActivePanel />}
                         </h2>
                     </div>
                 </div>
