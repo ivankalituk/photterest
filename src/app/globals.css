@@ -7,6 +7,10 @@
     --color-grey-light: #e5e5e4;
     --color-border: #c8c8c1;
     --color-icon: #62625b;
+    --color-background-secondary: #e5e5e0;
+    --color-background-hover: #f6f6f3;
+    --color-text-light: #62625b;
+    --color-text-default: #000;
     
     --spacing-px: 10px;
     --spacing-30: 30px;

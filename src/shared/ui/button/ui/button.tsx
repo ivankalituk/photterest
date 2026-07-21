@@ -56,7 +56,7 @@ const Button: FC <Props> = ({children, square, hover, className, onClick, as = '
                     `, `
                         ${square && 'aspect-[1]'}
                         ${hover === 'WHITE' && 'hover:bg-[white]'}
-                        ${hover === 'GREY' && 'hover:bg-[grey]'}
+                        ${hover === 'GREY' && 'hover:bg-background-hover'}
                         ${className && className}
                     `)
                 }
@@ -79,7 +79,7 @@ const Button: FC <Props> = ({children, square, hover, className, onClick, as = '
                 `, `
                     ${square && 'aspect-[1]'}
                     ${hover === 'WHITE' && 'hover:bg-[white]'}
-                    ${hover === 'GREY' && 'hover:bg-[grey]'}
+                    ${hover === 'GREY' && 'hover:bg-background-hover'}
                     ${className && className}
                 `)
             }
