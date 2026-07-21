@@ -1,5 +1,4 @@
 'use client'
-import HomeSVG from "@/shared/assets/controlledSVG/homeSVG";
 import { Button } from "@/shared/ui/button";
 import { FC, useEffect, useState } from "react";
 import { SidebarItem, sidebarNavData } from "../model/mockdata";
@@ -80,9 +79,9 @@ const SideBar: FC = () => {
                     flex-col
                     items-center
                     py-[16px]
-                    border-r
+                    border-r-[1px]
+                    border-border
                     gap-[24px]
-                    
                 "
             >
                 <Link href='/'>
@@ -127,6 +126,8 @@ const SideBar: FC = () => {
                 className="
                     overflow-hidden
                     shrink-0
+                    border-r
+                    border-border
                 "
                 style={{
                     width: PANEL_WIDTH,
