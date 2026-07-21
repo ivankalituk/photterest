@@ -1,6 +1,6 @@
 import { FC } from "react";
-import PanelHeading from "./panelHeading";
-import CreatePanelVariant from "./createPanelVariant";
+import { PanelHeading } from "@/shared/ui/PanelHeading";
+import CreatePanelVariant from "./components/createPanelVariant";
 
 const CreatePanel: FC = () => {
     return(
