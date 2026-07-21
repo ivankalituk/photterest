@@ -9,7 +9,7 @@ import Link from "next/link";
 import LogoSVG from "@/shared/assets/controlledSVG/logoSVG";
 
 const RAIL_WIDTH = 70;
-const PANEL_WIDTH = 200;
+const PANEL_WIDTH = 384;
 
 const SideBar: FC = () => {
     const [isExpanded, setIsExpanded] = useState<boolean>(false);
@@ -144,10 +144,14 @@ const SideBar: FC = () => {
                             : "translateX(-100%)",
                     }}
                 >
-                    <div className="p-5">
-                        <h2 className="font-bold mb-4">
-                            {ActivePanel && <ActivePanel />}
-                        </h2>
+                    <div 
+                        className="
+                            px-[12px]
+                            py-[24px]
+                        "
+                    >
+                        
+                        {ActivePanel && <ActivePanel />}
                     </div>
                 </div>
             </div>

@@ -6,6 +6,7 @@ import MessagesSVG from "@/shared/assets/controlledSVG/messagesSVG";
 import NotificationsSVG from "@/shared/assets/controlledSVG/notificationsSVG";
 import SettingsSVG from "@/shared/assets/controlledSVG/settingsSVG";
 import { FC } from "react";
+import CreatePanel from "../ui/components/createPanel";
 
 export interface SidebarItem {
     id: string,
@@ -36,7 +37,7 @@ export const sidebarNavData: SidebarItem[] = [
         id: 'CREATE',
         type: 'PANEL',
         icon: CreateSVG,
-        panel: CreateSVG,
+        panel: CreatePanel,
     },
     {
         name: 'Notifications',
