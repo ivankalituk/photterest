@@ -5,6 +5,8 @@ import { FC, useEffect, useState } from "react";
 import { SidebarItem, sidebarNavData } from "../model/mockdata";
 import SideBarButton from "./components/sideBarButton";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
+import LogoSVG from "@/shared/assets/controlledSVG/logoSVG";
 
 const RAIL_WIDTH = 70;
 const PANEL_WIDTH = 200;
@@ -60,7 +62,6 @@ const SideBar: FC = () => {
             className="
                 flex
                 h-[100dvh]
-                bg-green-500
                 transition-[width]
                 duration-300
                 overflow-hidden
@@ -77,18 +78,30 @@ const SideBar: FC = () => {
                     shrink-0
                     flex
                     flex-col
-
-                    py-4
+                    items-center
+                    py-[16px]
                     border-r
+                    gap-[24px]
+                    
                 "
             >
-                <button
-                    onClick={() => setIsExpanded(prev => !prev)}
-                >
-                    Expand
-                </button>
+                <Link href='/'>
+                    <Button 
+                        type="WHITE" 
+                        hover="GREY" 
+                        className="
+                            h-[48px]
+                            w-[48px]
+                        "
+                        square
+                    >
+                        <LogoSVG />
+                    </Button>
+                </Link>
 
-                {sidebarNavData.map((item: SidebarItem) => (
+
+
+                {sidebarNavData.slice(0, -1).map((item: SidebarItem) => (
                     <SideBarButton 
                         item={item} 
                         key={item.id} 
@@ -96,6 +109,17 @@ const SideBar: FC = () => {
                         active={currentButton === item.id}
                     />
                 ))}
+
+                    <SideBarButton 
+                        item={sidebarNavData[sidebarNavData.length -1]} 
+                        key={sidebarNavData[sidebarNavData.length -1].id} 
+                        onClick={handleButton}
+                        active={currentButton === sidebarNavData[sidebarNavData.length -1].id}
+
+                        className="
+                            mt-[auto]
+                        "
+                    />
 
             </div>
 

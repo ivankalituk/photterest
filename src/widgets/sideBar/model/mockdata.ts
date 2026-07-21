@@ -4,6 +4,7 @@ import HomeSVG from "@/shared/assets/controlledSVG/homeSVG";
 import LogoSVG from "@/shared/assets/controlledSVG/logoSVG";
 import MessagesSVG from "@/shared/assets/controlledSVG/messagesSVG";
 import NotificationsSVG from "@/shared/assets/controlledSVG/notificationsSVG";
+import SettingsSVG from "@/shared/assets/controlledSVG/settingsSVG";
 import { FC } from "react";
 
 export interface SidebarItem {
@@ -50,5 +51,12 @@ export const sidebarNavData: SidebarItem[] = [
         type: 'PANEL',
         icon: MessagesSVG,
         panel: MessagesSVG,
+    },
+    {
+        name: 'Settings',
+        id: 'SETTINGS',
+        type: "PANEL",
+        icon: SettingsSVG,
+        panel: SettingsSVG
     }
 ]
