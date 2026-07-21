@@ -7,13 +7,14 @@ import NotificationsSVG from "@/shared/assets/controlledSVG/notificationsSVG";
 import SettingsSVG from "@/shared/assets/controlledSVG/settingsSVG";
 import { FC } from "react";
 import CreatePanel from "../../createPanel/ui/createPanel";
+import { NotificationsPanel } from "@/widgets/notificationsPanel";
 
 export interface SidebarItem {
     id: string,
     name: string,
     type: 'LINK' | 'PANEL',
     href?: string,
-    panel?: FC<{}>
+    panel?: FC<{item: SidebarItem, onClose: (item :SidebarItem) => void}>
     icon: FC<{active? : boolean}> 
 }
 
@@ -44,7 +45,7 @@ export const sidebarNavData: SidebarItem[] = [
         id: 'NOTIFICATIONS',
         type: 'PANEL',
         icon: NotificationsSVG,
-        panel: NotificationsSVG,
+        panel: NotificationsPanel,
     },
     {
         name: 'Messages',

@@ -151,7 +151,7 @@ const SideBar: FC = () => {
                         "
                     >
                         
-                        {ActivePanel && <ActivePanel />}
+                        {ActivePanel && <ActivePanel onClose={handleButton} item = {currentButton}/>}
                     </div>
                 </div>
             </div>

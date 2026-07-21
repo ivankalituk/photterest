@@ -1,0 +1,62 @@
+import { Button } from "@/shared/ui/button";
+import Image from "next/image";
+import { FC } from "react";
+import samplePin from '@/shared/assets/images/samplePin.jpg'
+import HorizontalDotsSVG from "@/shared/assets/controlledSVG/horizontalDotsSVG";
+
+const Notification: FC = () => {
+    return(
+        <Button 
+            as="LINK" 
+            href="/"
+            className="
+                max-h-[300px]
+                justify-start
+                px-[8px] py-[8px]
+                gap-[8px]
+            "
+            hover='GREY'
+        >
+            <Image 
+                src={samplePin} 
+                alt="notifImg"
+                className="
+                    h-[72px]
+                    w-[56px]
+                    object-cover
+                    aspect-[1/2]
+                    rounded-[12px] 
+                "
+            />
+
+            <span
+                className="
+                    text-[16px]
+                    leading-[22px]
+                "
+            >
+                Это вам точно подойдёт
+            </span>
+            
+            <div
+                className="
+                    ml-[auto]
+                    flex flex-col
+                    items-end
+                    
+                "
+            >
+                <div>18 ч.</div>
+                <Button 
+                    type="WHITE" 
+                    hover="GREY"
+                >
+                    <HorizontalDotsSVG />
+                </Button>
+            </div>
+            
+        </Button>
+    )
+}
+
+export default Notification

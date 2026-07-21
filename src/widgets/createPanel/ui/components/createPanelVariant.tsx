@@ -5,9 +5,10 @@ import { CreatePanelTypes } from "../../model/mockData";
 
 interface Props{
     variant: CreatePanelTypes
+    onClose: () => void
 }
 
-const CreatePanelVariant: FC <Props> = ({variant}) => {
+const CreatePanelVariant: FC <Props> = ({variant, onClose}) => {
     return(
         <Button 
             as="LINK"
@@ -22,6 +23,7 @@ const CreatePanelVariant: FC <Props> = ({variant}) => {
                 items-start
             "
             hover="GREY"
+            onClick={onClose}
         >
             <Button 
                 as="DIV"
