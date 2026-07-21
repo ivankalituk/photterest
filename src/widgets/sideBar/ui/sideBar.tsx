@@ -1,59 +1,89 @@
 'use client'
-import { Button } from "@/shared/ui/button";
+
 import { FC, useEffect, useState } from "react";
-import { SidebarItem, sidebarNavData } from "../model/mockdata";
-import SideBarButton from "./components/sideBarButton";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+
+import { Button } from "@/shared/ui/button";
 import LogoSVG from "@/shared/assets/controlledSVG/logoSVG";
+
+import { SidebarItem, sidebarNavData } from "../model/mockdata";
+import SideBarButton from "./components/sideBarButton";
+
 
 const RAIL_WIDTH = 70;
 const PANEL_WIDTH = 384;
 
+
 const SideBar: FC = () => {
-    const [isExpanded, setIsExpanded] = useState<boolean>(false);
-    const [currentButton, setCurrentButton] = useState('HOME');
-    const [renderPanel, setRenderPanel] = useState<string | null>(null);
-    const location = usePathname()
+
+    const location = usePathname();
+
+    const [currentItem, setCurrentItem] = useState<SidebarItem>(
+        sidebarNavData[0]
+    );
+    const [mountedPanel, setMountedPanel] = useState<SidebarItem | null>(null);
+
+    const [isExpanded, setIsExpanded] = useState(false);
 
 
     const handleButton = (item: SidebarItem) => {
-        if(item.id === currentButton){
-            setCurrentButton(
-                sidebarNavData.find(
-                    item => item.href?.includes(location)
-                )?.id || ''
+
+        if(item.id === currentItem.id){
+
+            const routeItem = sidebarNavData.find(
+                navItem => navItem.href?.includes(location)
             );
 
-            setIsExpanded(false);
+            if(routeItem){
+                setCurrentItem(routeItem);
+            }
+
+            closePanel();
 
             return;
         }
 
-        setCurrentButton(item.id);
+
+        setCurrentItem(item);
+
 
         if(item.panel){
-            setRenderPanel(item.id);
+
+            setMountedPanel(item);
             setIsExpanded(true);
+
         } else {
-            setRenderPanel(null);
-            setIsExpanded(false);
+
+            closePanel();
+
         }
-    }
+    };
+
+
+    const closePanel = () => {
+        setIsExpanded(false);
+    };
+
 
     useEffect(() => {
+
         if(!isExpanded){
+
             const timeout = setTimeout(() => {
-                setRenderPanel(null);
+                setMountedPanel(null);
             }, 300);
+
 
             return () => clearTimeout(timeout);
         }
+
     }, [isExpanded]);
 
-    const ActivePanel = sidebarNavData.find(
-        item => item.id === renderPanel
-    )?.panel;
+
+
+    const ActivePanel = mountedPanel?.panel;
+
 
 
     return (
@@ -68,7 +98,7 @@ const SideBar: FC = () => {
                 top-0
             "
             style={{
-                width: RAIL_WIDTH + (isExpanded ? PANEL_WIDTH : 0),
+                width: RAIL_WIDTH + (isExpanded ? PANEL_WIDTH : 0)
             }}
         >
             <div
@@ -79,20 +109,21 @@ const SideBar: FC = () => {
                     flex-col
                     items-center
                     py-[16px]
-                    border-r-[1px]
+                    border-r
                     border-border
                     gap-[24px]
                 "
             >
-                <Link href='/'>
-                    <Button 
-                        type="WHITE" 
-                        hover="GREY" 
+
+                <Link href="/">
+                    <Button
+                        type="WHITE"
+                        hover="GREY"
+                        square
                         className="
                             h-[48px]
                             w-[48px]
                         "
-                        square
                     >
                         <LogoSVG />
                     </Button>
@@ -100,27 +131,44 @@ const SideBar: FC = () => {
 
 
 
-                {sidebarNavData.slice(0, -1).map((item: SidebarItem) => (
-                    <SideBarButton 
-                        item={item} 
-                        key={item.id} 
-                        onClick={handleButton}
-                        active={currentButton === item.id}
-                    />
-                ))}
+                {
+                    sidebarNavData
+                        .slice(0, -1)
+                        .map((item: SidebarItem) => (
+                            <SideBarButton
+                                key={item.id}
+                                item={item}
+                                onClick={handleButton}
+                                active={currentItem.id === item.id}
+                            />
+                        ))
+                }
 
-                    <SideBarButton 
-                        item={sidebarNavData[sidebarNavData.length -1]} 
-                        key={sidebarNavData[sidebarNavData.length -1].id} 
-                        onClick={handleButton}
-                        active={currentButton === sidebarNavData[sidebarNavData.length -1].id}
 
-                        className="
-                            mt-[auto]
-                        "
-                    />
+
+                <SideBarButton
+                    item={
+                        sidebarNavData[
+                            sidebarNavData.length - 1
+                        ]
+                    }
+                    onClick={handleButton}
+                    active={
+                        currentItem.id ===
+                        sidebarNavData[
+                            sidebarNavData.length - 1
+                        ].id
+                    }
+                    className="
+                        mt-auto
+                    "
+                />
 
             </div>
+
+
+
+
 
             <div
                 className="
@@ -130,9 +178,10 @@ const SideBar: FC = () => {
                     border-border
                 "
                 style={{
-                    width: PANEL_WIDTH,
+                    width: PANEL_WIDTH
                 }}
             >
+
                 <div
                     className="
                         h-full
@@ -142,22 +191,36 @@ const SideBar: FC = () => {
                     style={{
                         transform: isExpanded
                             ? "translateX(0)"
-                            : "translateX(-100%)",
+                            : "translateX(-100%)"
                     }}
                 >
-                    <div 
+
+                    <div
                         className="
                             px-[12px]
                             py-[24px]
                         "
                     >
-                        
-                        {ActivePanel && <ActivePanel onClose={handleButton} item = {currentButton}/>}
+
+                        {
+                            ActivePanel && (
+                                <ActivePanel
+                                    item={mountedPanel}
+                                    onClose={closePanel}
+                                />
+                            )
+                        }
+
                     </div>
+
                 </div>
+
             </div>
+
+
         </aside>
     );
 };
+
 
 export default SideBar;
