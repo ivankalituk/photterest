@@ -43,13 +43,27 @@ const Notification: FC = () => {
                     ml-[auto]
                     flex flex-col
                     items-end
-                    
+                    gap-[8px]                    
                 "
             >
-                <div>18 ч.</div>
+                <div
+                    className="
+                        text-[12px]
+                        text-text-light
+                    "
+                >
+                    18 ч.
+                </div>
+
                 <Button 
                     type="WHITE" 
-                    hover="GREY"
+                    hover="WHITE"
+                    className="
+                        h-[24px]
+                        w-[24px]
+                        rounded-[8px]
+                        bg-[white]
+                    "
                 >
                     <HorizontalDotsSVG />
                 </Button>

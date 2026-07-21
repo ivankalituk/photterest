@@ -12,6 +12,16 @@ const NotificationsPanel: FC <Props> = ({onClose, item}) => {
     return(
         <div>
             <PanelHeading heading={'Уведомления'} onCross={() => onClose(item)}/>
+            
+            <div 
+                className="
+                    mt-[44px]
+                    mb-[8px]
+                    px-[8px]
+                "
+            >
+                Обновления
+            </div>
 
             <div>
                 <Notification />
