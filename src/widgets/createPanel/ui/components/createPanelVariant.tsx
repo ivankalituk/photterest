@@ -1,12 +1,17 @@
 import PinSVG from "@/shared/assets/controlledSVG/pinSVG";
 import { Button } from "@/shared/ui/button";
 import { FC } from "react";
+import { CreatePanelTypes } from "../../model/mockData";
 
-const CreatePanelVariant: FC = () => {
+interface Props{
+    variant: CreatePanelTypes
+}
+
+const CreatePanelVariant: FC <Props> = ({variant}) => {
     return(
         <Button 
             as="LINK"
-            href="/"
+            href={variant.href}
             className="
                 my-[12px]
                 w-[100%]
@@ -27,7 +32,7 @@ const CreatePanelVariant: FC = () => {
                     shrink-0
                 "
             >
-                <PinSVG />
+                <variant.icon />
             </Button>
 
             <div
@@ -41,7 +46,7 @@ const CreatePanelVariant: FC = () => {
                         text-text-default
                     "
                 >
-                    Пин
+                    {variant.heading}
                 </h5>
                 <span
                     className="
@@ -49,7 +54,7 @@ const CreatePanelVariant: FC = () => {
                         text-text-light
                     "
                 >
-                    Публикуйте фотографии или видео, добавляйте ссылки, наклейки, эффекты и не только
+                    {variant.explanation}
                 </span>
             </div>
         </Button>

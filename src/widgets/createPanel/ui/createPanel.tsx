@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { PanelHeading } from "@/shared/ui/PanelHeading";
 import CreatePanelVariant from "./components/createPanelVariant";
+import { createContentVariants, CreatePanelTypes } from "../model/mockData";
 
 const CreatePanel: FC = () => {
     return(
@@ -8,9 +9,9 @@ const CreatePanel: FC = () => {
             <PanelHeading heading='Создать' onCross = {() => console.log(0)}/>
 
             <div>
-                <CreatePanelVariant />
-                <CreatePanelVariant />
-                <CreatePanelVariant />
+                {createContentVariants.map((variant: CreatePanelTypes) => (
+                    <CreatePanelVariant key={variant.id} variant={variant}/>
+                ))}
             </div>
         </div>
     )
