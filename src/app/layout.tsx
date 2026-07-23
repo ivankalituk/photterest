@@ -34,7 +34,7 @@ export default function RootLayout({
 
                     <div className='flex-1'>
                         <Header />
-                        <main>{children}</main>
+                        <main className='pb-[62px]'>{children}</main>
 
                         <BottomBar />
                     </div>

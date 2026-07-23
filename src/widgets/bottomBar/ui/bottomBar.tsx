@@ -2,7 +2,6 @@
 import { FC } from "react";
 import { bottomBarData, BottomBarItemType } from "../model/mockData";
 import BottomBarButton from "./components/bottomBarButton";
-import SearchSVG from "@/shared/assets/controlledSVG/searchSVG";
 
 const BottomBar: FC = () => {
     return(
