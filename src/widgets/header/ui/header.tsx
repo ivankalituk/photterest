@@ -19,7 +19,7 @@ const Header: FC = () => {
                 gap-[10px]
             "
         >
-            <SearchBar />    
+            <SearchBar />
 
             <HeaderAccount />
         </header>

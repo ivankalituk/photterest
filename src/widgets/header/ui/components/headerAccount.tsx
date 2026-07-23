@@ -14,6 +14,7 @@ const HeaderAccount: FC = () => {
             "
         >
             <Button
+                scaling
                 as="LINK"
                 href="/"
                 className="
@@ -38,6 +39,7 @@ const HeaderAccount: FC = () => {
             </Button>
 
             <Button
+                scaling
                 square
                 className="
                     h-[24px]

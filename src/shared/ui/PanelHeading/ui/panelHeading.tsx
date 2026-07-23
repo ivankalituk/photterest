@@ -27,7 +27,8 @@ const PanelHeading: FC <Props> = ({heading, onCross}) => {
                 {heading}
             </h4>
 
-            <Button 
+            <Button
+                scaling
                 onClick={onCross} 
                 hover="GREY"
                 className="

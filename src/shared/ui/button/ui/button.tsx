@@ -45,7 +45,7 @@ const Button: FC <Props> = ({children, square, hover, className, onClick, as = '
                     `, `
                         ${square && 'aspect-[1]'}
                         ${hover === 'WHITE' && 'hover:bg-[white]'}
-                        ${hover === 'GREY' && 'hover:bg-[grey]'}
+                        ${hover === 'GREY' && 'hover:bg-background-hover active:bg-background-active'}
                         ${className && className}
                     `)
                 }
@@ -75,12 +75,14 @@ const Button: FC <Props> = ({children, square, hover, className, onClick, as = '
                     `, `
                         ${square && 'aspect-[1]'}
                         ${hover === 'WHITE' && 'hover:bg-[white]'}
-                        ${hover === 'GREY' && 'hover:bg-background-hover'}
+                        ${hover === 'GREY' && 'hover:bg-background-hover active:bg-background-active'}
                         ${className && className}
                     `)
                 }
 
-                whileTap={scaling ? { scale: 0.96 } : undefined}
+                whileTap={
+                    scaling ? { scale: 0.96 } : undefined
+                }
                 transition={spring}
                 
                 onClick={onClick}
@@ -105,7 +107,7 @@ const Button: FC <Props> = ({children, square, hover, className, onClick, as = '
                 `, `
                     ${square && 'aspect-[1]'}
                     ${hover === 'WHITE' && 'hover:bg-[white]'}
-                    ${hover === 'GREY' && 'hover:bg-background-hover'}
+                    ${hover === 'GREY' && 'hover:bg-background-hover active:bg-background-active'}
                     ${className && className}
                 `)
             }

@@ -114,22 +114,20 @@ const SideBar: FC = () => {
                     gap-[24px]
                 "
             >
-
-                <Link href="/">
-                    <Button
-                        type="WHITE"
-                        hover="GREY"
-                        square
-                        className="
-                            h-[48px]
-                            w-[48px]
-                        "
-                    >
-                        <LogoSVG />
-                    </Button>
-                </Link>
-
-
+                <Button
+                    as="LINK"
+                    href="/"
+                    scaling
+                    type="WHITE"
+                    hover="GREY"
+                    square
+                    className="
+                        h-[48px]
+                        w-[48px]
+                    "
+                >
+                    <LogoSVG />
+                </Button>
 
                 {
                     sidebarNavData
@@ -143,8 +141,6 @@ const SideBar: FC = () => {
                             />
                         ))
                 }
-
-
 
                 <SideBarButton
                     item={
@@ -166,10 +162,6 @@ const SideBar: FC = () => {
 
             </div>
 
-
-
-
-
             <div
                 className="
                     overflow-hidden
@@ -181,7 +173,7 @@ const SideBar: FC = () => {
                     width: PANEL_WIDTH
                 }}
             >
-
+            
                 <div
                     className="
                         h-full
@@ -210,14 +202,9 @@ const SideBar: FC = () => {
                                 />
                             )
                         }
-
                     </div>
-
                 </div>
-
             </div>
-
-
         </aside>
     );
 };
