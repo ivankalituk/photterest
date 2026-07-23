@@ -92,6 +92,7 @@ const SideBar: FC = () => {
                 flex
                 h-[100dvh]
                 transition-[width]
+                ease-[cubic-bezier(0.2,0,0,1)]
                 duration-300
                 overflow-hidden
                 sticky
@@ -179,6 +180,7 @@ const SideBar: FC = () => {
                         h-full
                         transition-transform
                         duration-300
+                        ease-[cubic-bezier(0.2,0,0,1)]
                     "
                     style={{
                         transform: isExpanded
