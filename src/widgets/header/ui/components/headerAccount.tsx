@@ -13,31 +13,29 @@ const HeaderAccount: FC = () => {
                 items-center
             "
         >
-            <Link 
-                href={'/'}
+            <Button
+                as="LINK"
+                href="/"
+                className="
+                    w-[48px]
+                    cursor-pointer
+                "
+                hover='GREY'
+                square
             >
-                <Button
+                <Image 
+                    src={avatar} 
+                    alt="avatar" 
                     className="
-                        w-[48px]
-                        cursor-pointer
+                        no-drag
+                        h-[32px]
+                        w-[32px]
+                        aspect-1
+                        rounded-full
+                        object-cover
                     "
-                    hover='GREY'
-                    square
-                >
-                    <Image 
-                        src={avatar} 
-                        alt="avatar" 
-                        className="
-                            no-drag
-                            h-[32px]
-                            w-[32px]
-                            aspect-1
-                            rounded-full
-                            object-cover
-                        "
-                    />
-                </Button>
-            </Link>
+                />
+            </Button>
 
             <Button
                 square

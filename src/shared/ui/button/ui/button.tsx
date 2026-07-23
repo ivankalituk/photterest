@@ -11,6 +11,7 @@ interface Props {
     onClick?: () => any
     as?: 'BUTTON' | 'DIV' | 'LINK'
     href?: string
+    scaling?: boolean
 }
 
 // change hover collors, change types
@@ -28,6 +29,9 @@ const Button: FC <Props> = ({children, square, hover, className, onClick, as = '
                         justify-around
                         h-[100%]
                         rounded-[12px] 
+                        transition-colors
+                        duration-200
+                        ease-[cubic-bezier(0.2,0,0,1)]
                     `, `
                         ${square && 'aspect-[1]'}
                         ${hover === 'WHITE' && 'hover:bg-[white]'}
@@ -53,6 +57,9 @@ const Button: FC <Props> = ({children, square, hover, className, onClick, as = '
                         justify-around
                         h-[100%]
                         rounded-[12px] 
+                        transition-colors
+                        duration-200
+                        ease-[cubic-bezier(0.2,0,0,1)]
                     `, `
                         ${square && 'aspect-[1]'}
                         ${hover === 'WHITE' && 'hover:bg-[white]'}
@@ -75,7 +82,10 @@ const Button: FC <Props> = ({children, square, hover, className, onClick, as = '
                     items-center
                     justify-around
                     h-[100%]
-                    rounded-[12px] 
+                    rounded-[12px]
+                    transition-colors
+                    duration-200
+                    ease-[cubic-bezier(0.2,0,0,1)] 
                 `, `
                     ${square && 'aspect-[1]'}
                     ${hover === 'WHITE' && 'hover:bg-[white]'}
