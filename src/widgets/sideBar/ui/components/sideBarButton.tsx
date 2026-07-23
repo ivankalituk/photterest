@@ -16,6 +16,7 @@ const SideBarButton: FC <Props> = ({item, onClick, active, className}) => {
 
     return (
         <Button
+            scaling
             onClick={() => onClick(item)}
             as={isLink ? "LINK" : "BUTTON"}
             href={isLink ? item.href : undefined}

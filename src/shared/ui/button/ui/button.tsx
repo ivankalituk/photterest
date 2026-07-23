@@ -1,6 +1,8 @@
+'use client'
 import Link from "next/link";
 import { FC, ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
+import { motion } from "framer-motion";
 
 interface Props {
     children: ReactNode
@@ -16,12 +18,20 @@ interface Props {
 
 // change hover collors, change types
 
-const Button: FC <Props> = ({children, square, hover, className, onClick, as = 'BUTTON', href}) => {
+const Button: FC <Props> = ({children, square, hover, className, onClick, as = 'BUTTON', href, scaling}) => {
 
+    const spring = {
+        type: "spring",
+        stiffness: 500,
+        damping: 30,
+        mass: 0.8,
+    } as const;
+
+    const MotionLink = motion(Link);
 
     if(as === 'DIV'){
         return(
-            <div
+            <motion.div
                 className={
                     twMerge(`
                         flex
@@ -40,15 +50,17 @@ const Button: FC <Props> = ({children, square, hover, className, onClick, as = '
                     `)
                 }
                 onClick={onClick}
+                whileTap={scaling ? { scale: 0.96 } : undefined}
+                transition={spring}
             >
                 {children}
-            </div>
+            </motion.div>
         )
     }
 
     if(as === 'LINK' && href){
         return(
-            <Link
+            <MotionLink
                 href={href}
                 className={
                     twMerge(`
@@ -67,15 +79,19 @@ const Button: FC <Props> = ({children, square, hover, className, onClick, as = '
                         ${className && className}
                     `)
                 }
+
+                whileTap={scaling ? { scale: 0.96 } : undefined}
+                transition={spring}
+                
                 onClick={onClick}
             >
                 {children}
-            </Link>
+            </MotionLink>
         )
     }
 
     return(
-        <button
+        <motion.button
             className={
                 twMerge(`
                     flex
@@ -93,10 +109,14 @@ const Button: FC <Props> = ({children, square, hover, className, onClick, as = '
                     ${className && className}
                 `)
             }
+
+                whileTap={scaling ? { scale: 0.96 } : undefined}
+                transition={spring}
+
             onClick={onClick}
         >
             {children}
-        </button>
+        </motion.button>
     )
     
 }
