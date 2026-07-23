@@ -74,6 +74,7 @@ const Notification: FC = () => {
                         rounded-[8px]
                         bg-[white]
                     "
+                    onClick={() => console.log(1)}
                 >
                     <HorizontalDotsSVG />
                 </Button>
