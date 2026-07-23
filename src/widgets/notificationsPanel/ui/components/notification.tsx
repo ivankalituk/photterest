@@ -3,12 +3,12 @@ import Image from "next/image";
 import { FC } from "react";
 import samplePin from '@/shared/assets/images/samplePin.jpg'
 import HorizontalDotsSVG from "@/shared/assets/controlledSVG/horizontalDotsSVG";
+import Link from "next/link";
 
 const Notification: FC = () => {
     return(
         <Button 
-            as="LINK" 
-            href="/"
+            as="DIV" 
             className="
                 max-h-[300px]
                 justify-start
@@ -17,27 +17,36 @@ const Notification: FC = () => {
             "
             hover='GREY'
         >
-            <Image 
-                src={samplePin} 
-                alt="notifImg"
+            <Link 
+                href={'/'}
                 className="
-                    h-[72px]
-                    w-[56px]
-                    object-cover
-                    aspect-[1/2]
-                    rounded-[12px] 
-                "
-            />
-
-            <span
-                className="
-                    text-[16px]
-                    leading-[22px]
+                    flex
+                    gap-[8px]
+                    items-center
+                    flex-1
                 "
             >
-                Это вам точно подойдёт
-            </span>
-            
+                <Image 
+                    src={samplePin} 
+                    alt="notifImg"
+                    className="
+                        h-[72px]
+                        w-[56px]
+                        object-cover
+                        aspect-[1/2]
+                        rounded-[12px] 
+                    "
+                />
+
+                <span
+                    className="
+                        text-[16px]
+                        leading-[22px]
+                    "
+                >
+                    Это вам точно подойдёт
+                </span>
+            </Link>
             <div
                 className="
                     ml-[auto]
@@ -55,7 +64,8 @@ const Notification: FC = () => {
                     18 ч.
                 </div>
 
-                <Button 
+                <Button
+                    scaling
                     type="WHITE" 
                     hover="WHITE"
                     className="
