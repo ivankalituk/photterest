@@ -7,6 +7,7 @@ export const metadata: Metadata = {
     description: 'Pet project, copy of pinterest',
 };
 import { Roboto_Flex } from 'next/font/google';
+import { BottomBar } from '@/widgets/bottomBar';
 
 
 const roboto = Roboto_Flex({
@@ -34,7 +35,7 @@ export default function RootLayout({
                     <div className='flex-1'>
                         <Header />
                         <main>{children}</main>
-                    </div>                   
+                    </div>
                 </div>
             </body>
         </html>
