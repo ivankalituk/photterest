@@ -7,7 +7,7 @@ import { FC } from "react";
 export interface BottomBarItemType {
     name: string,
     id: string,
-    svg: FC<{active?:boolean}>
+    svg: FC<{active?:boolean, fill?:string}>
     link: string
 }
 

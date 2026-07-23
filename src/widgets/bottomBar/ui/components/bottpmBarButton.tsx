@@ -12,6 +12,10 @@ const BottomBarButton: FC <Props> = ({item}) => {
 
     const location = usePathname()
 
+    // active - #000000
+    // unactive - #62625b
+
+
     return(
         <Button 
             as="LINK" 
@@ -21,7 +25,7 @@ const BottomBarButton: FC <Props> = ({item}) => {
             "
             scaling
         >
-            <item.svg active={location === item.link}/>
+            <item.svg active={location === item.link} fill={location === item.link? '#000000' : '#62625b'}/>
         </Button>
     )
 }

@@ -22,8 +22,6 @@ const BottomBar: FC = () => {
                 pt-[12px] pb-[16px]
             "
         >
-            <SearchSVG active/>
-
             {bottomBarData.map((item: BottomBarItemType) => (
                 <BottomBarButton item={item} key={item.id}/>
             ))}
