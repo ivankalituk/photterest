@@ -1,4 +1,4 @@
-import SearchSVG from "@/shared/assets/controlledSVG/searchSVG";
+import SearchCustomSVG from "@/shared/assets/controlledSVG/searchCustomSVG";
 import { Button } from "@/shared/ui/button";
 import { FC } from "react";
 import PhotoSearch from "@/shared/assets/controlledSVG/photoSearch";
@@ -20,7 +20,7 @@ const SearchBar: FC = () => {
                 rounded-[12px]
             "
         >
-            <SearchSVG />
+            <SearchCustomSVG />
 
             <Input 
                 className="
