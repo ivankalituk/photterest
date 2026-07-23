@@ -1,7 +1,6 @@
 import BoardsSVG from "@/shared/assets/controlledSVG/boardsSVG";
 import CreateSVG from "@/shared/assets/controlledSVG/createSVG";
 import HomeSVG from "@/shared/assets/controlledSVG/homeSVG";
-import LogoSVG from "@/shared/assets/controlledSVG/logoSVG";
 import MessagesSVG from "@/shared/assets/controlledSVG/messagesSVG";
 import NotificationsSVG from "@/shared/assets/controlledSVG/notificationsSVG";
 import SettingsSVG from "@/shared/assets/controlledSVG/settingsSVG";
@@ -9,6 +8,7 @@ import { FC } from "react";
 import CreatePanel from "../../createPanel/ui/createPanel";
 import { NotificationsPanel } from "@/widgets/notificationsPanel";
 import { MessagesPanel } from "@/widgets/messagesPanel";
+import { SettingsPanel } from "@/widgets/settingsPanel";
 
 export interface SidebarItem {
     id: string,
@@ -60,6 +60,6 @@ export const sidebarNavData: SidebarItem[] = [
         id: 'SETTINGS',
         type: "PANEL",
         icon: SettingsSVG,
-        panel: SettingsSVG
+        panel: SettingsPanel
     }
 ]
