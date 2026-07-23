@@ -7,6 +7,7 @@ const Header: FC = () => {
         <header
             className="
                 sticky
+                hidden
                 px-[16px]
                 z-[1000]
                 top-[0px]
@@ -17,6 +18,8 @@ const Header: FC = () => {
                 flex
                 items-center
                 gap-[10px]
+                
+                lg:flex
             "
         >
             <SearchBar />

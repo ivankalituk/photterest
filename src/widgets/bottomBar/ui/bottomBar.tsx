@@ -1,7 +1,7 @@
 'use client'
 import { FC } from "react";
 import { bottomBarData, BottomBarItemType } from "../model/mockData";
-import BottomBarButton from "./components/bottpmBarButton";
+import BottomBarButton from "./components/bottomBarButton";
 import SearchSVG from "@/shared/assets/controlledSVG/searchSVG";
 
 const BottomBar: FC = () => {
@@ -20,6 +20,8 @@ const BottomBar: FC = () => {
                 border-border
                 px-[8px]
                 pt-[12px] pb-[16px]
+                
+                lg:hidden
             "
         >
             {bottomBarData.map((item: BottomBarItemType) => (

@@ -89,7 +89,7 @@ const SideBar: FC = () => {
     return (
         <aside
             className="
-                flex
+                hidden
                 h-[100dvh]
                 transition-[width]
                 ease-[cubic-bezier(0.2,0,0,1)]
@@ -97,6 +97,8 @@ const SideBar: FC = () => {
                 overflow-hidden
                 sticky
                 top-0
+
+                lg:flex
             "
             style={{
                 width: RAIL_WIDTH + (isExpanded ? PANEL_WIDTH : 0)
