@@ -1,3 +1,4 @@
+import { PinsGrid } from '@/widgets/pinsGrid'
 import './globals.css'
 
 
@@ -11,10 +12,10 @@ export default function Home() {
         <div 
             className='
                 h-[1000px]
-                bg-[red]
+                px-[16px]
             '
         >
-            sample content
+            <PinsGrid />
         </div>
     )
 }
