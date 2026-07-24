@@ -29,12 +29,14 @@ export default function RootLayout({
         <html lang="en" className={roboto.className}>
             <body>
 
-                <div className='flex'>
+                <div className='flex items-start'>
                     <SideBar />
 
                     <div className='flex-1'>
                         <Header />
-                        <main className='pb-[62px]'>{children}</main>
+                        <main>
+                            {children}
+                        </main>
 
                         <BottomBar />
                     </div>

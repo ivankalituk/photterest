@@ -87,16 +87,20 @@ const SideBar: FC = () => {
 
 
     return (
+        
         <aside
             className="
+                sticky
+                top-0
+                left-0
+                self-start
+
                 hidden
                 h-[100dvh]
                 transition-[width]
                 ease-[cubic-bezier(0.2,0,0,1)]
                 duration-300
                 overflow-hidden
-                sticky
-                top-0
 
                 lg:flex
             "

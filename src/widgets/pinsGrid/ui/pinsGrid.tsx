@@ -10,7 +10,7 @@ const PinsGrid: FC = () => {
                 gap-[10px]
             "
         >
-            {Array.from({length: 30}).map((_, index: number)=> (
+            {Array.from({length: 400}).map((_, index: number)=> (
                 <Pin key={index}/>
             ))}
         </div>
