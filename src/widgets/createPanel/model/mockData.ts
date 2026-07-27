@@ -19,7 +19,7 @@ export const createContentVariants: CreatePanelTypes[] = [
         heading: 'Пин',
         explanation: 'Публикуйте фотографии или видео, добавляйте ссылки, наклейки, эффекты и не только',
         icon: PinSVG,
-        href: '/create-pin'
+        href: '/createPin'
     },
     {
         name: 'Create board',
