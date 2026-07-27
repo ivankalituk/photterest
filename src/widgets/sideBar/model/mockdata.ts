@@ -31,7 +31,7 @@ export const sidebarNavData: SidebarItem[] = [
         name: 'Boards',
         id: 'BOARDS',
         type: 'LINK',
-        href: '/boards',
+        href: '/profile',
         icon: BoardsSVG,
     },
     {

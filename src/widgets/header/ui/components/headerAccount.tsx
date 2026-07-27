@@ -16,7 +16,7 @@ const HeaderAccount: FC = () => {
             <Button
                 scaling
                 as="LINK"
-                href="/"
+                href="/profile"
                 className="
                     w-[48px]
                     cursor-pointer
