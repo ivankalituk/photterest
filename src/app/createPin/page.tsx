@@ -1,5 +1,6 @@
 import { FC } from "react";
 import PinImageUpload from "./components/pinImageUpload";
+import PinInputBlock from "./components/pinInputBlock";
 
 const CreatePin: FC = () => {
     return(
@@ -45,7 +46,9 @@ const CreatePin: FC = () => {
                         className="
                             flex
                             max-w-[1000px]
-                            gap-[20px]
+                            gap-[40px]
+                            w-[100%]
+                            py-[20px]
                         "
                     >
                         <div>
@@ -55,9 +58,29 @@ const CreatePin: FC = () => {
                         <div 
                             className="
                                 flex-1
+                                flex flex-col
+                                gap-[20px]
                             "
                         >
-                            other info
+                            <PinInputBlock name="Название">
+                                <span>Обычный инпут</span>
+                            </PinInputBlock>
+
+                            <PinInputBlock name="Описание">
+                                <span>Текст ареа</span>
+                            </PinInputBlock>
+
+                            <PinInputBlock name="Ссылка">
+                                <span>Инпут линк</span>
+                            </PinInputBlock>
+
+                            <PinInputBlock name="Доска">
+                                <span>Выбор доски, пока не знаю</span>
+                            </PinInputBlock>
+
+                            <PinInputBlock name="Теги">
+                                <span>Поиск тегов, как я делал на прошлом сайте</span>
+                            </PinInputBlock>
                         </div>
                     </form>
                 </div>
