@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 };
 import { Roboto_Flex } from 'next/font/google';
 import { BottomBar } from '@/widgets/bottomBar';
-
+import Providers from './providers';
 
 const roboto = Roboto_Flex({
     subsets: ['latin', 'cyrillic'],
@@ -28,6 +28,7 @@ export default function RootLayout({
     return (
         <html lang="en" className={roboto.className}>
             <body>
+                <Providers>
 
                 <div className='flex items-start'>
                     <SideBar />
@@ -41,6 +42,8 @@ export default function RootLayout({
                         <BottomBar />
                     </div>
                 </div>
+                
+                </Providers>
             </body>
         </html>
     );
