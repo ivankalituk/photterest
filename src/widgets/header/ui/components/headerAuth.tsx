@@ -1,20 +1,65 @@
 'use client'
-import { FC } from "react";
+import { FC, useState } from "react";
 import HeaderAccount from "./headerAccount";
 import { Button } from "@/shared/ui/button";
+import { useAppSelector } from "@/shared/redux/hooks";
+import { ModalWindow } from "@/widgets/modalWindow";
+import { RegistrationModal } from "@/widgets/registrationModal";
 
 const HeaderAuth: FC = () => {
+
+    const [openModal, serOpenModal] = useState<boolean>(false)
+
+    const user = useAppSelector((state) => state.user.currentUser)
+
+    const handleOpenModal = () => {
+        serOpenModal(true)
+    }
+
     return(
         <div>
-            {/* <Button type="RED">
-                Sign In
-            </Button>
+            {!user && 
+                <div
+                    className="
+                        flex
+                        gap-[10px]
+                    "
+                >
+                    <Button 
+                        type="RED"
+                        onClick={handleOpenModal}
+                        className="
+                            h-[48]
+                            px-[14px]
+                            text-[16px]
+                            font-[600]
+                            text-white
+                        "
+                    >
+                        Sign In
+                    </Button>
 
-            <Button>
-                Join Up
-            </Button> */}
+                    <Button
+                        onClick={handleOpenModal}
+                        type="GREY"
+                        className="
+                            h-[48]
+                            px-[14px]
+                            text-[16px]
+                            font-[600]
+                            text-black
+                        "
+                    >
+                        Join Up
+                    </Button>
+                </div>
+            }
 
-            <HeaderAccount />
+            {user && <HeaderAccount />}
+
+            <ModalWindow isOpen = {openModal} onClose={() => serOpenModal(false)}>
+                <RegistrationModal />
+            </ModalWindow>
         </div>
     )
 }

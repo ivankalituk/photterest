@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 interface Props {
     children: ReactNode
-    type?: 'TRANSPARENT' | 'WHITE' | 'RED'
+    type?: 'TRANSPARENT' | 'WHITE' | 'RED' | 'GREY'
     hover?: 'TRANSPARENT' | 'WHITE' | 'RED' | 'GREY'
     square?: boolean
     className?: string
@@ -18,7 +18,7 @@ interface Props {
 
 // change hover collors, change types
 
-const Button: FC <Props> = ({children, square, hover, className, onClick, as = 'BUTTON', href, scaling}) => {
+const Button: FC <Props> = ({children, square, hover, className, onClick, as = 'BUTTON', href, scaling, type}) => {
 
     const spring = {
         type: "spring",
@@ -28,6 +28,8 @@ const Button: FC <Props> = ({children, square, hover, className, onClick, as = '
     } as const;
 
     const MotionLink = motion(Link);
+
+    console.log(type)
 
     if(as === 'DIV'){
         return(
@@ -43,6 +45,9 @@ const Button: FC <Props> = ({children, square, hover, className, onClick, as = '
                         duration-200
                         ease-[cubic-bezier(0.2,0,0,1)]
                     `, `
+                        ${type === 'RED' && 'bg-red-main hover:bg-red-hover active:bg-red-active'}
+                        ${type === 'GREY' && 'bg-grey-main hover:bg-grey-hover active:bg-grey-active'}
+
                         ${square && 'aspect-[1]'}
                         ${hover === 'WHITE' && 'hover:bg-[white]'}
                         ${hover === 'GREY' && 'hover:bg-background-hover active:bg-background-active'}
@@ -73,6 +78,9 @@ const Button: FC <Props> = ({children, square, hover, className, onClick, as = '
                         duration-200
                         ease-[cubic-bezier(0.2,0,0,1)]
                     `, `
+                        ${type === 'RED' && 'bg-red-main hover:bg-red-hover active:bg-red-active'}
+                        ${type === 'GREY' && 'bg-grey-main hover:bg-grey-hover active:bg-grey-active'}
+
                         ${square && 'aspect-[1]'}
                         ${hover === 'WHITE' && 'hover:bg-[white]'}
                         ${hover === 'GREY' && 'hover:bg-background-hover active:bg-background-active'}
@@ -105,6 +113,10 @@ const Button: FC <Props> = ({children, square, hover, className, onClick, as = '
                     duration-200
                     ease-[cubic-bezier(0.2,0,0,1)] 
                 `, `
+
+                    ${type === 'RED' && 'bg-red-main hover:bg-red-hover active:bg-red-active'}
+                    ${type === 'GREY' && 'bg-grey-main hover:bg-grey-hover active:bg-grey-active'}
+
                     ${square && 'aspect-[1]'}
                     ${hover === 'WHITE' && 'hover:bg-[white]'}
                     ${hover === 'GREY' && 'hover:bg-background-hover active:bg-background-active'}

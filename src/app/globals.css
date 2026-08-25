@@ -13,6 +13,17 @@
     --color-text-default: #000;
     --color-border: #c8c8c1;
     --color-background-active: #efefeb;
+
+    /* GREY COLORS BUTTONS*/
+    --color-grey-main: #e5e5e0;
+    --color-grey-hover: #dadad3;
+    --color-grey-active: #cecec5;
+
+
+    /* RED COLORS BUTTONS*/
+    --color-red-main: #E60023;
+    --color-red-hover: #cc001f;
+    --color-red-active: #b2001b;
     
     --spacing-px: 10px;
     --spacing-30: 30px;
