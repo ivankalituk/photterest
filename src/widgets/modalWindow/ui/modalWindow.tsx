@@ -32,9 +32,7 @@ const ModalWindow: FC <Props> = ({children, isOpen, onClose}) => {
                 >
                     <motion.div
                         className='
-                            w-[min(720px,calc(100vw-32px))] 
-                            overflow-hidden 
-                            rounded-3xl 
+                            overflow-hidden  
                             bg-white 
                             shadow-[0_20px_60px_rgba(0,0,0,0.25)]
                         '
