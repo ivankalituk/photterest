@@ -2,6 +2,7 @@
 
 import { Button } from "@/shared/ui/button";
 import { ModalWindow } from "@/widgets/modalWindow";
+import { RegistrationModal } from "@/widgets/registrationModal";
 import { GoogleLogin } from "@react-oauth/google";
 import { FC, useState } from "react";
 
@@ -62,7 +63,7 @@ const AuthPage: FC = () => {
             </Button>
 
             <ModalWindow isOpen={modal} onClose={closeModal}>
-                <div>gay</div>
+                <RegistrationModal />
             </ModalWindow>
             
         </div>
