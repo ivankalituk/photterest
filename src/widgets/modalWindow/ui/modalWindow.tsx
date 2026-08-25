@@ -32,8 +32,8 @@ const ModalWindow: FC <Props> = ({children, isOpen, onClose}) => {
                 >
                     <motion.div
                         className='
+                            contents
                             overflow-hidden  
-                            bg-white 
                             shadow-[0_20px_60px_rgba(0,0,0,0.25)]
                         '
                         onClick={(event) => event.stopPropagation()}
