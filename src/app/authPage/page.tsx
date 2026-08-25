@@ -1,9 +1,21 @@
 'use client'
 
+import { Button } from "@/shared/ui/button";
+import { ModalWindow } from "@/widgets/modalWindow";
 import { GoogleLogin } from "@react-oauth/google";
-import { FC } from "react";
+import { FC, useState } from "react";
 
 const AuthPage: FC = () => {
+
+    const [modal, setModal] = useState<boolean>(false)
+
+    const openModal = () => {
+        setModal(true)
+    }
+
+    const closeModal = () => {
+        setModal(false)
+    }
 
     const handleGoogleLogin = async (credential: string) => {
         try {
@@ -30,16 +42,30 @@ const AuthPage: FC = () => {
     };
 
     return (
-        <GoogleLogin
-            onSuccess={(response) => {
-                if (response.credential) {
-                    handleGoogleLogin(response.credential);
-                }
-            }}
-            onError={() => {
-                console.log('Google auth failed');
-            }}
-        />
+        <div>
+            <GoogleLogin
+                onSuccess={(response) => {
+                    if (response.credential) {
+                        handleGoogleLogin(response.credential);
+                    }
+                }}
+                onError={() => {
+                    console.log('Google auth failed');
+                }}
+            />
+
+            <Button
+                className="bg-[red]"
+                onClick={openModal}
+            >
+                Open Modal
+            </Button>
+
+            <ModalWindow isOpen={modal} onClose={closeModal}>
+                <div>gay</div>
+            </ModalWindow>
+            
+        </div>
     );
 }
 
