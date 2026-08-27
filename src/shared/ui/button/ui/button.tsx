@@ -18,7 +18,17 @@ interface Props {
 
 // change hover collors, change types
 
-const Button: FC <Props> = ({children, square, hover, className, onClick, as = 'BUTTON', href, scaling, type}) => {
+const Button: FC <Props> = ({
+    children, 
+    square, 
+    hover, 
+    className, 
+    onClick, 
+    as = 'BUTTON', 
+    href, 
+    scaling, 
+    type
+}) => {
 
     const spring = {
         type: "spring",
@@ -47,6 +57,7 @@ const Button: FC <Props> = ({children, square, hover, className, onClick, as = '
                     `, `
                         ${type === 'RED' && 'bg-red-main hover:bg-red-hover active:bg-red-active'}
                         ${type === 'GREY' && 'bg-grey-main hover:bg-grey-hover active:bg-grey-active'}
+                        ${type === 'WHITE' && 'bg-[white] hover:bg-grey-main active:bg-grey-hover'}
 
                         ${square && 'aspect-[1]'}
                         ${hover === 'WHITE' && 'hover:bg-[white]'}
@@ -80,6 +91,7 @@ const Button: FC <Props> = ({children, square, hover, className, onClick, as = '
                     `, `
                         ${type === 'RED' && 'bg-red-main hover:bg-red-hover active:bg-red-active'}
                         ${type === 'GREY' && 'bg-grey-main hover:bg-grey-hover active:bg-grey-active'}
+                        ${type === 'WHITE' && 'bg-[white] hover:bg-grey-main active:bg-grey-hover'}
 
                         ${square && 'aspect-[1]'}
                         ${hover === 'WHITE' && 'hover:bg-[white]'}
@@ -116,6 +128,7 @@ const Button: FC <Props> = ({children, square, hover, className, onClick, as = '
 
                     ${type === 'RED' && 'bg-red-main hover:bg-red-hover active:bg-red-active'}
                     ${type === 'GREY' && 'bg-grey-main hover:bg-grey-hover active:bg-grey-active'}
+                    ${type === 'WHITE' && 'bg-[white] hover:bg-grey-main active:bg-grey-hover'}
 
                     ${square && 'aspect-[1]'}
                     ${hover === 'WHITE' && 'hover:bg-[white]'}

@@ -1,21 +1,53 @@
+import CrossSVG from "@/shared/assets/controlledSVG/crossSVG";
+import LogoSVG from "@/shared/assets/controlledSVG/logoSVG";
+import { Button } from "@/shared/ui/button";
 import { FC } from "react";
 
-const RegistrationModal: FC = () => {
+interface Props {
+    onClose: () => void
+}
+
+const RegistrationModal: FC <Props> = ({onClose}) => {
 
     return(
         <div
             className="
-            flex-1
+                relative
                 w-full
                 max-w-[450px]
                 h-full
                 max-h-[756px]
                 p-[24px]
-                rounded-[12px]
-                bg-[red]
+                rounded-[24px]
+                bg-[white]
             "
         >
-            Registration
+            <Button 
+                as="DIV"
+                square
+                className="
+                    w-[64px]
+                    h-[64px]
+                    bg-grey-main
+                "
+            >
+                <LogoSVG width={36}/>
+            </Button>
+
+
+            <Button
+                onClick={onClose}
+                type="WHITE"
+                className="
+                    w-[48px]
+                    h-[48px]
+                    absolute
+                    right-[24px]
+                    top-[24px]
+                "
+            >
+                <CrossSVG />
+            </Button>
         </div>
     )
 }
