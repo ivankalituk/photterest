@@ -31,6 +31,8 @@ const RegistrationInput: FC <Props> = ({type = 'text', placeholder = '', onChang
                 py-[16px]
                 focus-within:border-white
                 focus-within:shadow-[0_0_0_2px_#3b82f6]
+                h-[56px]
+                relative
             "
         >
             <input
@@ -45,7 +47,11 @@ const RegistrationInput: FC <Props> = ({type = 'text', placeholder = '', onChang
             { type === 'password' && 
             <Button
                 className="
-                    p-[6px]
+                    absolute
+                    h-[40px]
+                    w-[40px]
+                    rounded-full
+                    right-[12px]
                 "
                 type="WHITE"
                 onClick={togglePasswordVisibility}

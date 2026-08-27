@@ -1,22 +1,10 @@
-'use client'
-
 import { Button } from "@/shared/ui/button";
-import { ModalWindow } from "@/widgets/modalWindow";
-import { RegistrationModal } from "@/widgets/registrationModal";
 import { useGoogleLogin } from "@react-oauth/google";
-import { FC, useState } from "react";
+import Image from "next/image";
+import { FC } from "react";
+import googleLogo from '@/shared/assets/icons/googleLogo.svg'
 
-const AuthPage: FC = () => {
-    const [modal, setModal] = useState<boolean>(false);
-
-    const openModal = () => {
-        setModal(true);
-    };
-
-    const closeModal = () => {
-        setModal(false);
-    };
-
+const GoogleLoginButton: FC = () => {
     const handleGoogleLogin = async (credential: string) => {
         try {
             const response = await fetch(
@@ -50,26 +38,34 @@ const AuthPage: FC = () => {
         },
     });
 
-    return (
-        <div>
-            <Button
-                onClick={() => googleLogin()}
+    return(
+        <Button
+            onClick={() => googleLogin()}
+            className="
+                px-[12px]
+                grid
+                grid-cols-3
+                grid-cols-[1fr_auto_1fr]
+                h-[48px]
+                border-border
+                border-[1px]
+                items-center
+            "
+        >
+            <Image
+                className="
+                    w-[20px]
+                " 
+                src={googleLogo} 
+                alt="logo"
+            />
+            <div
+                className="font-[500]"
             >
-                Login with Google
-            </Button>
+                Войти через Google
+            </div>
+        </Button>
+    )
+}
 
-            <Button
-                className="bg-[red]"
-                onClick={openModal}
-            >
-                Open Modal
-            </Button>
-
-            <ModalWindow isOpen={modal} onClose={closeModal}>
-                <RegistrationModal onClose={closeModal}/>
-            </ModalWindow>
-        </div>
-    );
-};
-
-export default AuthPage;
+export default GoogleLoginButton
