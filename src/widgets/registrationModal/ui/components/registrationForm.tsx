@@ -130,9 +130,9 @@ const RegistrationForm: FC <Props> = ({handleMode}) => {
             >
                 У вас уже есть аккаунт? 
                 <Button
-                    type="WHITE"
+                    type="FULLWHITE"
                     onClick={() => handleMode("logIn")}
-                    className="underline"
+                    className="underline cursor-pointer"
                 >
                     Войти
                 </Button>

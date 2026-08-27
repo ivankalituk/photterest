@@ -119,9 +119,9 @@ const AuthForm: FC<Props> = ({ handleMode }) => {
                 У вас ещё нет аккаунта?
 
                 <Button
-                    type="WHITE"
+                    type="FULLWHITE"
                     onClick={() => handleMode("registration")}
-                    className="underline"
+                    className="underline cursor-pointer"
                 >
                     Зарегистрироваться
                 </Button>

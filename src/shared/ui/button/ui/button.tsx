@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 interface Props {
     children: ReactNode
-    type?: 'TRANSPARENT' | 'WHITE' | 'RED' | 'GREY'
+    type?: 'TRANSPARENT' | 'WHITE' | 'RED' | 'GREY' | 'FULLWHITE'
     hover?: 'TRANSPARENT' | 'WHITE' | 'RED' | 'GREY'
     square?: boolean
     className?: string
@@ -129,6 +129,7 @@ const Button: FC <Props> = ({
                     ${type === 'RED' && 'bg-red-main hover:bg-red-hover active:bg-red-active'}
                     ${type === 'GREY' && 'bg-grey-main hover:bg-grey-hover active:bg-grey-active'}
                     ${type === 'WHITE' && 'bg-[white] hover:bg-grey-main active:bg-grey-hover'}
+                    ${type === 'FULLWHITE' && 'bg-[white]'}
 
                     ${square && 'aspect-[1]'}
                     ${hover === 'WHITE' && 'hover:bg-[white]'}
