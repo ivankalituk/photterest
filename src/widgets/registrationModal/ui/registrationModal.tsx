@@ -7,12 +7,31 @@ import PasswordCheck from "./components/passwordCheck";
 import GoogleLoginButton from "./components/googleLoginButton";
 import RegistrationForm from "./components/registrationForm";
 import AuthForm from "./components/authForm";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { AuthModalType } from "@/widgets/header/ui/components/headerAuth";
 
 interface Props {
     onClose: () => void
 }
 
 const RegistrationModal: FC <Props> = ({onClose}) => {
+
+    const router = useRouter()
+    const pathname = usePathname()
+    const searchParams = useSearchParams()
+    const mode = searchParams.get('modal')
+
+    const handleMode = (mode: AuthModalType) => {
+        const params = new URLSearchParams(searchParams.toString());
+        params.set('modal', mode)
+        const query = params.toString();
+        router.push(
+            query
+                ? `${pathname}?${query}`
+                : pathname
+        );
+    }
+
 
     return(
         <div
@@ -75,8 +94,8 @@ const RegistrationModal: FC <Props> = ({onClose}) => {
                 <div>Присоединяйтесь к Photterest бесплатно, чтобы просматривать больше идей</div>
 
 
-                {true && <RegistrationForm />}
-                {false && <AuthForm />}
+                {mode === 'registration' && <RegistrationForm handleMode = {handleMode}/>}
+                {mode === 'logIn' && <AuthForm handleMode = {handleMode}/>}
 
             </div>
         </div>

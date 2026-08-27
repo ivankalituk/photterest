@@ -4,13 +4,18 @@ import { Button } from "@/shared/ui/button";
 import RegistrationInput from "./registrationInput";
 import PasswordCheck from "./passwordCheck";
 import { getPasswordProgress } from "@/shared/utils/checkPassword";
+import { AuthModalType } from "@/widgets/header/ui/components/headerAuth";
 
 interface FormErrors {
     email: boolean;
     password: boolean;
 }
 
-const AuthForm: FC = () => {
+interface Props {
+    handleMode: (mode: AuthModalType) => void
+}
+
+const AuthForm: FC <Props> = ({handleMode}) => {
 
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
@@ -114,6 +119,7 @@ const AuthForm: FC = () => {
                     className="
                         underline
                     "
+                    onClick={() => handleMode('registration')}
                 >
                     Зарегистрироваться
                 </Button>

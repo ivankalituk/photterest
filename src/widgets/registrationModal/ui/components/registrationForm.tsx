@@ -5,6 +5,7 @@ import GoogleLoginButton from "./googleLoginButton";
 import PasswordCheck from "./passwordCheck";
 import { getPasswordProgress } from "@/shared/utils/checkPassword";
 import { validateDate } from "@/shared/utils/checkdate";
+import { AuthModalType } from "@/widgets/header/ui/components/headerAuth";
 
 interface FormErrors {
     email: boolean;
@@ -12,7 +13,11 @@ interface FormErrors {
     date: boolean
 }
 
-const RegistrationForm: FC = () => {
+interface Props {
+    handleMode: (mode: AuthModalType) => void
+}
+
+const RegistrationForm: FC <Props> = ({handleMode}) => {
 
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
@@ -128,6 +133,7 @@ const RegistrationForm: FC = () => {
                     className="
                         underline
                     "
+                    onClick={() => handleMode('logIn')}
                 >
                     Войти
                 </Button>

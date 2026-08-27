@@ -7,7 +7,7 @@ import { ModalWindow } from "@/widgets/modalWindow";
 import { RegistrationModal } from "@/widgets/registrationModal";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 
-type AuthModalType = "registration" | "logIn";
+export type AuthModalType = "registration" | "logIn";
 
 
 const HeaderAuth: FC = () => {
@@ -52,7 +52,7 @@ const HeaderAuth: FC = () => {
                 >
                     <Button 
                         type="RED"
-                        onClick={() => openModal('registration')}
+                        onClick={() => openModal('logIn')}
                         className="
                             h-[48]
                             px-[14px]
@@ -65,7 +65,7 @@ const HeaderAuth: FC = () => {
                     </Button>
 
                     <Button
-                        onClick={() => openModal('logIn')}
+                        onClick={() => openModal('registration')}
                         type="GREY"
                         className="
                             h-[48]
