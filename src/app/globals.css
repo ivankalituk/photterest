@@ -46,3 +46,8 @@ select, input::placeholder {
 .no-select{
     user-select: none;
 }
+
+input{
+    outline: none;
+    border: none;
+}

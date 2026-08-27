@@ -2,6 +2,7 @@ import CrossSVG from "@/shared/assets/controlledSVG/crossSVG";
 import LogoSVG from "@/shared/assets/controlledSVG/logoSVG";
 import { Button } from "@/shared/ui/button";
 import { FC } from "react";
+import RegistrationInput from "./components/registrationInput";
 
 interface Props {
     onClose: () => void
@@ -46,8 +47,27 @@ const RegistrationModal: FC <Props> = ({onClose}) => {
                     top-[24px]
                 "
             >
-                <CrossSVG />
+                <CrossSVG width={24}/>
             </Button>
+
+            <h3
+                className="
+                    mt-[16px]
+                    text-[26px]
+                    font-[600]
+                "
+            >
+                Добро пожаловать в Photterest
+            </h3>
+
+            <div>Присоединяйтесь к Photterest бесплатно, чтобы просматривать больше идей</div>
+
+            <div>
+                <RegistrationInput 
+                    type = 'email'
+                    placeholder="Введите свою почту"
+                />
+            </div>
         </div>
     )
 }

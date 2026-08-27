@@ -8,12 +8,12 @@ import { RegistrationModal } from "@/widgets/registrationModal";
 
 const HeaderAuth: FC = () => {
 
-    const [openModal, serOpenModal] = useState<boolean>(false)
+    const [openModal, setOpenModal] = useState<boolean>(false)
 
     const user = useAppSelector((state) => state.user.currentUser)
 
     const handleOpenModal = () => {
-        serOpenModal(true)
+        setOpenModal(true)
     }
 
     return(
@@ -57,8 +57,8 @@ const HeaderAuth: FC = () => {
 
             {user && <HeaderAccount />}
 
-            <ModalWindow isOpen = {openModal} onClose={() => serOpenModal(false)}>
-                <RegistrationModal />
+            <ModalWindow isOpen = {openModal} onClose={() => setOpenModal(false)}>
+                <RegistrationModal onClose={() => setOpenModal(false)}/>
             </ModalWindow>
         </div>
     )

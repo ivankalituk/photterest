@@ -39,8 +39,6 @@ const Button: FC <Props> = ({
 
     const MotionLink = motion(Link);
 
-    console.log(type)
-
     if(as === 'DIV'){
         return(
             <motion.div
