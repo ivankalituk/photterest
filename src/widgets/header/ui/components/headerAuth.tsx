@@ -1,60 +1,63 @@
-'use client'
+"use client";
+
 import { FC, useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+
 import HeaderAccount from "./headerAccount";
 import { Button } from "@/shared/ui/button";
 import { useAppSelector } from "@/shared/redux/hooks";
 import { ModalWindow } from "@/widgets/modalWindow";
 import { RegistrationModal } from "@/widgets/registrationModal";
-import { usePathname, useSearchParams, useRouter } from "next/navigation";
 
 export type AuthModalType = "registration" | "logIn";
 
-
 const HeaderAuth: FC = () => {
-    const user = useAppSelector((state) => state.user.currentUser)
+    const user = useAppSelector((state) => state.user.currentUser);
 
+    const [mode, setMode] = useState<AuthModalType>("logIn");
 
-    const router = useRouter()
-    const pathname = usePathname()
-    const searchParams = useSearchParams()
-    const modal = searchParams.get("modal");
+    const router = useRouter();
+    const pathname = usePathname();
+    const searchParams = useSearchParams();
 
-    const openModal = (modal: AuthModalType) => {
+    const isModalOpen = searchParams.get("modal") === "auth";
+
+    const openModal = (mode: AuthModalType) => {
+        setMode(mode);
+
         const params = new URLSearchParams(searchParams.toString());
-        params.set('modal', modal)
+        params.set("modal", "auth");
+
         router.push(`${pathname}?${params.toString()}`);
-    }
+    };
 
     const closeModal = () => {
         const params = new URLSearchParams(searchParams.toString());
-        params.delete('modal')
+        params.delete("modal");
+
         const query = params.toString();
+
         router.push(
             query
                 ? `${pathname}?${query}`
                 : pathname
         );
-    }
+    };
 
-    const isModalOpen =
-        modal === 'registration' ||
-        modal === 'logIn'
-
-
-    return(
+    return (
         <div>
-            {!user && 
+            {!user && (
                 <div
                     className="
                         flex
                         gap-[10px]
                     "
                 >
-                    <Button 
+                    <Button
                         type="RED"
-                        onClick={() => openModal('logIn')}
+                        onClick={() => openModal("logIn")}
                         className="
-                            h-[48]
+                            h-[48px]
                             px-[14px]
                             text-[16px]
                             font-[600]
@@ -65,10 +68,10 @@ const HeaderAuth: FC = () => {
                     </Button>
 
                     <Button
-                        onClick={() => openModal('registration')}
                         type="GREY"
+                        onClick={() => openModal("registration")}
                         className="
-                            h-[48]
+                            h-[48px]
                             px-[14px]
                             text-[16px]
                             font-[600]
@@ -78,15 +81,22 @@ const HeaderAuth: FC = () => {
                         Join Up
                     </Button>
                 </div>
-            }
+            )}
 
             {user && <HeaderAccount />}
 
-            <ModalWindow isOpen = {isModalOpen} onClose={closeModal}>
-                <RegistrationModal onClose={closeModal}/>
+            <ModalWindow
+                isOpen={isModalOpen}
+                onClose={closeModal}
+            >
+                <RegistrationModal
+                    mode={mode}
+                    setMode={setMode}
+                    onClose={closeModal}
+                />
             </ModalWindow>
         </div>
-    )
-}
+    );
+};
 
-export default HeaderAuth
+export default HeaderAuth;

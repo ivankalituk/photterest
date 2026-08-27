@@ -1,24 +1,23 @@
 import { FC, FormEvent, useState } from "react";
+
 import GoogleLoginButton from "./googleLoginButton";
 import { Button } from "@/shared/ui/button";
 import RegistrationInput from "./registrationInput";
-import PasswordCheck from "./passwordCheck";
-import { getPasswordProgress } from "@/shared/utils/checkPassword";
+
 import { AuthModalType } from "@/widgets/header/ui/components/headerAuth";
+
+interface Props {
+    handleMode: (mode: AuthModalType) => void;
+}
 
 interface FormErrors {
     email: boolean;
     password: boolean;
 }
 
-interface Props {
-    handleMode: (mode: AuthModalType) => void
-}
-
-const AuthForm: FC <Props> = ({handleMode}) => {
-
-    const [email, setEmail] = useState<string>("");
-    const [password, setPassword] = useState<string>("");
+const AuthForm: FC<Props> = ({ handleMode }) => {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
     const [errors, setErrors] = useState<FormErrors>({
         email: false,
@@ -27,8 +26,11 @@ const AuthForm: FC <Props> = ({handleMode}) => {
 
     const validate = () => {
         const newErrors = {
-            email: !email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email),
-            password: !password
+            email:
+                !email ||
+                !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email),
+
+            password: !password,
         };
 
         setErrors(newErrors);
@@ -39,9 +41,7 @@ const AuthForm: FC <Props> = ({handleMode}) => {
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        const isValid = validate();
-
-        if (!isValid) {
+        if (!validate()) {
             return;
         }
 
@@ -51,32 +51,32 @@ const AuthForm: FC <Props> = ({handleMode}) => {
         });
     };
 
-    return(
+    return (
         <form
             noValidate
             onSubmit={handleSubmit}
             className="
-                flex flex-col
+                flex
+                flex-col
                 gap-[8px]
                 mt-[16px]
             "
         >
             <RegistrationInput
-                type = 'email'
+                type="email"
                 placeholder="Введите свою почту"
                 onChange={(event) => setEmail(event.target.value)}
                 isError={errors.email}
-                required     
             />
-            <RegistrationInput 
-                type = 'password'
+
+            <RegistrationInput
+                type="password"
                 placeholder="Введите пароль"
                 onChange={(event) => setPassword(event.target.value)}
                 isError={errors.password}
-                required
             />
 
-                        <div
+            <div
                 className="
                     flex
                     flex-col
@@ -85,13 +85,13 @@ const AuthForm: FC <Props> = ({handleMode}) => {
             >
                 <Button
                     type="RED"
+                    htmlType="submit"
                     className="
                         h-[48px]
                         text-[white]
                         font-[600]
                         w-[100%]
                     "
-                    htmlType="submit"
                 >
                     Войти
                 </Button>
@@ -101,12 +101,14 @@ const AuthForm: FC <Props> = ({handleMode}) => {
                         text-center
                         text-[14px]
                     "
-                >ИЛИ</div>
+                >
+                    ИЛИ
+                </div>
 
                 <GoogleLoginButton />
             </div>
 
-            <div 
+            <div
                 className="
                     flex
                     gap-[4px]
@@ -114,18 +116,18 @@ const AuthForm: FC <Props> = ({handleMode}) => {
                     justify-center
                 "
             >
-                У вас ещё нет аккаунта? 
+                У вас ещё нет аккаунта?
+
                 <Button
-                    className="
-                        underline
-                    "
-                    onClick={() => handleMode('registration')}
+                    type="WHITE"
+                    onClick={() => handleMode("registration")}
+                    className="underline"
                 >
                     Зарегистрироваться
                 </Button>
             </div>
         </form>
-    )
-}
+    );
+};
 
-export default AuthForm
+export default AuthForm;

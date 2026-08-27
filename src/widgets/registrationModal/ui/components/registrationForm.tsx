@@ -14,7 +14,7 @@ interface FormErrors {
 }
 
 interface Props {
-    handleMode: (mode: AuthModalType) => void
+    handleMode: (mode: AuthModalType) => void;
 }
 
 const RegistrationForm: FC <Props> = ({handleMode}) => {
@@ -130,10 +130,9 @@ const RegistrationForm: FC <Props> = ({handleMode}) => {
             >
                 У вас уже есть аккаунт? 
                 <Button
-                    className="
-                        underline
-                    "
-                    onClick={() => handleMode('logIn')}
+                    type="WHITE"
+                    onClick={() => handleMode("logIn")}
+                    className="underline"
                 >
                     Войти
                 </Button>

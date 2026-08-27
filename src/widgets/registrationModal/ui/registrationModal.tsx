@@ -1,39 +1,26 @@
+import { FC } from "react";
+
 import CrossSVG from "@/shared/assets/controlledSVG/crossSVG";
 import LogoSVG from "@/shared/assets/controlledSVG/logoSVG";
 import { Button } from "@/shared/ui/button";
-import { FC } from "react";
-import RegistrationInput from "./components/registrationInput";
-import PasswordCheck from "./components/passwordCheck";
-import GoogleLoginButton from "./components/googleLoginButton";
+
 import RegistrationForm from "./components/registrationForm";
 import AuthForm from "./components/authForm";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+
 import { AuthModalType } from "@/widgets/header/ui/components/headerAuth";
 
 interface Props {
-    onClose: () => void
+    mode: AuthModalType;
+    setMode: (mode: AuthModalType) => void;
+    onClose: () => void;
 }
 
-const RegistrationModal: FC <Props> = ({onClose}) => {
-
-    const router = useRouter()
-    const pathname = usePathname()
-    const searchParams = useSearchParams()
-    const mode = searchParams.get('modal')
-
-    const handleMode = (mode: AuthModalType) => {
-        const params = new URLSearchParams(searchParams.toString());
-        params.set('modal', mode)
-        const query = params.toString();
-        router.push(
-            query
-                ? `${pathname}?${query}`
-                : pathname
-        );
-    }
-
-
-    return(
+const RegistrationModal: FC<Props> = ({
+    mode,
+    setMode,
+    onClose,
+}) => {
+    return (
         <div
             className="
                 relative
@@ -42,7 +29,7 @@ const RegistrationModal: FC <Props> = ({onClose}) => {
                 max-h-[756px]
                 py-[24px]
                 rounded-[24px]
-                bg-[white]
+                bg-white
                 box-border
             "
         >
@@ -54,7 +41,7 @@ const RegistrationModal: FC <Props> = ({onClose}) => {
                     px-[24px]
                 "
             >
-                <Button 
+                <Button
                     as="DIV"
                     square
                     className="
@@ -63,9 +50,8 @@ const RegistrationModal: FC <Props> = ({onClose}) => {
                         bg-grey-main
                     "
                 >
-                    <LogoSVG width={36}/>
+                    <LogoSVG width={36} />
                 </Button>
-
 
                 <Button
                     onClick={onClose}
@@ -78,7 +64,7 @@ const RegistrationModal: FC <Props> = ({onClose}) => {
                         top-[24px]
                     "
                 >
-                    <CrossSVG width={24}/>
+                    <CrossSVG width={24} />
                 </Button>
 
                 <h3
@@ -91,15 +77,25 @@ const RegistrationModal: FC <Props> = ({onClose}) => {
                     Добро пожаловать в Photterest
                 </h3>
 
-                <div>Присоединяйтесь к Photterest бесплатно, чтобы просматривать больше идей</div>
+                <div>
+                    Присоединяйтесь к Photterest бесплатно,
+                    чтобы просматривать больше идей
+                </div>
 
+                {mode === "registration" && (
+                    <RegistrationForm
+                        handleMode={setMode}
+                    />
+                )}
 
-                {mode === 'registration' && <RegistrationForm handleMode = {handleMode}/>}
-                {mode === 'logIn' && <AuthForm handleMode = {handleMode}/>}
-
+                {mode === "logIn" && (
+                    <AuthForm
+                        handleMode={setMode}
+                    />
+                )}
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default RegistrationModal
+export default RegistrationModal;
