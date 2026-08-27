@@ -1,12 +1,62 @@
-import { FC } from "react";
+import { FC, FormEvent, useState } from "react";
 import RegistrationInput from "./registrationInput";
 import { Button } from "@/shared/ui/button";
 import GoogleLoginButton from "./googleLoginButton";
 import PasswordCheck from "./passwordCheck";
+import { getPasswordProgress } from "@/shared/utils/checkPassword";
+import { validateDate } from "@/shared/utils/checkdate";
+
+interface FormErrors {
+    email: boolean;
+    password: boolean;
+    date: boolean
+}
 
 const RegistrationForm: FC = () => {
+
+    const [email, setEmail] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
+    const [date, setDate] = useState<string>("")
+
+    const [errors, setErrors] = useState<FormErrors>({
+        email: false,
+        password: false,
+        date: false
+    });
+
+    const validate = () => {
+        const newErrors = {
+            email: !email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email),
+            password: !password || getPasswordProgress (password).percent < 40,
+            date: !validateDate(date)
+        };
+
+        setErrors(newErrors);
+
+        return !newErrors.email && !newErrors.password;
+    };
+
+    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+
+        const isValid = validate();
+
+        if (!isValid) {
+            return;
+        }
+
+        console.log({
+            email,
+            password,
+            date
+        });
+    };
+
     return(
-        <div
+        <form
+            onSubmit={handleSubmit}
+            noValidate
+
             className="
                 flex flex-col
                 gap-[8px]
@@ -16,17 +66,23 @@ const RegistrationForm: FC = () => {
             <RegistrationInput
                 type = 'email'
                 placeholder="Введите свою почту"
+                onChange={(event) => setEmail(event.target.value)}
+                isError={errors.email}
             />
-            <RegistrationInput 
+            <RegistrationInput
                 type = 'password'
                 placeholder="Введите пароль"
+                onChange={(event) => setPassword(event.target.value)}
+                isError={errors.password}
             />
 
-            <PasswordCheck password="23232"/>
+            <PasswordCheck password={password}/>
 
-            <RegistrationInput 
+            <RegistrationInput
                 type = 'date'
                 placeholder="Введите дату рождения"
+                onChange={(event) => setDate(event.target.value)}
+                isError={errors.date}
             />
 
             <div
@@ -44,6 +100,7 @@ const RegistrationForm: FC = () => {
                         font-[600]
                         w-[100%]
                     "
+                    htmlType="submit"
                 >
                     Продолжить
                 </Button>
@@ -75,7 +132,7 @@ const RegistrationForm: FC = () => {
                     Войти
                 </Button>
             </div>
-        </div>
+        </form>
     )
 }
 

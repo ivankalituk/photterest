@@ -1,11 +1,55 @@
-import { FC } from "react";
+import { FC, FormEvent, useState } from "react";
 import GoogleLoginButton from "./googleLoginButton";
 import { Button } from "@/shared/ui/button";
 import RegistrationInput from "./registrationInput";
+import PasswordCheck from "./passwordCheck";
+import { getPasswordProgress } from "@/shared/utils/checkPassword";
+
+interface FormErrors {
+    email: boolean;
+    password: boolean;
+}
 
 const AuthForm: FC = () => {
+
+    const [email, setEmail] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
+
+    const [errors, setErrors] = useState<FormErrors>({
+        email: false,
+        password: false,
+    });
+
+    const validate = () => {
+        const newErrors = {
+            email: !email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email),
+            password: !password
+        };
+
+        setErrors(newErrors);
+
+        return !newErrors.email && !newErrors.password;
+    };
+
+    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+
+        const isValid = validate();
+
+        if (!isValid) {
+            return;
+        }
+
+        console.log({
+            email,
+            password,
+        });
+    };
+
     return(
-        <div
+        <form
+            noValidate
+            onSubmit={handleSubmit}
             className="
                 flex flex-col
                 gap-[8px]
@@ -15,10 +59,16 @@ const AuthForm: FC = () => {
             <RegistrationInput
                 type = 'email'
                 placeholder="Введите свою почту"
+                onChange={(event) => setEmail(event.target.value)}
+                isError={errors.email}
+                required     
             />
             <RegistrationInput 
                 type = 'password'
                 placeholder="Введите пароль"
+                onChange={(event) => setPassword(event.target.value)}
+                isError={errors.password}
+                required
             />
 
                         <div
@@ -36,6 +86,7 @@ const AuthForm: FC = () => {
                         font-[600]
                         w-[100%]
                     "
+                    htmlType="submit"
                 >
                     Войти
                 </Button>
@@ -67,7 +118,7 @@ const AuthForm: FC = () => {
                     Зарегистрироваться
                 </Button>
             </div>
-        </div>
+        </form>
     )
 }
 

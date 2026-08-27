@@ -75,8 +75,8 @@ const RegistrationModal: FC <Props> = ({onClose}) => {
                 <div>Присоединяйтесь к Photterest бесплатно, чтобы просматривать больше идей</div>
 
 
-                {false && <RegistrationForm />}
-                {true && <AuthForm />}
+                {true && <RegistrationForm />}
+                {false && <AuthForm />}
 
             </div>
         </div>

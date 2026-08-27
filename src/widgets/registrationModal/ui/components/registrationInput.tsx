@@ -7,10 +7,12 @@ type RegistrationInputType = "text" | "email" | "password" | "date";
 interface Props{
     type?: RegistrationInputType
     placeholder?: string
-    onChange: (event: ChangeEvent<HTMLInputElement>) => void 
+    onChange: (event: ChangeEvent<HTMLInputElement>) => void
+    isError?: boolean
+    required?: boolean
 }
 
-const RegistrationInput: FC <Props> = ({type = 'text', placeholder = '', onChange}) => {
+const RegistrationInput: FC <Props> = ({type = 'text', placeholder = '', onChange, isError, required}) => {
 
     const [passwordType, setPasswordType] = useState<'password' | 'text'>('password')
 
@@ -20,7 +22,7 @@ const RegistrationInput: FC <Props> = ({type = 'text', placeholder = '', onChang
 
     return(
         <div
-            className="
+            className={`
                 flex
                 items-center
                 w-[100%]
@@ -33,7 +35,9 @@ const RegistrationInput: FC <Props> = ({type = 'text', placeholder = '', onChang
                 focus-within:shadow-[0_0_0_2px_#3b82f6]
                 h-[56px]
                 relative
-            "
+
+                ${isError && 'shadow-[0_0_0_2px_#FF0000]'}
+            `}
         >
             <input
                 className="
@@ -41,7 +45,8 @@ const RegistrationInput: FC <Props> = ({type = 'text', placeholder = '', onChang
                 "
                 type={type === 'password'? passwordType : type}
                 onChange={onChange}
-                placeholder = {placeholder} 
+                placeholder = {placeholder}
+                required={required}
             />
 
             { type === 'password' && 
