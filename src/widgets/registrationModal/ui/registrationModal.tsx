@@ -19,121 +19,136 @@ const RegistrationModal: FC <Props> = ({onClose}) => {
                 w-full
                 max-w-[450px]
                 max-h-[756px]
-                p-[24px]
+                py-[24px]
                 rounded-[24px]
                 bg-[white]
+                box-border
             "
         >
-            <Button 
-                as="DIV"
-                square
-                className="
-                    w-[64px]
-                    h-[64px]
-                    bg-grey-main
-                "
-            >
-                <LogoSVG width={36}/>
-            </Button>
-
-
-            <Button
-                onClick={onClose}
-                type="WHITE"
-                className="
-                    w-[48px]
-                    h-[48px]
-                    absolute
-                    right-[24px]
-                    top-[24px]
-                "
-            >
-                <CrossSVG width={24}/>
-            </Button>
-
-            <h3
-                className="
-                    mt-[16px]
-                    text-[26px]
-                    font-[600]
-                "
-            >
-                Добро пожаловать в Photterest
-            </h3>
-
-            <div>Присоединяйтесь к Photterest бесплатно, чтобы просматривать больше идей</div>
-
-
-            {/* РЕГИСТРАЦИЯ */}
             <div
                 className="
-                    flex flex-col
-                    gap-[8px]
-                    mt-[16px]
+                    overflow-y-auto
+                    scrollBar
+                    max-h-[708px]
+                    px-[24px]
                 "
             >
-                <RegistrationInput 
-                    type = 'email'
-                    placeholder="Введите свою почту"
-                />
-                <RegistrationInput 
-                    type = 'password'
-                    placeholder="Введите пароль"
-                />
-
-                <PasswordCheck password="23232"/>
-
-                <RegistrationInput 
-                    type = 'date'
-                    placeholder="Введите дату рождения"
-                />
-
-                <div
+                <Button 
+                    as="DIV"
+                    square
                     className="
-                        flex
-                        flex-col
-                        gap-[8px]
+                        w-[64px]
+                        h-[64px]
+                        bg-grey-main
                     "
                 >
-                    <Button 
-                        type="RED"
-                        className="
-                            h-[48px]
-                            text-[white]
-                            font-[600]
-                            w-[100%]
-                        "
-                    >
-                        Продолжить
-                    </Button>
+                    <LogoSVG width={36}/>
+                </Button>
+
+
+                <Button
+                    onClick={onClose}
+                    type="WHITE"
+                    className="
+                        w-[48px]
+                        h-[48px]
+                        absolute
+                        right-[24px]
+                        top-[24px]
+                    "
+                >
+                    <CrossSVG width={24}/>
+                </Button>
+
+                <h3
+                    className="
+                        mt-[16px]
+                        text-[26px]
+                        font-[600]
+                    "
+                >
+                    Добро пожаловать в Photterest
+                </h3>
+
+                <div>Присоединяйтесь к Photterest бесплатно, чтобы просматривать больше идей</div>
+
+
+                {/* РЕГИСТРАЦИЯ */}
+                <div
+                    className="
+                        flex flex-col
+                        gap-[8px]
+                        mt-[16px]
+                    "
+                >
+                    <RegistrationInput 
+                        type = 'email'
+                        placeholder="Введите свою почту"
+                    />
+                    <RegistrationInput 
+                        type = 'password'
+                        placeholder="Введите пароль"
+                    />
+
+                    <PasswordCheck password="23232"/>
+
+                    <RegistrationInput 
+                        type = 'date'
+                        placeholder="Введите дату рождения"
+                    />
 
                     <div
                         className="
-                            text-center
-                            text-[14px]
-                        "
-                    >ИЛИ</div>
-
-                    <GoogleLoginButton />
-                </div>
-
-                <div 
-                    className="
-                        flex
-                        gap-[4px]
-                        mt-[16px]
-                        justify-center
-                    "
-                >
-                    У вас уже есть аккаунт? 
-                    <Button
-                        className="
-                            underline
+                            flex
+                            flex-col
+                            gap-[8px]
                         "
                     >
-                        Войти
-                    </Button>
+                        <Button 
+                            type="RED"
+                            className="
+                                h-[48px]
+                                text-[white]
+                                font-[600]
+                                w-[100%]
+                            "
+                        >
+                            Продолжить
+                        </Button>
+
+                        <div
+                            className="
+                                text-center
+                                text-[14px]
+                            "
+                        >ИЛИ</div>
+
+                        <GoogleLoginButton />
+                    </div>
+
+                    <div 
+                        className="
+                            flex
+                            gap-[4px]
+                            mt-[16px]
+                            justify-center
+                        "
+                    >
+                        У вас уже есть аккаунт? 
+                        <Button
+                            className="
+                                underline
+                            "
+                        >
+                            Войти
+                        </Button>
+                    </div>
+
+                    <div className="h-[200px]">
+                        some content
+                    </div>
                 </div>
+
             </div>
         </div>
     )
