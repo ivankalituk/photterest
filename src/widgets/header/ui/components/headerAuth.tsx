@@ -5,16 +5,41 @@ import { Button } from "@/shared/ui/button";
 import { useAppSelector } from "@/shared/redux/hooks";
 import { ModalWindow } from "@/widgets/modalWindow";
 import { RegistrationModal } from "@/widgets/registrationModal";
+import { usePathname, useSearchParams, useRouter } from "next/navigation";
+
+type AuthModalType = "registration" | "logIn";
+
 
 const HeaderAuth: FC = () => {
-
-    const [openModal, setOpenModal] = useState<boolean>(false)
-
     const user = useAppSelector((state) => state.user.currentUser)
 
-    const handleOpenModal = () => {
-        setOpenModal(true)
+
+    const router = useRouter()
+    const pathname = usePathname()
+    const searchParams = useSearchParams()
+    const modal = searchParams.get("modal");
+
+    const openModal = (modal: AuthModalType) => {
+        const params = new URLSearchParams(searchParams.toString());
+        params.set('modal', modal)
+        router.push(`${pathname}?${params.toString()}`);
     }
+
+    const closeModal = () => {
+        const params = new URLSearchParams(searchParams.toString());
+        params.delete('modal')
+        const query = params.toString();
+        router.push(
+            query
+                ? `${pathname}?${query}`
+                : pathname
+        );
+    }
+
+    const isModalOpen =
+        modal === 'registration' ||
+        modal === 'logIn'
+
 
     return(
         <div>
@@ -27,7 +52,7 @@ const HeaderAuth: FC = () => {
                 >
                     <Button 
                         type="RED"
-                        onClick={handleOpenModal}
+                        onClick={() => openModal('registration')}
                         className="
                             h-[48]
                             px-[14px]
@@ -40,7 +65,7 @@ const HeaderAuth: FC = () => {
                     </Button>
 
                     <Button
-                        onClick={handleOpenModal}
+                        onClick={() => openModal('logIn')}
                         type="GREY"
                         className="
                             h-[48]
@@ -57,8 +82,8 @@ const HeaderAuth: FC = () => {
 
             {user && <HeaderAccount />}
 
-            <ModalWindow isOpen = {openModal} onClose={() => setOpenModal(false)}>
-                <RegistrationModal onClose={() => setOpenModal(false)}/>
+            <ModalWindow isOpen = {isModalOpen} onClose={closeModal}>
+                <RegistrationModal onClose={closeModal}/>
             </ModalWindow>
         </div>
     )
