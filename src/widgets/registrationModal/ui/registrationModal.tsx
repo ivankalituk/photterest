@@ -3,6 +3,7 @@ import LogoSVG from "@/shared/assets/controlledSVG/logoSVG";
 import { Button } from "@/shared/ui/button";
 import { FC } from "react";
 import RegistrationInput from "./components/registrationInput";
+import PasswordCheck from "./components/passwordCheck";
 
 interface Props {
     onClose: () => void
@@ -76,6 +77,9 @@ const RegistrationModal: FC <Props> = ({onClose}) => {
                     type = 'password'
                     placeholder="Введите свою почту"
                 />
+
+                <PasswordCheck password="23232"/>
+
                 <RegistrationInput 
                     type = 'text'
                     placeholder="Введите свою почту"
