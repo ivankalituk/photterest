@@ -62,9 +62,26 @@ const RegistrationModal: FC <Props> = ({onClose}) => {
 
             <div>Присоединяйтесь к Photterest бесплатно, чтобы просматривать больше идей</div>
 
-            <div>
+            <div
+                className="
+                    flex flex-col
+                    gap-[8px]
+                "
+            >
                 <RegistrationInput 
                     type = 'email'
+                    placeholder="Введите свою почту"
+                />
+                <RegistrationInput 
+                    type = 'password'
+                    placeholder="Введите свою почту"
+                />
+                <RegistrationInput 
+                    type = 'text'
+                    placeholder="Введите свою почту"
+                />
+                <RegistrationInput 
+                    type = 'date'
                     placeholder="Введите свою почту"
                 />
             </div>

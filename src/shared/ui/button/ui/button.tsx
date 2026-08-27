@@ -14,6 +14,7 @@ interface Props {
     as?: 'BUTTON' | 'DIV' | 'LINK'
     href?: string
     scaling?: boolean
+    htmlType?: 'button' | 'submit'
 }
 
 // change hover collors, change types
@@ -27,7 +28,8 @@ const Button: FC <Props> = ({
     as = 'BUTTON', 
     href, 
     scaling, 
-    type
+    type,
+    htmlType = 'button'
 }) => {
 
     const spring = {
@@ -139,6 +141,7 @@ const Button: FC <Props> = ({
                 transition={spring}
 
             onClick={onClick}
+            type={htmlType}
         >
             {children}
         </motion.button>

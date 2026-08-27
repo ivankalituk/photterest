@@ -1,18 +1,28 @@
-import { ChangeEvent, ChangeEventHandler, FC, HTMLInputTypeAttribute } from "react";
+import PasswordEyeSVG from "@/shared/assets/controlledSVG/passwordEyeSVG";
+import { Button } from "@/shared/ui/button";
+import { ChangeEvent, ChangeEventHandler, FC, HTMLInputTypeAttribute, useState } from "react";
+
+type RegistrationInputType = "text" | "email" | "password" | "date";
 
 interface Props{
-    type?: HTMLInputTypeAttribute
+    type?: RegistrationInputType
     placeholder?: string
     onChange: (event: ChangeEvent<HTMLInputElement>) => void 
 }
 
 const RegistrationInput: FC <Props> = ({type = 'text', placeholder = '', onChange}) => {
 
+    const [passwordType, setPasswordType] = useState<'password' | 'text'>('password')
+
+    const togglePasswordVisibility = () => {
+        setPasswordType(prev => prev === 'password'? 'text' : 'password')
+    }
 
     return(
         <div
             className="
                 flex
+                items-center
                 w-[100%]
                 rounded-[8px]
                 border-[1px]
@@ -27,10 +37,21 @@ const RegistrationInput: FC <Props> = ({type = 'text', placeholder = '', onChang
                 className="
                     flex-1
                 "
-                type={type}
+                type={type === 'password'? passwordType : type}
                 onChange={onChange}
                 placeholder = {placeholder} 
             />
+
+            { type === 'password' && 
+            <Button
+                className="
+                    p-[6px]
+                "
+                type="WHITE"
+                onClick={togglePasswordVisibility}
+            >
+                <PasswordEyeSVG visibility={passwordType === 'password'}/>
+            </Button>}
         </div>
     )
 }
