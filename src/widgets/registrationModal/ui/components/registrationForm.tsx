@@ -6,6 +6,7 @@ import PasswordCheck from "./passwordCheck";
 import { getPasswordProgress } from "@/shared/utils/checkPassword";
 import { validateDate } from "@/shared/utils/checkdate";
 import { AuthModalType } from "@/widgets/header/ui/components/headerAuth";
+import { registerUser } from "@/app/api/auth/auth";
 
 interface FormErrors {
     email: boolean;
@@ -41,13 +42,26 @@ const RegistrationForm: FC <Props> = ({handleMode}) => {
         return !newErrors.email && !newErrors.password;
     };
 
-    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
         const isValid = validate();
 
         if (!isValid) {
             return;
+        }
+
+        try{
+            const response = await registerUser({
+                email,
+                password,
+                birth_date: date,
+            })
+
+            console.log(response)
+
+        } catch (error){
+            console.error(error)
         }
 
         console.log({
