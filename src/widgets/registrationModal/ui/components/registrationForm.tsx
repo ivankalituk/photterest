@@ -6,7 +6,7 @@ import PasswordCheck from "./passwordCheck";
 import { getPasswordProgress } from "@/shared/utils/checkPassword";
 import { validateDate } from "@/shared/utils/checkdate";
 import { AuthModalType } from "@/widgets/header/ui/components/headerAuth";
-import { registerUser } from "@/app/api/auth/auth";
+import { createSession, registerUser } from "@/app/api/auth/auth";
 
 interface FormErrors {
     email: boolean;
@@ -59,6 +59,7 @@ const RegistrationForm: FC <Props> = ({handleMode}) => {
             })
 
             console.log(response)
+            await createSession(response.token);
 
         } catch (error){
             console.error(error)
