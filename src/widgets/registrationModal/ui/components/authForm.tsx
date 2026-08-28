@@ -5,6 +5,9 @@ import { Button } from "@/shared/ui/button";
 import RegistrationInput from "./registrationInput";
 
 import { AuthModalType } from "@/widgets/header/ui/components/headerAuth";
+import { authUser, createSession } from "@/app/api/auth/auth";
+import { useAppDispatch } from "@/shared/redux/hooks";
+import { setUser } from "@/shared/redux/slices/userSlice";
 
 interface Props {
     handleMode: (mode: AuthModalType) => void;
@@ -18,6 +21,7 @@ interface FormErrors {
 const AuthForm: FC<Props> = ({ handleMode }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const dispatch = useAppDispatch()
 
     const [errors, setErrors] = useState<FormErrors>({
         email: false,
@@ -38,17 +42,17 @@ const AuthForm: FC<Props> = ({ handleMode }) => {
         return !newErrors.email && !newErrors.password;
     };
 
-    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
         if (!validate()) {
             return;
         }
 
-        console.log({
-            email,
-            password,
-        });
+        const response = await authUser({email, password})
+        
+        dispatch(setUser(response.user))
+        await createSession(response.token);
     };
 
     return (

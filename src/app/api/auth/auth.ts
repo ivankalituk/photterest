@@ -1,4 +1,6 @@
+import { body } from 'framer-motion/client';
 import { clientApi } from '../client';
+import { User } from '@/shared/redux/slices/userSlice';
 
 interface RegistrationData {
     email: string;
@@ -7,14 +9,15 @@ interface RegistrationData {
 }
 
 interface AuthResponse {
-    user: {
-        id: string;
-        nickname: string;
-        email: string;
-        role: string;
-    };
+    user: User,
     token: string;
 }
+
+interface AuthData {
+    email: string;
+    password: string
+}
+
 
 export const createSession = async (token: string): Promise<void> => {
     const response = await fetch('/api/auth/session', {
@@ -44,3 +47,35 @@ export const registerUser = async (
 
     return response.json();
 };
+
+export const authUser = async (
+    data: AuthData
+): Promise<AuthResponse> => {
+    const response = await clientApi('/auth/login', {
+        method: 'POST',
+        body: JSON.stringify(data)
+    })
+
+    if (!response.ok) {
+        throw new Error('Auth failed')
+    }
+
+    return response.json()
+}
+
+export const authGoogleUser = async (
+    credential: string
+): Promise<AuthResponse> => {
+    const response = await clientApi('/auth/google', {
+        method: "POST",
+        body: JSON.stringify({
+            token: credential,
+        }),
+    })
+
+    if (!response.ok) {
+        throw new Error('Auth failed')
+    }
+
+    return response.json()
+}

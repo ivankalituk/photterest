@@ -6,6 +6,9 @@ export interface User {
     email: string,
     google_id: string | null,
     avatar_url: string | null,
+    role: string
+    created_at: string,
+    updated_at: string
 }
 
 interface UserState {

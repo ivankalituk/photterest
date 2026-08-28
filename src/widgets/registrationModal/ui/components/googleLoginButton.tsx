@@ -3,34 +3,18 @@ import { useGoogleLogin } from "@react-oauth/google";
 import Image from "next/image";
 import { FC } from "react";
 import googleLogo from '@/shared/assets/icons/googleLogo.svg'
+import { authGoogleUser, createSession } from "@/app/api/auth/auth";
+import { useAppDispatch } from "@/shared/redux/hooks";
+import { setUser } from "@/shared/redux/slices/userSlice";
 
 const GoogleLoginButton: FC = () => {
-    const handleGoogleLogin = async (credential: string) => {
-        try {
-            const response = await fetch(
-                "http://localhost:5000/auth/google",
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        token: credential,
-                    }),
-                }
-            );
-
-            const data = await response.json();
-
-            console.log(data);
-        } catch (error) {
-            console.error(error);
-        }
-    };
+    const dispatch = useAppDispatch()
 
     const googleLogin = useGoogleLogin({
         onSuccess: async (response) => {
-            await handleGoogleLogin(response.access_token);
+            const data = await authGoogleUser(response.access_token)
+            dispatch(setUser(data.user))
+            await createSession(data.token);
         },
 
         onError: () => {

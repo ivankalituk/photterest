@@ -7,6 +7,8 @@ import { getPasswordProgress } from "@/shared/utils/checkPassword";
 import { validateDate } from "@/shared/utils/checkdate";
 import { AuthModalType } from "@/widgets/header/ui/components/headerAuth";
 import { createSession, registerUser } from "@/app/api/auth/auth";
+import { useAppDispatch } from "@/shared/redux/hooks";
+import { setUser } from "@/shared/redux/slices/userSlice";
 
 interface FormErrors {
     email: boolean;
@@ -23,7 +25,7 @@ const RegistrationForm: FC <Props> = ({handleMode}) => {
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [date, setDate] = useState<string>("")
-
+    const dispatch = useAppDispatch()
     const [errors, setErrors] = useState<FormErrors>({
         email: false,
         password: false,
@@ -58,7 +60,7 @@ const RegistrationForm: FC <Props> = ({handleMode}) => {
                 birth_date: date,
             })
 
-            console.log(response)
+            dispatch(setUser(response.user))
             await createSession(response.token);
 
         } catch (error){
