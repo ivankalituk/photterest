@@ -16,6 +16,10 @@ interface AuthData {
     password: string
 }
 
+interface LogoutResponse {
+    message: string
+}
+
 export const registerUser = async (
     data: RegistrationData,
 ): Promise<AuthResponse> => {
@@ -61,4 +65,16 @@ export const authGoogleUser = async (
     }
 
     return response.json()
+}
+
+export const logoutUser = async (): Promise<LogoutResponse> => {
+    const response = await clientApi('/auth/logout', {
+        method: 'POST'
+    })
+
+    if (!response.ok) {
+        throw new Error('Registration failed');
+    }
+
+    return response.json();
 }

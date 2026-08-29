@@ -1,4 +1,5 @@
 import { FC } from "react";
+import AuthPage from "../authPage/page";
 
 const Profile: FC = () => {
     return(
@@ -6,6 +7,7 @@ const Profile: FC = () => {
             className="bg-[yellow]"
         >
             Profile
+            <AuthPage />
         </div>
     )
 }

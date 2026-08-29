@@ -5,69 +5,29 @@ import { ModalWindow } from "@/widgets/modalWindow";
 import { RegistrationModal } from "@/widgets/registrationModal";
 import { useGoogleLogin } from "@react-oauth/google";
 import { FC, useState } from "react";
+import { clientApi } from "../api/client";
+import { logoutUser } from "../api/auth/auth";
+import { useAppDispatch } from "@/shared/redux/hooks";
+import { clearUser } from "@/shared/redux/slices/userSlice";
 
 const AuthPage: FC = () => {
-    const [modal, setModal] = useState<boolean>(false);
 
-    const openModal = () => {
-        setModal(true);
-    };
+    const dispatch = useAppDispatch()
 
-    const closeModal = () => {
-        setModal(false);
-    };
+    const handleLogout = async () => {
 
-    const handleGoogleLogin = async (credential: string) => {
-        try {
-            const response = await fetch(
-                "http://localhost:5000/auth/google",
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        token: credential,
-                    }),
-                }
-            );
-
-            const data = await response.json();
-
-            console.log(data);
+        try{
+            const {message} = await logoutUser()
+            console.log(message)
+            dispatch(clearUser())  
         } catch (error) {
-            console.error(error);
+            console.error(error)
         }
-    };
-
-    const googleLogin = useGoogleLogin({
-        onSuccess: async (response) => {
-            await handleGoogleLogin(response.access_token);
-        },
-
-        onError: () => {
-            console.log("Google auth failed");
-        },
-    });
+    }
 
     return (
         <div>
-            <Button
-                onClick={() => googleLogin()}
-            >
-                Login with Google
-            </Button>
-
-            <Button
-                className="bg-[red]"
-                onClick={openModal}
-            >
-                Open Modal
-            </Button>
-
-            <ModalWindow isOpen={modal} onClose={closeModal}>
-                <RegistrationModal onClose={closeModal}/>
-            </ModalWindow>
+            <button onClick={handleLogout}>logout</button>
         </div>
     );
 };
