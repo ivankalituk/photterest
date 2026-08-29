@@ -3,7 +3,7 @@ import { useGoogleLogin } from "@react-oauth/google";
 import Image from "next/image";
 import { FC } from "react";
 import googleLogo from '@/shared/assets/icons/googleLogo.svg'
-import { authGoogleUser, createSession } from "@/app/api/auth/auth";
+import { authGoogleUser } from "@/app/api/auth/auth";
 import { useAppDispatch } from "@/shared/redux/hooks";
 import { setUser } from "@/shared/redux/slices/userSlice";
 
@@ -14,7 +14,6 @@ const GoogleLoginButton: FC = () => {
         onSuccess: async (response) => {
             const data = await authGoogleUser(response.access_token)
             dispatch(setUser(data.user))
-            await createSession(data.token);
         },
 
         onError: () => {
