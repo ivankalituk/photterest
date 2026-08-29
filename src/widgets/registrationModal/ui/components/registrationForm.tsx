@@ -6,7 +6,7 @@ import PasswordCheck from "./passwordCheck";
 import { getPasswordProgress } from "@/shared/utils/checkPassword";
 import { validateDate } from "@/shared/utils/checkdate";
 import { AuthModalType } from "@/widgets/header/ui/components/headerAuth";
-import { createSession, registerUser } from "@/app/api/auth/auth";
+import { registerUser } from "@/app/api/auth/auth";
 import { useAppDispatch } from "@/shared/redux/hooks";
 import { setUser } from "@/shared/redux/slices/userSlice";
 
@@ -61,7 +61,6 @@ const RegistrationForm: FC <Props> = ({handleMode}) => {
             })
 
             dispatch(setUser(response.user))
-            await createSession(response.token);
 
         } catch (error){
             console.error(error)

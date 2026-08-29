@@ -5,7 +5,7 @@ import { Button } from "@/shared/ui/button";
 import RegistrationInput from "./registrationInput";
 
 import { AuthModalType } from "@/widgets/header/ui/components/headerAuth";
-import { authUser, createSession } from "@/app/api/auth/auth";
+import { authUser } from "@/app/api/auth/auth";
 import { useAppDispatch } from "@/shared/redux/hooks";
 import { setUser } from "@/shared/redux/slices/userSlice";
 
@@ -52,7 +52,6 @@ const AuthForm: FC<Props> = ({ handleMode }) => {
         const response = await authUser({email, password})
         
         dispatch(setUser(response.user))
-        await createSession(response.token);
     };
 
     return (

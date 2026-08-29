@@ -1,4 +1,3 @@
-import { body } from 'framer-motion/client';
 import { clientApi } from '../client';
 import { User } from '@/shared/redux/slices/userSlice';
 
@@ -9,29 +8,13 @@ interface RegistrationData {
 }
 
 interface AuthResponse {
-    user: User,
-    token: string;
+    user: User
 }
 
 interface AuthData {
     email: string;
     password: string
 }
-
-
-export const createSession = async (token: string): Promise<void> => {
-    const response = await fetch('/api/auth/session', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ token }),
-    });
-
-    if (!response.ok) {
-        throw new Error('Failed to create session');
-    }
-};
 
 export const registerUser = async (
     data: RegistrationData,
