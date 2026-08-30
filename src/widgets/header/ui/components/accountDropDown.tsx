@@ -75,6 +75,7 @@ const AccountDropDown: FC <Props> = ({onClose, isOpen}) => {
                 <Button
                     as="LINK"
                     href="/profile"
+                    onClick={onClose}
                     className="
                         px-[12px] py-[8px]
                         w-[100%]

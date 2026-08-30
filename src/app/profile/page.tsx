@@ -1,15 +1,19 @@
-import { FC } from "react";
-import AuthPage from "../authPage/page";
+'use server'
+import { Profile } from "@/widgets/profile";
+import { serverApi } from "../api/server";
+import { redirect } from "next/navigation";
 
-const Profile: FC = () => {
+const ProfilePage = async () => {
+
+    const user = await serverApi("/users/me");
+
+    if(!user) {
+        redirect('/')
+    }
+
     return(
-        <div
-            className="bg-[yellow]"
-        >
-            Profile
-            <AuthPage />
-        </div>
+        <Profile type="PROFILE"/>
     )
 }
 
-export default Profile
+export default ProfilePage
