@@ -1,5 +1,5 @@
 import { Button } from "@/shared/ui/button";
-import { FC, useState } from "react";
+import { FC, useCallback, useEffect, useRef, useState } from "react";
 import avatar from '@/shared/assets/images/sampleAvatar.jpg'
 import Image from "next/image";
 import TickSVG from "@/shared/assets/controlledSVG/tickSVG";
@@ -9,10 +9,28 @@ const HeaderAccount: FC = () => {
 
     const [dropDown, setDropDown] = useState<boolean>(false)
 
+    const accountRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const handlePointerDown = (event: PointerEvent) => {
+            if (
+                accountRef.current &&
+                !accountRef.current.contains(event.target as Node)
+            ) {
+                setDropDown(false);
+            }
+        };
+
+        document.addEventListener('pointerdown', handlePointerDown);
+
+        return () => {
+            document.removeEventListener('pointerdown', handlePointerDown);
+        };
+    }, []);
+
     return(
         <div
             className="
-                relative
                 flex
                 items-center
             "
@@ -42,22 +60,31 @@ const HeaderAccount: FC = () => {
                 />
             </Button>
 
-            <Button
-                scaling
-                square
+            <div
                 className="
-                    h-[38px]
-                    w-[38px]
-                    rounded-[12px]
+                    relative
                 "
-                hover="GREY"
 
-                onClick={() => setDropDown(!dropDown)}
+                ref={accountRef}
             >
-                <TickSVG />
-            </Button>
 
-            {dropDown && <AccountDropDown />}
+                <Button
+                    scaling
+                    square
+                    className="
+                        h-[38px]
+                        w-[38px]
+                        rounded-[12px]
+                    "
+                    hover="GREY"
+
+                    onClick={() => setDropDown(!dropDown)}
+                >
+                    <TickSVG />
+                </Button>
+
+                <AccountDropDown isOpen = {dropDown} onClose = {() => setDropDown(false)}/>
+            </div>
         </div>
     )
 }
