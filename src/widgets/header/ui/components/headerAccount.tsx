@@ -1,14 +1,18 @@
 import { Button } from "@/shared/ui/button";
-import { FC } from "react";
+import { FC, useState } from "react";
 import avatar from '@/shared/assets/images/sampleAvatar.jpg'
 import Image from "next/image";
-import Link from "next/link";
 import TickSVG from "@/shared/assets/controlledSVG/tickSVG";
+import AccountDropDown from "./accountDropDown";
 
 const HeaderAccount: FC = () => {
+
+    const [dropDown, setDropDown] = useState<boolean>(false)
+
     return(
         <div
             className="
+                relative
                 flex
                 items-center
             "
@@ -42,14 +46,18 @@ const HeaderAccount: FC = () => {
                 scaling
                 square
                 className="
-                    h-[24px]
-                    w-[24px]
-                    rounded-full
+                    h-[38px]
+                    w-[38px]
+                    rounded-[12px]
                 "
                 hover="GREY"
+
+                onClick={() => setDropDown(!dropDown)}
             >
                 <TickSVG />
             </Button>
+
+            {dropDown && <AccountDropDown />}
         </div>
     )
 }
