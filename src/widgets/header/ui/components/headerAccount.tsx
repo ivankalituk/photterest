@@ -64,7 +64,6 @@ const HeaderAccount: FC = () => {
                 className="
                     relative
                 "
-
                 ref={accountRef}
             >
 

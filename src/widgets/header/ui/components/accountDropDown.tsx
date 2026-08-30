@@ -3,6 +3,10 @@ import { FC, useEffect, useRef } from "react";
 import sampleAvatar from '@/shared/assets/images/sampleAvatar.jpg'
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
+import { useAppDispatch, useAppSelector } from "@/shared/redux/hooks";
+import { logoutUser } from "@/app/api/auth/auth";
+import { clearUser } from "@/shared/redux/slices/userSlice";
+import { RootState } from "@reduxjs/toolkit/query";
 
 interface Props {
     onClose: () => void
@@ -11,9 +15,23 @@ interface Props {
 
 const AccountDropDown: FC <Props> = ({onClose, isOpen}) => {
 
+    const dispatch = useAppDispatch()
+    const user = useAppSelector((state) => state.user.currentUser)
+
+    const handleLogout = async () => {
+        try{
+            const {message} = await logoutUser()
+            console.log(message)
+            dispatch(clearUser())
+            onClose()
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
     return(
         <AnimatePresence>
-            {isOpen && <motion.div
+            {isOpen && user && <motion.div
                 initial={{
                     opacity: 0,
                     scale: 0.96,
@@ -79,6 +97,7 @@ const AccountDropDown: FC <Props> = ({onClose, isOpen}) => {
                     <div
                         className="
                             flex-1
+                            min-w-0
                             flex flex-col
                             text-start
                         "
@@ -87,9 +106,10 @@ const AccountDropDown: FC <Props> = ({onClose, isOpen}) => {
                             className="
                                 text-[16px]
                                 font-[600]
+                                truncate
                             "
                         >
-                            Nickname
+                            {user.nickname}
                         </div>
 
                         <div
@@ -105,13 +125,12 @@ const AccountDropDown: FC <Props> = ({onClose, isOpen}) => {
                             className="
                                 text-[14px]
                                 text-text-light
+                                truncate
                             "
                         >
-                            post@gmail.com
+                            {user.email}
                         </div>
                     </div>
-
-
                 </Button>
 
                 <Button
@@ -155,6 +174,7 @@ const AccountDropDown: FC <Props> = ({onClose, isOpen}) => {
                         justify-start
                         font-[600]
                     "
+                    onClick={handleLogout}
                 >
                     Выход
                 </Button>
