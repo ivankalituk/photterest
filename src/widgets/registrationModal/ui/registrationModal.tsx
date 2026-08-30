@@ -11,7 +11,7 @@ import { AuthModalType } from "@/widgets/header/ui/components/headerAuth";
 
 interface Props {
     mode: AuthModalType;
-    setMode?: (mode: AuthModalType) => void;
+    setMode: (mode: AuthModalType) => void;
     onClose: () => void;
 }
 
@@ -85,12 +85,14 @@ const RegistrationModal: FC<Props> = ({
                 {mode === "registration" && (
                     <RegistrationForm
                         handleMode={setMode}
+                        onClose = {onClose}
                     />
                 )}
 
                 {mode === "logIn" && (
                     <AuthForm
                         handleMode={setMode}
+                        onClose = {onClose}
                     />
                 )}
             </div>

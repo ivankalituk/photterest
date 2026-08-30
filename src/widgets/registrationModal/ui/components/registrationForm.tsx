@@ -18,9 +18,10 @@ interface FormErrors {
 
 interface Props {
     handleMode: (mode: AuthModalType) => void;
+    onClose: () => void
 }
 
-const RegistrationForm: FC <Props> = ({handleMode}) => {
+const RegistrationForm: FC <Props> = ({handleMode, onClose}) => {
 
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
@@ -61,9 +62,9 @@ const RegistrationForm: FC <Props> = ({handleMode}) => {
             })
 
             dispatch(setUser(response.user))
-
-        } catch (error){
-            console.error(error)
+            onClose()
+        } catch {
+            return
         }
 
         console.log({

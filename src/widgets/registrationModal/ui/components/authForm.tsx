@@ -11,6 +11,7 @@ import { setUser } from "@/shared/redux/slices/userSlice";
 
 interface Props {
     handleMode: (mode: AuthModalType) => void;
+    onClose: () => void
 }
 
 interface FormErrors {
@@ -18,7 +19,7 @@ interface FormErrors {
     password: boolean;
 }
 
-const AuthForm: FC<Props> = ({ handleMode }) => {
+const AuthForm: FC<Props> = ({ handleMode, onClose }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const dispatch = useAppDispatch()
@@ -49,9 +50,14 @@ const AuthForm: FC<Props> = ({ handleMode }) => {
             return;
         }
 
-        const response = await authUser({email, password})
-        
-        dispatch(setUser(response.user))
+        try{
+            const response = await authUser({email, password})
+            dispatch(setUser(response.user))
+            onClose()
+        } catch{
+            return
+        }
+
     };
 
     return (
