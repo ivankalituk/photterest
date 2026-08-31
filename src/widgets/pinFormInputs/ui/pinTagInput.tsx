@@ -1,11 +1,30 @@
-import { FC } from "react";
+'use client'
+import { FC, useState } from "react";
 import PinField from "./components/pinField";
+import { Input } from "@/shared/ui/input";
+import PinTagsSearch from "./components/pinTagsSearch";
 
 const PinTagInput: FC = () => {
+    
+    const [listVisible, setListVisible] = useState<boolean>(false)
+
     return(
-        <PinField name="tag">
-            <span>tag</span>
-        </PinField>
+        <div
+            className="relative"
+        >
+            <PinField name="tag">
+                <Input 
+                    placeholder="Введите тег"
+                    className="
+                        w-[100%]
+                    "
+                    onFocus = {() => setListVisible(true)}
+                    onBlur={() => setListVisible(false)}
+                />
+            </PinField>
+
+            {listVisible && <PinTagsSearch />}
+        </div>
     )
 }
 
