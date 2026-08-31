@@ -1,0 +1,9 @@
+import { FC } from "react";
+
+const FolderSVG: FC = () => {
+    return(
+        <svg aria-hidden="true" aria-label="" height="24" role="img" viewBox="0 0 24 24" width="24"><path d="M11.17 6 8.76 3.59l1.41-1.42L12 4h8a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V5a4 4 0 0 1 4-4h3.34a4 4 0 0 1 2.83 1.17L8.76 3.6A2 2 0 0 0 7.34 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2z"></path></svg>
+    )
+}
+
+export default FolderSVG

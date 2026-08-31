@@ -29,10 +29,6 @@ const PinCreationForm: FC = () => {
                 <PinTextInput name="Ссылка" placeholder="Добавить ссылку"/>
                 <PinBoardInput />
                 <PinTagInput />
-                <PinTextInput name="Название" placeholder="Добавьте описание пина"/>
-                <PinTextInput name="Название" placeholder="Добавьте описание пина"/>
-                <PinTextInput name="Название" placeholder="Добавьте описание пина"/>
-                <PinTextInput name="Название" placeholder="Добавьте описание пина"/>
             </div>
         </form>
     )
