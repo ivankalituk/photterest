@@ -8,6 +8,7 @@ const BoardsSearch: FC = () => {
     return(
         <div
             className="
+                z-10
                 absolute
                 top-[100px]
                 rounded-[24px]

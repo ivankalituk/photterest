@@ -15,7 +15,7 @@ const PinBoardInput: FC = () => {
             "
         >
             <PinField
-                name="board input"
+                name="Выберите доску"
                 as="BUTTON"
                 onClick={() => setShowBoars(!showBoards)}
             >
