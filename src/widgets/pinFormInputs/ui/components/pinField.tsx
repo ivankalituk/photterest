@@ -5,7 +5,7 @@ interface Props{
     name: string
 }
 
-const PinInputBlock: FC <Props> = ({children, name}) => {
+const PinField: FC <Props> = ({children, name}) => {
     return(
         <div
             className="
@@ -33,4 +33,4 @@ const PinInputBlock: FC <Props> = ({children, name}) => {
     )
 }
 
-export default PinInputBlock
+export default PinField
