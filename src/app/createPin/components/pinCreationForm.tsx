@@ -24,9 +24,9 @@ const PinCreationForm: FC = () => {
                     gap-[20px]
                 "
             >
-                <PinTextInput />
+                <PinTextInput name="Название" placeholder="Добавьте описание пина"/>
                 <PinTextArea />
-                <PinTextInput />
+                <PinTextInput name="Ссылка" placeholder="Добавить ссылку"/>
                 <PinBoardInput />
                 <PinTagInput />
             </div>

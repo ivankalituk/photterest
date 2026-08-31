@@ -12,10 +12,11 @@ const PinField: FC <Props> = ({children, name}) => {
                 px-[12px]
                 py-[16px]
                 rounded-[16px]
-                bg-background-secondary
                 border-[1px]
                 border-border
                 w-[100%]
+                focus-within:border-white
+                focus-within:shadow-[0_0_0_2px_#3b82f6]
             "
         >
             <div
