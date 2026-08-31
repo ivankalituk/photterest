@@ -1,6 +1,7 @@
 import { FC } from "react";
 import PinImageUpload from "./pinImageUpload";
 import { PinBoardInput, PinTagInput, PinTextArea, PinTextInput } from "@/widgets/pinFormInputs";
+import { InputSwitch } from "@/shared/ui/inputSwitch";
 
 const PinCreationForm: FC = () => {
     return(
@@ -29,6 +30,8 @@ const PinCreationForm: FC = () => {
                 <PinTextInput name="Ссылка" placeholder="Добавить ссылку"/>
                 <PinBoardInput />
                 <PinTagInput />
+
+                <InputSwitch />
             </div>
         </form>
     )
