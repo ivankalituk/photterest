@@ -14,7 +14,6 @@ const PinTextInput: FC <Props> = ({name, placeholder}) => {
                 placeholder={placeholder}
                 className="
                     w-[100%]
-                    
                     min-h-[24px]
                 "
             />
