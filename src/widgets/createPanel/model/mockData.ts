@@ -27,7 +27,7 @@ export const createContentVariants: CreatePanelTypes[] = [
         heading: 'Доска',
         explanation: 'Создайте доску, чтобы упорядочить коллекцию любимых пинов',
         icon: BoardsSVG,
-        href: '/create-board'
+        href: '/createBoard'
     },
     {
         name: 'Create collage',
