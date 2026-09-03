@@ -10,7 +10,15 @@ export default async function CreatePinPage() {
     }
 
     return (
-        <div>
+        <div
+            className="
+                h-[calc(100dvh-80px)]
+                flex
+                p-[16px]
+                items-center
+                justify-around
+            "
+        >
             <CreateBoardForm />
         </div>
     );

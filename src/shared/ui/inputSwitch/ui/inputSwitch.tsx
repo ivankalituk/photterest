@@ -5,7 +5,7 @@ import { twMerge } from "tailwind-merge";
 
 interface Props {
     checked: boolean;
-    onChange: (checked: boolean) => void;
+    onChange?: (checked: boolean) => void;
     className?: string;
 }
 
@@ -17,7 +17,7 @@ const InputSwitch: FC<Props> = ({
     return (
         <button
             type="button"
-            onClick={() => onChange(!checked)}
+            onClick={onChange? () => onChange(!checked) : undefined}
             className={twMerge(
                 `
                 relative

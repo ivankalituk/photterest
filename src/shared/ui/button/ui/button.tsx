@@ -15,6 +15,7 @@ interface Props {
     href?: string
     scaling?: boolean
     htmlType?: 'button' | 'submit'
+    disabled?: boolean
 }
 
 // change hover collors, change types
@@ -29,7 +30,8 @@ const Button: FC <Props> = ({
     href, 
     scaling, 
     type,
-    htmlType = 'button'
+    htmlType = 'button',
+    disabled
 }) => {
 
     const spring = {
@@ -62,6 +64,9 @@ const Button: FC <Props> = ({
                         ${square && 'aspect-[1]'}
                         ${hover === 'WHITE' && 'hover:bg-[white]'}
                         ${hover === 'GREY' && 'hover:bg-background-hover active:bg-background-active'}
+                        
+                        ${disabled && 'bg-grey-main opacity-0.8 text-black hover:bg-grey-main active:bg-grey-main'}
+
                         ${className && className}
                     `)
                 }
@@ -96,7 +101,11 @@ const Button: FC <Props> = ({
                         ${square && 'aspect-[1]'}
                         ${hover === 'WHITE' && 'hover:bg-[white]'}
                         ${hover === 'GREY' && 'hover:bg-background-hover active:bg-background-active'}
+
+                        ${disabled && 'bg-grey-main opacity-0.8 text-black hover:bg-grey-main active:bg-grey-main'}
+
                         ${className && className}
+
                     `)
                 }
 
@@ -134,7 +143,11 @@ const Button: FC <Props> = ({
                     ${square && 'aspect-[1]'}
                     ${hover === 'WHITE' && 'hover:bg-[white]'}
                     ${hover === 'GREY' && 'hover:bg-background-hover active:bg-background-active'}
+                
+                    ${disabled && 'bg-grey-main opacity-0.8 text-black hover:bg-grey-main active:bg-grey-main'}
+
                     ${className && className}
+
                 `)
             }
 
@@ -143,6 +156,7 @@ const Button: FC <Props> = ({
 
             onClick={onClick}
             type={htmlType}
+            disabled={disabled}
         >
             {children}
         </motion.button>

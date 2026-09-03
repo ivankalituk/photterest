@@ -29,7 +29,6 @@ const PinField: FC <Props> = ({children, name, as = 'DIV', onClick}) => {
             >
                 <div
                     className="
-                        text-text-light
                         font-[500]
                         text-[12px]
                         mb-[10px]
@@ -58,7 +57,6 @@ const PinField: FC <Props> = ({children, name, as = 'DIV', onClick}) => {
         >
             <div
                 className="
-                    text-text-light
                     font-[500]
                     text-[12px]
                     mb-[10px]
