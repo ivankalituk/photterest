@@ -1,21 +1,21 @@
 'use client'
+
 import ImageSVG from "@/shared/assets/controlledSVG/imageSVG";
 import { IMAGE_ACCEPT } from "@/shared/constants/mediaAccept";
+import { useThrottle } from "@/shared/hooks/useThrouttle";
 import { Button } from "@/shared/ui/button";
 import Image from "next/image";
 
-import { ChangeEvent, FC, useState } from "react";
+import { ChangeEvent, DragEvent, FC, useState } from "react";
 
 const PinImageUpload: FC = () => {
 
     const [images, setImages] = useState<string[]>([])
     const [imageFiles, setImageFiles] = useState<File[]>([])
+    const [isDragging, setIsDragging] = useState(false)
 
-    const handleImageUpload = (event: ChangeEvent<HTMLInputElement>) => {
-        const files = event.target.files
 
-        if (!files) return
-
+    const handleFiles = (files: FileList | File[]) => {
         const newFiles = Array.from(files).filter(file =>
             !imageFiles.some(
                 existingFile =>
@@ -25,10 +25,7 @@ const PinImageUpload: FC = () => {
             )
         )
 
-        if (!newFiles.length) {
-            event.target.value = ""
-            return
-        }
+        if (!newFiles.length) return
 
         setImageFiles(prev => [...prev, ...newFiles])
 
@@ -43,8 +40,49 @@ const PinImageUpload: FC = () => {
 
             reader.readAsDataURL(file)
         })
+    }
+
+    const handleImageUpload = (event: ChangeEvent<HTMLInputElement>) => {
+        const files = event.target.files
+
+        if (!files) return
+
+        handleFiles(files)
 
         event.target.value = ""
+    }
+
+    const handleDragEnter = (event: DragEvent<HTMLDivElement>) => {
+        event.preventDefault()
+
+        setIsDragging(true)
+        console.log("isDragging:", true)
+    }
+
+    const handleDragLeave = (event: DragEvent<HTMLDivElement>) => {
+        event.preventDefault()
+
+        setIsDragging(false)
+        console.log("isDragging:", false)
+    }
+
+    const handleDragOver = useThrottle(
+        (event: DragEvent<HTMLDivElement>) => {
+            event.preventDefault()
+        },
+        50
+    )
+
+    const handleDrop = (event: DragEvent<HTMLDivElement>) => {
+        event.preventDefault()
+
+        setIsDragging(false)
+
+        const files = event.dataTransfer.files
+
+        if (!files.length) return
+
+        handleFiles(files)
     }
 
     const handleDeleteImage = (src: string) => {
@@ -59,6 +97,10 @@ const PinImageUpload: FC = () => {
     return (
         <div className="flex flex-col gap-[12px]">
             <div
+                onDragEnter={handleDragEnter}
+                onDragOver={handleDragOver}
+                onDragLeave={handleDragLeave}
+                onDrop={handleDrop}
                 className="
                     relative
                     w-[357px]
@@ -70,8 +112,8 @@ const PinImageUpload: FC = () => {
                     border-border
                     transition-colors
                     duration-200
-                    ease-[cubic-bezier(0.2,0,0,1)]
-
+                    ease-[cubic-bezier(0.2,0,1)]
+                    
                     hover:bg-background-hover
                     active:bg-background-active
                 "
