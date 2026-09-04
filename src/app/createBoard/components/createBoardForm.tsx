@@ -1,15 +1,69 @@
 'use client'
 import CrossSVG from "@/shared/assets/controlledSVG/crossSVG";
 import { Button } from "@/shared/ui/button";
-import { FC } from "react";
+import { ChangeEvent, FC, FormEvent, useState } from "react";
 import BoardSkeleton from "./boardSkeleton";
 import { PinTextInput } from "@/widgets/pinFormInputs";
 import BoardPrivacyCheck from "./boardPrivacyCheck";
 import AddUserSVG from "@/shared/assets/controlledSVG/addUserSVG";
+import { createBoard } from "@/app/api/boards/boards";
+
+interface FormErrors{
+    name: boolean
+}
 
 const CreateBoardForm: FC = () => {
+    const [name, setName] = useState<string>('')
+    const [boardPrivacy, setBoardPrivacy] = useState<boolean>(false)
+    const [errors, setErrors] = useState<FormErrors>({
+        name: false
+    });
+    
+    const onNameChange = (event: ChangeEvent<HTMLInputElement>) => {
+        setName(event.target.value)
+    }
+
+    const onPrivacyChange = () => {
+        setBoardPrivacy(!boardPrivacy)
+    }
+
+    const validate = () => {
+        const newErrors = {
+            name: !name
+        };
+
+        setErrors(newErrors);
+
+        return !newErrors.name
+    };
+
+    const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
+        event?.preventDefault()
+
+        if (!validate()) {
+            return;
+        }
+
+        try{
+            const response = await createBoard({
+                name: name,
+                private: boardPrivacy
+            })
+
+            console.log(response)
+
+            setBoardPrivacy(false)
+            setName('')
+
+        } catch (error) {
+            console.error(error)
+        }
+
+    }
+
     return(
         <form
+            onSubmit={onSubmit}
             className="
                 relative
                 shadow
@@ -18,7 +72,6 @@ const CreateBoardForm: FC = () => {
                 max-w-[708px]
             "
         >
-
 
             <h3
                 className="
@@ -42,9 +95,17 @@ const CreateBoardForm: FC = () => {
                     gap-[24px]
                 "
             >
-                <PinTextInput name="Название доски" placeholder="Введите название доски"/>
+                <PinTextInput 
+                    name="Название доски" 
+                    placeholder="Введите название доски"
+                    onChange={onNameChange}
+                    
+                />
 
-                <BoardPrivacyCheck />
+                <BoardPrivacyCheck 
+                    checked = {boardPrivacy}
+                    onChange = {onPrivacyChange}
+                />
 
                 <Button
                     className="
@@ -82,7 +143,8 @@ const CreateBoardForm: FC = () => {
                 </Button>
 
                 <Button
-                disabled
+                    htmlType="submit"
+                    disabled = {name === ''}
                     type="RED"
                     className="
                         h-[48px]

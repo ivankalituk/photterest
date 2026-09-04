@@ -3,12 +3,12 @@
 import { ChangeEvent, FC, useState } from "react";
 import { InputSwitch } from "@/shared/ui/inputSwitch";
 
-const BoardPrivacyCheck: FC = () => {
-    const [checked, setChecked] = useState(false);
+interface Props{
+    onChange: () => void,
+    checked: boolean
+}
 
-    const onChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setChecked(event.target.checked);
-    };
+const BoardPrivacyCheck: FC <Props> = ({onChange, checked}) => {
 
     return (
         <div

@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { ChangeEvent, FC } from "react";
 import { twMerge } from 'tailwind-merge'
 
 interface Props {
@@ -6,8 +6,7 @@ interface Props {
     placeholder?: string
     onFocus?: () => void
     onBlur?: () => void
-    // поменять
-    onChange?: () => void
+    onChange?: (event: ChangeEvent<HTMLInputElement>) => void
 }
 
 const Input: FC <Props> = ({className, placeholder, onFocus, onBlur, onChange}) => {
@@ -22,6 +21,7 @@ const Input: FC <Props> = ({className, placeholder, onFocus, onBlur, onChange}) 
             `, className)}
             onFocus={onFocus}
             onBlur={onBlur}
+            onChange={onChange}
         />
     )
 }
