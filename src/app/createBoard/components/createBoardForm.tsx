@@ -99,7 +99,7 @@ const CreateBoardForm: FC = () => {
                     name="Название доски" 
                     placeholder="Введите название доски"
                     onChange={onNameChange}
-                    
+                    isError = {errors.name}
                 />
 
                 <BoardPrivacyCheck 

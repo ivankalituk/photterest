@@ -6,15 +6,16 @@ interface Props{
     name: string
     as?: 'DIV' | 'BUTTON'
     onClick?: () => void
+    isError?: boolean
 }
 
-const PinField: FC <Props> = ({children, name, as = 'DIV', onClick}) => {
+const PinField: FC <Props> = ({children, name, as = 'DIV', onClick, isError}) => {
 
     if(as === 'BUTTON'){
         return(
             <Button
                 onClick={onClick}
-                className="
+                className={`
                     block
                     text-start
                     px-[16px]
@@ -25,7 +26,9 @@ const PinField: FC <Props> = ({children, name, as = 'DIV', onClick}) => {
                     w-[100%]
                     focus-within:border-white
                     focus-within:shadow-[0_0_0_2px_#3b82f6]
-                "
+
+                    ${isError && 'shadow-[0_0_0_2px_#FF0000]'}
+                `}
             >
                 <div
                     className="
