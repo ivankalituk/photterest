@@ -1,13 +1,21 @@
 import { clientApi } from "../client"
 
-// сделать типизацию, хотя она пока тут не нужнга
-
 interface BoardInputData {
     name: string
     private: boolean
 }
 
-export const createBoard = async (data: BoardInputData) => {
+export interface Board {
+    id: string,
+    name: string,
+    user_id: string,
+    private: boolean,
+    deleted: boolean,
+    created_at: string,
+    updated_at: string
+}
+
+export const createBoard = async (data: BoardInputData): Promise<Board> => {
     const response = await clientApi('/boards', {
         method: 'POST',
         body: JSON.stringify(data)
