@@ -1,6 +1,7 @@
 'use client'
 import ImageSVG from "@/shared/assets/controlledSVG/imageSVG";
 import { IMAGE_ACCEPT } from "@/shared/constants/mediaAccept";
+import { Button } from "@/shared/ui/button";
 import Image from "next/image";
 
 import { ChangeEvent, FC, useState } from "react";
@@ -15,7 +16,19 @@ const PinImageUpload: FC = () => {
 
         if (!files) return
 
-        const newFiles = Array.from(files)
+        const newFiles = Array.from(files).filter(file =>
+            !imageFiles.some(
+                existingFile =>
+                    existingFile.name === file.name &&
+                    existingFile.size === file.size &&
+                    existingFile.lastModified === file.lastModified
+            )
+        )
+
+        if (!newFiles.length) {
+            event.target.value = ""
+            return
+        }
 
         setImageFiles(prev => [...prev, ...newFiles])
 
@@ -32,6 +45,15 @@ const PinImageUpload: FC = () => {
         })
 
         event.target.value = ""
+    }
+
+    const handleDeleteImage = (src: string) => {
+        const index = images.indexOf(src)
+
+        if (index === -1) return
+
+        setImages(prev => prev.filter((_, i) => i !== index))
+        setImageFiles(prev => prev.filter((_, i) => i !== index))
     }
 
     return (
@@ -105,13 +127,20 @@ const PinImageUpload: FC = () => {
 
             <div className="flex gap-[8px]">
                 {images.map((src, index) => (
-                    <Image
-                        key={src}
-                        src={src}
-                        alt={`uploaded image ${index + 1}`}
-                        width={30}
-                        height={30}
-                    />
+                    <div className="flex flex-col gap-[4px]">
+                        <Image
+                            key={src}
+                            src={src}
+                            alt={`uploaded image ${index + 1}`}
+                            width={30}
+                            height={30}
+                        />
+                        <Button
+                            onClick={() => handleDeleteImage(src)}
+                        >
+                            delete
+                        </Button>
+                    </div>
                 ))}
             </div>
         </div>
