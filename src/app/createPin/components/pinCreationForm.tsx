@@ -25,13 +25,13 @@ const PinCreationForm: FC = () => {
                     gap-[20px]
                 "
             >
-                <PinTextInput name="Название" placeholder="Добавьте описание пина"/>
-                <PinTextArea name="Описание" placeholder="Опишите ваш пин"/>
-                <PinTextInput name="Ссылка" placeholder="Добавить ссылку"/>
+                <PinTextInput name="Название" placeholder="Добавьте описание пина" onChange={() => console.log('1')}/>
+                <PinTextArea name="Описание" placeholder="Опишите ваш пин" />
+                <PinTextInput name="Ссылка" placeholder="Добавить ссылку" onChange={() => console.log('1')}/>
                 <PinBoardInput />
                 <PinTagInput />
 
-                <InputSwitch />
+                <InputSwitch checked/>
             </div>
         </form>
     )

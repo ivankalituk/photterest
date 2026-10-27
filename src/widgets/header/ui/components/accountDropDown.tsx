@@ -1,13 +1,11 @@
 import { Button } from "@/shared/ui/button";
-import { FC, useEffect, useRef } from "react";
+import { FC } from "react";
 import sampleAvatar from '@/shared/assets/images/sampleAvatar.jpg'
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { useAppDispatch, useAppSelector } from "@/shared/redux/hooks";
 import { logoutUser } from "@/app/api/auth/auth";
 import { clearUser } from "@/shared/redux/slices/userSlice";
-import { RootState } from "@reduxjs/toolkit/query";
-
 interface Props {
     onClose: () => void
     isOpen: boolean

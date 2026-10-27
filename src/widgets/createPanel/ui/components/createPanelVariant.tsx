@@ -1,4 +1,3 @@
-import PinSVG from "@/shared/assets/controlledSVG/pinSVG";
 import { Button } from "@/shared/ui/button";
 import { FC } from "react";
 import { CreatePanelTypes } from "../../model/mockData";

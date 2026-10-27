@@ -1,5 +1,5 @@
 import { Button } from "@/shared/ui/button";
-import { FC, useCallback, useEffect, useRef, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import avatar from '@/shared/assets/images/sampleAvatar.jpg'
 import Image from "next/image";
 import TickSVG from "@/shared/assets/controlledSVG/tickSVG";

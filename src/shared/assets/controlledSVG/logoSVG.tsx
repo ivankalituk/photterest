@@ -1,7 +1,7 @@
 import { FC } from "react";
 
 interface Props {
-    width: number
+    width?: number
 }
 const LogoSVG: FC <Props> = ({width}) => {
     return(

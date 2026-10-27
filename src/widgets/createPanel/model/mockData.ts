@@ -8,7 +8,7 @@ export interface CreatePanelTypes {
     id: string,
     heading: string,
     explanation: string,
-    icon: FC<{}>,
+    icon: FC,
     href: string
 }
 

@@ -1,6 +1,6 @@
 import PasswordEyeSVG from "@/shared/assets/controlledSVG/passwordEyeSVG";
 import { Button } from "@/shared/ui/button";
-import { ChangeEvent, ChangeEventHandler, FC, HTMLInputTypeAttribute, useState } from "react";
+import { ChangeEvent, FC, useState } from "react";
 
 type RegistrationInputType = "text" | "email" | "password" | "date";
 

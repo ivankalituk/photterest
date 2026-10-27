@@ -2,7 +2,6 @@
 
 import { FC, useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import Link from "next/link";
 
 import { Button } from "@/shared/ui/button";
 import LogoSVG from "@/shared/assets/controlledSVG/logoSVG";

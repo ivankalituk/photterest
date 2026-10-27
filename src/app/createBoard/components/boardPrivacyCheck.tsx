@@ -1,6 +1,6 @@
 'use client';
 
-import { ChangeEvent, FC, useState } from "react";
+import { FC } from "react";
 import { InputSwitch } from "@/shared/ui/inputSwitch";
 
 interface Props{

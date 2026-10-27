@@ -33,10 +33,12 @@ const PinImageUpload: FC = () => {
             const reader = new FileReader()
 
             reader.onload = () => {
-                if (typeof reader.result !== "string") return
+                const result = reader.result;
 
-                setImages(prev => [...prev, reader.result])
-            }
+                if (typeof result !== "string") return;
+
+                setImages(prev => [...prev, result]);
+            };
 
             reader.readAsDataURL(file)
         })
@@ -169,7 +171,7 @@ const PinImageUpload: FC = () => {
 
             <div className="flex gap-[8px]">
                 {images.map((src, index) => (
-                    <div className="flex flex-col gap-[4px]">
+                    <div className="flex flex-col gap-[4px]" key={index}>
                         <Image
                             key={src}
                             src={src}

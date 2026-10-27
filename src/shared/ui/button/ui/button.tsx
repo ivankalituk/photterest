@@ -10,7 +10,7 @@ interface Props {
     hover?: 'TRANSPARENT' | 'WHITE' | 'RED' | 'GREY'
     square?: boolean
     className?: string
-    onClick?: () => any
+    onClick?: () => void
     as?: 'BUTTON' | 'DIV' | 'LINK'
     href?: string
     scaling?: boolean
@@ -18,8 +18,11 @@ interface Props {
     disabled?: boolean
 }
 
-// change hover collors, change types
 
+const MotionLink = motion(Link);
+
+
+// change hover collors, change types
 const Button: FC <Props> = ({
     children, 
     square, 
@@ -40,8 +43,6 @@ const Button: FC <Props> = ({
         damping: 30,
         mass: 0.8,
     } as const;
-
-    const MotionLink = motion(Link);
 
     if(as === 'DIV'){
         return(

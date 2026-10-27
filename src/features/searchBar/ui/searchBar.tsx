@@ -3,6 +3,7 @@ import { Button } from "@/shared/ui/button";
 import { FC } from "react";
 import PhotoSearch from "@/shared/assets/controlledSVG/photoSearch";
 import { Input } from "@/shared/ui/input";
+import Image from "next/image";
 
 
 const SearchBar: FC = () => {
@@ -33,7 +34,7 @@ const SearchBar: FC = () => {
 
             <Button square hover="WHITE">
                 <PhotoSearch />
-                {false && <img src="" alt="cross" />}
+                {false && <Image src="" alt="cross" />}
             </Button>
         </div>
     )

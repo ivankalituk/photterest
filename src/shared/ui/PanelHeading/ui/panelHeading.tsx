@@ -4,7 +4,7 @@ import { FC } from "react";
 
 interface Props{
     heading: string,
-    onCross: () => any
+    onCross: () => void
 }
 
 const PanelHeading: FC <Props> = ({heading, onCross}) => {
