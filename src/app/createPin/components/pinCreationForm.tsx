@@ -1,3 +1,4 @@
+'use client'
 import { FC } from "react";
 import PinImageUpload from "./pinImageUpload";
 import { PinBoardInput, PinTagInput, PinTextArea, PinTextInput } from "@/widgets/pinFormInputs";
