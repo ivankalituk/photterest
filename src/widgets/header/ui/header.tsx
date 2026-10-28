@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, Suspense } from "react";
 import { SearchBar } from "@/features/searchBar";
 import HeaderAuth from "./components/headerAuth";
 
@@ -23,8 +23,9 @@ const Header: FC = () => {
             "
         >
             <SearchBar />
-
-            <HeaderAuth />
+            <Suspense>
+                <HeaderAuth />
+            </Suspense>
         </header>
     )
 }

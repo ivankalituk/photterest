@@ -19,7 +19,7 @@ export default async function CreatePinPage() {
                 justify-around
             "
         >
-            <CreateBoardForm />
+           <CreateBoardForm />
         </div>
     );
 }
