@@ -38,32 +38,20 @@ const SideBar: FC = () => {
                 setCurrentItem(routeItem);
             }
 
-            closePanel();
+            setIsExpanded(false);
 
             return;
         }
 
-
         setCurrentItem(item);
 
-
         if(item.panel){
-
             setMountedPanel(item);
             setIsExpanded(true);
-
         } else {
-
-            closePanel();
-
+            setIsExpanded(false);
         }
     };
-
-
-    const closePanel = () => {
-        setIsExpanded(false);
-    };
-
 
     useEffect(() => {
 
@@ -79,11 +67,7 @@ const SideBar: FC = () => {
 
     }, [isExpanded]);
 
-
-
     const ActivePanel = mountedPanel?.panel;
-
-
 
     return (
         
@@ -205,7 +189,7 @@ const SideBar: FC = () => {
                             ActivePanel && (
                                 <ActivePanel
                                     item={mountedPanel}
-                                    onClose={closePanel}
+                                    onClose={handleButton}
                                 />
                             )
                         }

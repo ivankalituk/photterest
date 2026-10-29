@@ -7,11 +7,10 @@ interface Props {
     item: SidebarItem
 }
 
-// пока не буду делать, тут есть разные отделения
-// разные варианты панели зависимо от выбора
-// пока сам не знаю как оно работает в пинтересте
-
 const MessagesPanel: FC <Props> = ({onClose, item}) => {
+
+    console.log(item)
+
     return(
         <PanelHeading heading="Сообщения" onCross = {() => onClose(item)}/>   
     )
