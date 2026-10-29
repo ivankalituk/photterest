@@ -14,7 +14,7 @@ export interface SidebarItem {
     id: string,
     name: string,
     type: 'LINK' | 'PANEL',
-    href?: string,
+    href?: string[],
     panel?: FC<{item: SidebarItem, onClose: (item :SidebarItem) => void}>
     icon: FC<{active? : boolean}> 
 }
@@ -25,20 +25,20 @@ export const sidebarNavData: SidebarItem[] = [
         id: 'HOME',
         type: 'LINK',
         icon: HomeSVG,
-        href: '/'
+        href: ['/']
     },
     {
         name: 'Boards',
         id: 'BOARDS',
         type: 'LINK',
-        href: '/profile',
+        href: ['/profile'],
         icon: BoardsSVG,
     },
     {
         name: 'Create pin',
         id: 'CREATE',
         type: 'PANEL',
-        href: '/createPin',
+        href: ['/createPin'],
         icon: CreateSVG,
         panel: CreatePanel,
     },

@@ -19,7 +19,7 @@ const SideBarButton: FC <Props> = ({item, onClick, active, className}) => {
             scaling
             onClick={() => onClick(item)}
             as={isLink ? "LINK" : "BUTTON"}
-            href={isLink ? item.href : undefined}
+            href={(isLink && item.href)? item.href[0] : undefined}
             className={twMerge(`
                 h-[48px]
                 w-[48px]

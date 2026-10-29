@@ -28,7 +28,7 @@ const SideBar: FC = () => {
 
     useEffect(() => {
         const routeItem = sidebarNavData.find(
-            navItem => navItem.href === location
+            navItem => navItem.href?.includes(location)
         );
 
         if(routeItem){
@@ -41,10 +41,8 @@ const SideBar: FC = () => {
 
         if(item.id === currentItem.id){
 
-            console.log('COPIED')
-
             const routeItem = sidebarNavData.find(
-                navItem => navItem.href?.includes(location)
+                 navItem => navItem.href?.includes(location)
             );
 
             if(routeItem){
