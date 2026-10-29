@@ -26,9 +26,22 @@ const SideBar: FC = () => {
     const [isExpanded, setIsExpanded] = useState(false);
 
 
+    useEffect(() => {
+        const routeItem = sidebarNavData.find(
+            navItem => navItem.href === location
+        );
+
+        if(routeItem){
+            setCurrentItem(routeItem);
+        }
+    }, [location])
+
+
     const handleButton = (item: SidebarItem) => {
 
         if(item.id === currentItem.id){
+
+            console.log('COPIED')
 
             const routeItem = sidebarNavData.find(
                 navItem => navItem.href?.includes(location)
