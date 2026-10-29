@@ -7,6 +7,7 @@ import { Button } from "@/shared/ui/button";
 import Image from "next/image";
 
 import { ChangeEvent, DragEvent, FC, useState } from "react";
+import PinImageUploadItem from "./pinImageUploadItem";
 
 const PinImageUpload: FC = () => {
 
@@ -169,22 +170,22 @@ const PinImageUpload: FC = () => {
                 />
             </div>
 
-            <div className="flex gap-[8px]">
+            <div 
+                className="
+                    flex 
+                    gap-[8px]
+                    w-[357px]
+                    overflow-y-auto
+                    scrollBar
+                "
+            >
                 {images.map((src, index) => (
-                    <div className="flex flex-col gap-[4px]" key={index}>
-                        <Image
-                            key={src}
-                            src={src}
-                            alt={`uploaded image ${index + 1}`}
-                            width={30}
-                            height={30}
-                        />
-                        <Button
-                            onClick={() => handleDeleteImage(src)}
-                        >
-                            delete
-                        </Button>
-                    </div>
+                    <PinImageUploadItem 
+                        src={src} 
+                        index = {index}
+                        key={index}
+                        handleDeleteImage = {handleDeleteImage}
+                    />
                 ))}
             </div>
         </div>
