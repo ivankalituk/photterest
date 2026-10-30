@@ -2,6 +2,7 @@
 import { Profile } from "@/widgets/profile";
 import { serverApi } from "../api/server";
 import { redirect } from "next/navigation";
+import Board from "@/entities/board";
 
 const ProfilePage = async () => {
 
@@ -12,7 +13,10 @@ const ProfilePage = async () => {
     }
 
     return(
-        <Profile type="PROFILE"/>
+        // <Profile type="PROFILE"/>
+        <div className="px-[16px]" >
+            <Board />
+        </div>
     )
 }
 
