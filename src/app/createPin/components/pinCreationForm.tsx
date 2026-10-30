@@ -3,6 +3,8 @@ import { FC } from "react";
 import PinImageUpload from "./pinImageUpload";
 import { PinBoardInput, PinTagInput, PinTextArea, PinTextInput } from "@/widgets/pinFormInputs";
 import { InputSwitch } from "@/shared/ui/inputSwitch";
+import InputCheckbox from "@/shared/ui/inputCheckbox/ui/inputCheckbox";
+import PinCreationSwitch from "./pinCreationSwitch";
 
 const PinCreationForm: FC = () => {
     return(
@@ -10,6 +12,7 @@ const PinCreationForm: FC = () => {
             className="
                 flex
                 max-w-[1000px]
+                h-[100%]
                 gap-[40px]
                 w-[100%]
                 py-[20px]
@@ -32,7 +35,18 @@ const PinCreationForm: FC = () => {
                 <PinBoardInput />
                 <PinTagInput />
 
-                <InputSwitch checked/>
+
+                <div
+                    className="
+                        flex flex-col
+                        items-start
+                        gap-[10px]
+                    "
+                >
+                    <PinCreationSwitch text={'Отметить как изменённый пс помощью ИИ'}/>
+                    <PinCreationSwitch text={'Этот пин содержит человека, созданного с помощью ИИ'}/>
+                    <PinCreationSwitch text={'Разрешить комментировать'}/>
+                </div>
             </div>
         </form>
     )

@@ -10,7 +10,7 @@ const CreatePin: FC = () => {
             className="
                 flex
                 h-[calc(100dvh-80px)]
-                overflow-hidden
+                h-[100%]
             "
         >
             <div 
@@ -42,6 +42,7 @@ const CreatePin: FC = () => {
                         overflow-y-auto
                         flex
                         justify-center
+                        h-[100%]
                     "
                 >
                     <PinCreationForm />
