@@ -1,3 +1,5 @@
 import Board from "./ui/board";
+import { BoardType } from "./ui/model/types";
 
-export default Board
+export { Board }
+export type {BoardType}

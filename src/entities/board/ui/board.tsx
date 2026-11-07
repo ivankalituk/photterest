@@ -1,12 +1,16 @@
 import { FC } from "react";
 import BoardImages from "./components/boardImages";
+import { BoardType } from "./model/types";
 
 // ещё должны быть фото тех, кто участвовал в 
 // доске помимо создателя, напротив названия
 
 // функция для сокращения чисел
+interface Props{
+    data: BoardType
+}
 
-const Board: FC = () => {
+const Board: FC <Props> = ({data}) => {
     return(
         <div 
             className="
@@ -15,7 +19,7 @@ const Board: FC = () => {
         >
             <BoardImages />
 
-            <div>Название доски</div>
+            <div>{data.name}</div>
             <div
                 className="flex gap-[7px]"
             >
