@@ -1,6 +1,6 @@
 import { FC } from "react";
 import BoardImages from "./components/boardImages";
-import { BoardType } from "./model/types";
+import { BoardType } from "../model/types";
 
 // ещё должны быть фото тех, кто участвовал в 
 // доске помимо создателя, напротив названия
