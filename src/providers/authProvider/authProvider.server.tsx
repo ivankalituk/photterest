@@ -1,5 +1,6 @@
 import { serverApi } from "@/app/api/server";
 import AuthProviderClient from "./authProvider.client";
+import { User } from "@/shared/redux/slices/userSlice";
 
 export default async function AuthProviderServer({
   children,
@@ -10,11 +11,11 @@ export default async function AuthProviderServer({
 
 
   try {
-    const response = await serverApi("/users/me");
+    const response = await serverApi<User>("/users/me");
 
     if (response.ok) {
         
-        user = await response.json();
+        user = await response.data;
         console.log(user)
     }
   } catch {

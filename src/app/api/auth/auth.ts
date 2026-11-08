@@ -23,7 +23,7 @@ interface LogoutResponse {
 export const registerUser = async (
     data: RegistrationData,
 ): Promise<AuthResponse> => {
-    const response = await clientApi('/auth/register', {
+    const response = await clientApi<AuthResponse>('/auth/register', {
         method: 'POST',
         body: JSON.stringify(data),
     });
@@ -32,13 +32,13 @@ export const registerUser = async (
         throw new Error('Registration failed');
     }
 
-    return response.json();
+    return response.data!
 };
 
 export const authUser = async (
     data: AuthData
 ): Promise<AuthResponse> => {
-    const response = await clientApi('/auth/login', {
+    const response = await clientApi<AuthResponse>('/auth/login', {
         method: 'POST',
         body: JSON.stringify(data)
     })
@@ -47,13 +47,13 @@ export const authUser = async (
         throw new Error('Auth failed')
     }
 
-    return response.json()
+    return response.data!
 }
 
 export const authGoogleUser = async (
     credential: string
 ): Promise<AuthResponse> => {
-    const response = await clientApi('/auth/google', {
+    const response = await clientApi<AuthResponse>('/auth/google', {
         method: "POST",
         body: JSON.stringify({
             token: credential,
@@ -64,11 +64,11 @@ export const authGoogleUser = async (
         throw new Error('Auth failed')
     }
 
-    return response.json()
+    return response.data!
 }
 
 export const logoutUser = async (): Promise<LogoutResponse> => {
-    const response = await clientApi('/auth/logout', {
+    const response = await clientApi<LogoutResponse>('/auth/logout', {
         method: 'POST'
     })
 
@@ -76,5 +76,5 @@ export const logoutUser = async (): Promise<LogoutResponse> => {
         throw new Error('Registration failed');
     }
 
-    return response.json();
+    return response.data!
 }
