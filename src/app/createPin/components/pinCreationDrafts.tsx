@@ -7,7 +7,7 @@ const PinCreationDrafts: FC = () => {
     return(
         <div
             className="
-                w-[70px]
+                w-[81px]
                 overflow-y-auto
                 border-l-[1px]
                 border-t-[1px]

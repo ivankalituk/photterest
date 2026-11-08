@@ -12,6 +12,7 @@ const PinTagsSearch: FC = () => {
                 w-[100%]
                 rounded-[24px]
                 mt-[10px]
+                z-10
             "
         >
             <div
