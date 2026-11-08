@@ -38,7 +38,7 @@ export const sidebarNavData: SidebarItem[] = [
         name: 'Create pin',
         id: 'CREATE',
         type: 'PANEL',
-        href: ['/createPin'],
+        href: ['/createPin', '/createBoard', '/create-collage'],
         icon: CreateSVG,
         panel: CreatePanel,
     },

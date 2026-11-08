@@ -2,8 +2,6 @@
 import { FC } from "react";
 import PinImageUpload from "./pinImageUpload";
 import { PinBoardInput, PinTagInput, PinTextArea, PinTextInput } from "@/widgets/pinFormInputs";
-import { InputSwitch } from "@/shared/ui/inputSwitch";
-import InputCheckbox from "@/shared/ui/inputCheckbox/ui/inputCheckbox";
 import PinCreationSwitch from "./pinCreationSwitch";
 
 const PinCreationForm: FC = () => {
