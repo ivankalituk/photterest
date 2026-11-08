@@ -1,12 +1,28 @@
+'use client'
 import SearchCustomSVG from "@/shared/assets/controlledSVG/searchCustomSVG";
 import { Button } from "@/shared/ui/button";
-import { FC } from "react";
+import { ChangeEvent, FC, useState } from "react";
 import PhotoSearch from "@/shared/assets/controlledSVG/photoSearch";
 import { Input } from "@/shared/ui/input";
 import Image from "next/image";
+import CrossCircleSVG from "@/shared/assets/controlledSVG/crossCircleSVG";
 
+interface Props {
+    photoSearch?: boolean
+}
 
-const SearchBar: FC = () => {
+const SearchBar: FC <Props> = ({photoSearch}) => {
+
+    const [text, setText] = useState<string>('')
+
+    const onInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+        setText(event.target.value)
+    }
+
+    const onCross = () => {
+        setText('')
+    }
+
     return(
         <div
             className="
@@ -30,12 +46,17 @@ const SearchBar: FC = () => {
                     roboto
                 "
                 placeholder="Поиск"
+                value = {text}
+                onChange={onInputChange}
             />
 
-            <Button square hover="WHITE">
+            {!text && photoSearch && <Button square hover="WHITE">
                 <PhotoSearch />
-                {false && <Image src="" alt="cross" />}
-            </Button>
+            </Button>}
+            
+            {text && <Button square hover="WHITE" onClick={onCross}>
+                <CrossCircleSVG />
+            </Button>}
         </div>
     )
 }

@@ -22,7 +22,7 @@ const Header: FC = () => {
                 lg:flex
             "
         >
-            <SearchBar />
+            <SearchBar photoSearch/>
             <Suspense>
                 <HeaderAuth />
             </Suspense>

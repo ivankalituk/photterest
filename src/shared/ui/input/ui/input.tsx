@@ -7,9 +7,10 @@ interface Props {
     onFocus?: () => void
     onBlur?: () => void
     onChange?: (event: ChangeEvent<HTMLInputElement>) => void
+    value?: string
 }
 
-const Input: FC <Props> = ({className, placeholder, onFocus, onBlur, onChange}) => {
+const Input: FC <Props> = ({className, placeholder, onFocus, onBlur, onChange, value}) => {
     return(
         <input 
             type="text"
@@ -19,6 +20,7 @@ const Input: FC <Props> = ({className, placeholder, onFocus, onBlur, onChange}) 
                 outline-none
                 border-0
             `, className)}
+            value={value}
             onFocus={onFocus}
             onBlur={onBlur}
             onChange={onChange}

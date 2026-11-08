@@ -1,0 +1,9 @@
+import { FC } from "react";
+
+const CrossCircleSVG: FC = () => {
+    return(
+        <svg aria-hidden="true" aria-label="" height="24" role="img" viewBox="0 0 24 24" width="24"><path d="M16.3 17.7 12 13.42l-4.3 4.3-1.4-1.42 4.28-4.3-4.3-4.3L7.7 6.3l4.3 4.28 4.3-4.3 1.4 1.42-4.28 4.3 4.3 4.3zM24 12a12 12 0 1 1-24 0 12 12 0 0 1 24 0M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20"></path></svg>
+    )
+}
+
+export default CrossCircleSVG
