@@ -4,18 +4,19 @@ import { ChangeEvent, FC, useState } from "react";
 
 interface Props {
     text: string
+    onChange: (event: ChangeEvent<HTMLInputElement>) => void
+    checked: boolean
 }
 
-const PinCreationSwitch: FC<Props> = ({text}) => {
-
-    const [checked, setChecked] = useState<boolean>(false)
-
-    const onChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setChecked(event.target.checked)
-    }
+const PinCreationSwitch: FC<Props> = ({
+    text,
+    onChange,
+    checked
+}) => {
 
     return(
         <Button
+            as="DIV"
             className="
                 relative
                 flex
@@ -32,6 +33,7 @@ const PinCreationSwitch: FC<Props> = ({text}) => {
                 type="checkbox" 
                 onChange={onChange} 
                 checked={checked}
+                aria-label={text}
                 className="
                     absolute
                     w-[100%]
