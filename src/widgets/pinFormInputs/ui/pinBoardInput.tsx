@@ -1,16 +1,24 @@
 'use client'
-import { FC, useState } from "react";
+import { FC, useState, useRef, useEffect } from "react";
 import PinField from "./components/pinField";
 import TickSVG from "@/shared/assets/controlledSVG/tickSVG";
 import BoardsSearch from "./components/boardsSearch";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 
 const PinBoardInput: FC = () => {
 
     const [showBoards, setShowBoars] = useState<boolean>(false)
+    const containerRef = useRef<HTMLDivElement>(null)
+
 
     return(
         <div
+            ref={containerRef}
+            onBlur={(event) => {
+                if (!event.currentTarget.contains(event.relatedTarget as Node)) {
+                    setShowBoars(false)
+                }
+            }}
             className="
                 relative
             "
@@ -50,14 +58,11 @@ const PinBoardInput: FC = () => {
                     </div>
 
                     <TickSVG />
-
                 </div>
             </PinField>
 
             <AnimatePresence>
-                {showBoards &&
-                    <BoardsSearch />
-                }
+                {showBoards && <BoardsSearch />}
             </AnimatePresence>
         </div>
     )
