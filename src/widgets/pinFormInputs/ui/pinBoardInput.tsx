@@ -3,6 +3,7 @@ import { FC, useState } from "react";
 import PinField from "./components/pinField";
 import TickSVG from "@/shared/assets/controlledSVG/tickSVG";
 import BoardsSearch from "./components/boardsSearch";
+import { AnimatePresence, motion } from "framer-motion";
 
 const PinBoardInput: FC = () => {
 
@@ -53,9 +54,11 @@ const PinBoardInput: FC = () => {
                 </div>
             </PinField>
 
-            {showBoards && 
-                <BoardsSearch />
-            }
+            <AnimatePresence>
+                {showBoards &&
+                    <BoardsSearch />
+                }
+            </AnimatePresence>
         </div>
     )
 }

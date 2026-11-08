@@ -1,9 +1,30 @@
 import { Button } from "@/shared/ui/button";
 import { FC } from "react";
+import { motion } from "framer-motion";
 
 const PinTagsSearch: FC = () => {
     return(
-        <div
+        <motion.div
+            initial={{
+                opacity: 0,
+                scale: 0.96,
+                y: -4,
+            }}
+            animate={{
+                opacity: 1,
+                scale: 1,
+                y: 0,
+            }}
+            exit={{
+                opacity: 0,
+                scale: 0.96,
+                y: -4,
+            }}
+            transition={{
+                duration: 0.15,
+                ease: 'easeOut',
+            }}
+
             className="
                 absolute
                 py-[8px]
@@ -35,7 +56,7 @@ const PinTagsSearch: FC = () => {
                 </Button>
             ))}
             </div>
-        </div>
+        </motion.div>
     )
 }
 

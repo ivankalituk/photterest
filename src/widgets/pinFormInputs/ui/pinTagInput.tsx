@@ -3,6 +3,7 @@ import { FC, useState } from "react";
 import PinField from "./components/pinField";
 import { Input } from "@/shared/ui/input";
 import PinTagsSearch from "./components/pinTagsSearch";
+import { AnimatePresence } from "framer-motion";
 
 const PinTagInput: FC = () => {
     
@@ -22,8 +23,10 @@ const PinTagInput: FC = () => {
                     onBlur={() => setListVisible(false)}
                 />
             </PinField>
-
-            {listVisible && <PinTagsSearch />}
+            
+            <AnimatePresence>
+                {listVisible && <PinTagsSearch />}
+            </AnimatePresence>
         </div>
     )
 }

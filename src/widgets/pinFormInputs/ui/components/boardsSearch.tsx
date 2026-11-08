@@ -3,14 +3,34 @@ import { Button } from "@/shared/ui/button";
 import { FC } from "react";
 import BoardForSearch from "./boardForSearch";
 import RedPlus from "@/shared/assets/controlledSVG/redPlus";
+import { AnimatePresence, motion } from "framer-motion";
 
 const BoardsSearch: FC = () => {
     return(
-        <div
+        <motion.div
+            initial={{
+                opacity: 0,
+                scale: 0.96,
+                y: -4,
+            }}
+            animate={{
+                opacity: 1,
+                scale: 1,
+                y: 0,
+            }}
+            exit={{
+                opacity: 0,
+                scale: 0.96,
+                y: -4,
+            }}
+            transition={{
+                duration: 0.15,
+                ease: 'easeOut',
+            }}
             className="
+                top-[100px]
                 z-10
                 absolute
-                top-[100px]
                 rounded-[24px]
                 bg-[white]
                 w-[100%]
@@ -70,7 +90,7 @@ const BoardsSearch: FC = () => {
                     "
                 >Создать доску</div>
             </Button>
-        </div>
+        </motion.div>
     )
 }
 
