@@ -6,5 +6,5 @@ export interface BoardType {
     created_at: Date,
     updated_at: Date,
     creator_id: string,
-    pins_updated_at: Date,
+    inner_updated_at: Date,
 }
