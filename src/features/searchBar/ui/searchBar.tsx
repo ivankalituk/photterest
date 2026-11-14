@@ -4,14 +4,15 @@ import { Button } from "@/shared/ui/button";
 import { ChangeEvent, FC, useState } from "react";
 import PhotoSearch from "@/shared/assets/controlledSVG/photoSearch";
 import { Input } from "@/shared/ui/input";
-import Image from "next/image";
 import CrossCircleSVG from "@/shared/assets/controlledSVG/crossCircleSVG";
+import { twMerge } from "tailwind-merge";
 
 interface Props {
     photoSearch?: boolean
+    className?: string
 }
 
-const SearchBar: FC <Props> = ({photoSearch}) => {
+const SearchBar: FC <Props> = ({photoSearch, className}) => {
 
     const [text, setText] = useState<string>('')
 
@@ -25,7 +26,7 @@ const SearchBar: FC <Props> = ({photoSearch}) => {
 
     return(
         <div
-            className="
+            className={twMerge(`
                 flex
                 bg-grey-light
                 flex-1
@@ -35,11 +36,11 @@ const SearchBar: FC <Props> = ({photoSearch}) => {
                 h-[48px]
                 pl-[16px]
                 rounded-[12px]
-            "
+            `, className)}
         >
             <SearchCustomSVG />
 
-            <Input 
+            <Input
                 className="
                     flex-1
                     h-[100%]

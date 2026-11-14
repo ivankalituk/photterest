@@ -7,6 +7,9 @@ import { PinTextInput } from "@/widgets/pinFormInputs";
 import BoardPrivacyCheck from "./boardPrivacyCheck";
 import AddUserSVG from "@/shared/assets/controlledSVG/addUserSVG";
 import { createBoard } from "@/app/api/boards/boards";
+import CoAuthorAdd from "./coAuthorAdd";
+import TickSVG from "@/shared/assets/controlledSVG/tickSVG";
+import TickBackSVG from "@/shared/assets/controlledSVG/tickBackSVG";
 
 interface FormErrors{
     name: boolean
@@ -18,6 +21,8 @@ const CreateBoardForm: FC = () => {
     const [errors, setErrors] = useState<FormErrors>({
         name: false
     });
+
+    const [mode, setMode] = useState<'MAIN' | 'COAUTHOR'>('MAIN')
     
     const onNameChange = (event: ChangeEvent<HTMLInputElement>) => {
         setName(event.target.value)
@@ -72,6 +77,19 @@ const CreateBoardForm: FC = () => {
                 max-w-[708px]
             "
         >
+            {mode !== 'MAIN' && <Button
+                hover="GREY"
+                className="
+                    absolute
+                    w-[48px]
+                    h-[48px]
+                    left-[24px]
+                    top-[24px]
+                "
+                onClick={() => setMode('MAIN')}
+            >
+                <TickBackSVG />
+            </Button>}
 
             <h3
                 className="
@@ -81,95 +99,102 @@ const CreateBoardForm: FC = () => {
                     p-[24px]
                 "
             >
-                Создать доску
+                {mode === "MAIN"? 'Создать доску' : "Пригласить соавторов"}
             </h3>
+            {mode === 'MAIN' && <div>
+                <BoardSkeleton />
 
-            <BoardSkeleton />
-
-            <div
-                className="
-                    flex flex-col
-                    pt-[24px]
-                    px-[24px]
-                    pb-[12px]
-                    gap-[24px]
-                "
-            >
-                <PinTextInput 
-                    name="Название доски" 
-                    placeholder="Введите название доски"
-                    onChange={onNameChange}
-                    isError = {errors.name}
-                />
-
-                <BoardPrivacyCheck 
-                    checked = {boardPrivacy}
-                    onChange = {onPrivacyChange}
-                />
-
-                <Button
+                <div
                     className="
-                        justify-between
+                        flex flex-col
+                        pt-[24px]
+                        px-[24px]
+                        pb-[12px]
+                        gap-[24px]
                     "
                 >
-                    <div
-                        className="
-                            text-start
-                        "
-                    >
-                        <div>Общая доска</div>
+                    <PinTextInput 
+                        name="Название доски" 
+                        placeholder="Введите название доски"
+                        onChange={onNameChange}
+                        value={name}
+                        isError = {errors.name}
+                    />
 
+                    <BoardPrivacyCheck 
+                        checked = {boardPrivacy}
+                        onChange = {onPrivacyChange}
+                    />
+
+                    <Button
+                        className="
+                            justify-between
+                        "
+                        onClick={() => setMode('COAUTHOR')}
+                    >
                         <div
                             className="
-                                text-[14px]
-                                text-text-light
+                                text-start
                             "
                         >
-                            Пригласите соавторов присоединиться к этой доске
-                        </div>
-                    </div>
+                            <div>Общая доска</div>
 
-                    <Button 
-                        as="DIV"
-                        type="GREY"
+                            <div
+                                className="
+                                    text-[14px]
+                                    text-text-light
+                                "
+                            >
+                                Пригласите соавторов присоединиться к этой доске
+                            </div>
+                        </div>
+
+                        <Button 
+                            as="DIV"
+                            type="GREY"
+                            className="
+                                h-[48px]
+                                w-[48px]
+                                rounded-[16px]
+                            "
+                        >
+                            <AddUserSVG />
+                        </Button>
+                    </Button>
+
+                    <Button
+                        htmlType="submit"
+                        disabled = {name === ''}
+                        type="RED"
                         className="
                             h-[48px]
-                            w-[48px]
+                            text-white
+                            font-[600]
                             rounded-[16px]
                         "
                     >
-                        <AddUserSVG />
+                        Создать
                     </Button>
-                </Button>
+                </div>
+            </div>}
 
-                <Button
-                    htmlType="submit"
-                    disabled = {name === ''}
-                    type="RED"
-                    className="
-                        h-[48px]
-                        text-white
-                        font-[600]
-                        rounded-[16px]
-                    "
-                >
-                    Создать
-                </Button>
-            </div>
+            {mode === 'COAUTHOR' && <div>
+                <CoAuthorAdd />
+            </div>}
 
-
-                <Button
-                    hover="GREY"
-                    className="
-                        absolute
-                        w-[48px]
-                        h-[48px]
-                        right-[24px]
-                        top-[24px]
-                    "
-                >
-                    <CrossSVG width={24}/>
-                </Button>
+            {false && <Button
+                hover="GREY"
+                className="
+                    invisible
+                    absolute
+                    w-[48px]
+                    h-[48px]
+                    right-[24px]
+                    top-[24px]
+                "
+            >
+                <CrossSVG width={24}/>
+            </Button>}
         </form>
     )
 }

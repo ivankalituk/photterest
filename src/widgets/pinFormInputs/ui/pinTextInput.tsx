@@ -7,14 +7,16 @@ interface Props {
     placeholder: string
     onChange: (event: ChangeEvent<HTMLInputElement>) => void
     isError?: boolean
+    value: string
 }
 
-const PinTextInput: FC <Props> = ({name, placeholder, onChange, isError}) => {
+const PinTextInput: FC <Props> = ({name, placeholder, onChange, isError, value}) => {
     return(
         <PinField name={name} isError={isError}>
             <Input
                 onChange={onChange}
                 placeholder={placeholder}
+                value={value}
                 className="
                     w-[100%]
                     h-[24px]
