@@ -3,8 +3,13 @@ import sampleAvatar from '@/shared/assets/images/sampleAvatar.jpg'
 import Image from "next/image";
 import { Button } from "@/shared/ui/button";
 
+interface Props{
+    nickname: string,
+    avatar_url: string | null,
+    id: string
+}
 
-const CoAuthorAccount: FC = () => {
+const CoAuthorAccount: FC<Props> = ({nickname, avatar_url}) => {
     return(
         <div
             className="
@@ -33,8 +38,8 @@ const CoAuthorAccount: FC = () => {
                         justify-between
                     "
                 >
-                    <div>Account name</div>
-                    <div className="text-[14px]">@accountTag</div>
+                    <div>{nickname}</div>
+                    <div className="text-[14px]">@{nickname}</div>
                 </div>
             </div>
 

@@ -1,8 +1,28 @@
+'use client'
 import { SearchBar } from "@/features/searchBar";
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import CoAuthorAccount from "./coAuthorAccount";
+import { clientApi } from "@/app/api/client";
+import { PaginatedRequest } from "@/app/api/model";
+import { User } from "@/shared/redux/slices/userSlice";
 
 const CoAuthorAdd: FC = () => {
+
+    const [users, setUsers] = useState<PaginatedRequest<User> | null>(null);
+
+    useEffect
+    (() => {
+        const fetchUsers = async () => {
+            const response = await clientApi<PaginatedRequest<User>>('/users');
+
+            if (response.ok && response.data) {
+                setUsers(response.data);
+            }
+        };
+
+        fetchUsers();
+    }, []);
+
     return(
         <div
             className="
@@ -67,8 +87,13 @@ const CoAuthorAdd: FC = () => {
                     scrollBar
                 "
             >
-                {Array.from({length: 10}).map(() => (
-                    <CoAuthorAccount />
+                {users?.data.map((data: User) => (
+                    <CoAuthorAccount 
+                        key={data.id} 
+                        nickname={data.nickname} 
+                        avatar_url={data.avatar_url}
+                        id={data.id}
+                    />
                 ))}
             </div>
         </div>
