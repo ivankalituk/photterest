@@ -2,14 +2,17 @@ import { FC } from "react";
 import sampleAvatar from '@/shared/assets/images/sampleAvatar.jpg'
 import Image from "next/image";
 import { Button } from "@/shared/ui/button";
+import { CoAuthorType } from "./createBoardForm";
 
 interface Props{
     nickname: string,
     avatar_url: string | null,
     id: string
+    handleCoAuthor: (data: CoAuthorType) => void
+    selected: boolean
 }
 
-const CoAuthorAccount: FC<Props> = ({nickname, avatar_url}) => {
+const CoAuthorAccount: FC<Props> = ({nickname, avatar_url, handleCoAuthor, id, selected}) => {
     return(
         <div
             className="
@@ -43,7 +46,8 @@ const CoAuthorAccount: FC<Props> = ({nickname, avatar_url}) => {
                 </div>
             </div>
 
-            <Button 
+            <Button
+                onClick={() => handleCoAuthor({id: id, avatar: avatar_url})}
                 type='GREY'
                 className="
                     h-[48px]
@@ -51,7 +55,7 @@ const CoAuthorAccount: FC<Props> = ({nickname, avatar_url}) => {
                     font-[600]
                 "
             >
-                Добавить
+                {selected? "Убрать" : "Добавить"}
             </Button>
         </div>
     )

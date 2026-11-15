@@ -5,8 +5,14 @@ import CoAuthorAccount from "./coAuthorAccount";
 import { clientApi } from "@/app/api/client";
 import { PaginatedRequest } from "@/app/api/model";
 import { User } from "@/shared/redux/slices/userSlice";
+import { CoAuthorType } from "./createBoardForm";
 
-const CoAuthorAdd: FC = () => {
+interface Props {
+    handleCoAuthor: (data: CoAuthorType) => void
+    coAuthors: CoAuthorType[]
+}
+
+const CoAuthorAdd: FC<Props> = ({handleCoAuthor, coAuthors}) => {
 
     const [users, setUsers] = useState<PaginatedRequest<User> | null>(null);
 
@@ -93,6 +99,8 @@ const CoAuthorAdd: FC = () => {
                         nickname={data.nickname} 
                         avatar_url={data.avatar_url}
                         id={data.id}
+                        handleCoAuthor = {handleCoAuthor}
+                        selected = {coAuthors.some(item => item.id === data.id)}
                     />
                 ))}
             </div>

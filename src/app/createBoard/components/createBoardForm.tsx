@@ -8,22 +8,36 @@ import BoardPrivacyCheck from "./boardPrivacyCheck";
 import AddUserSVG from "@/shared/assets/controlledSVG/addUserSVG";
 import { createBoard } from "@/app/api/boards/boards";
 import CoAuthorAdd from "./coAuthorAdd";
-import TickSVG from "@/shared/assets/controlledSVG/tickSVG";
 import TickBackSVG from "@/shared/assets/controlledSVG/tickBackSVG";
+import sampleAvatar from '@/shared/assets/images/sampleAvatar.jpg'
+import Image from "next/image";
 
 interface FormErrors{
     name: boolean
 }
 
+export interface CoAuthorType{
+    id: string,
+    avatar: string | null
+}
+
 const CreateBoardForm: FC = () => {
     const [name, setName] = useState<string>('')
     const [boardPrivacy, setBoardPrivacy] = useState<boolean>(false)
-    const [errors, setErrors] = useState<FormErrors>({
-        name: false
-    });
-
+    const [errors, setErrors] = useState<FormErrors>({name: false});
     const [mode, setMode] = useState<'MAIN' | 'COAUTHOR'>('MAIN')
     
+
+    const [coAuthors, setCoAuthors] = useState<CoAuthorType[]>([]);
+
+    const handleCoAuthor = (data: CoAuthorType) => {
+        if (coAuthors.some(item => item.id === data.id)) {
+            setCoAuthors(coAuthors.filter(item => item.id !== data.id));
+        } else {
+            setCoAuthors(prev => [...prev, data]);
+        }
+    };
+
     const onNameChange = (event: ChangeEvent<HTMLInputElement>) => {
         setName(event.target.value)
     }
@@ -65,6 +79,8 @@ const CreateBoardForm: FC = () => {
         }
 
     }
+
+    console.log(coAuthors)
 
     return(
         <form
@@ -129,7 +145,10 @@ const CreateBoardForm: FC = () => {
                     <Button
                         className="
                             justify-between
+                            py-[10px]
+                            pointer
                         "
+                        hover="GREY"
                         onClick={() => setMode('COAUTHOR')}
                     >
                         <div
@@ -149,16 +168,42 @@ const CreateBoardForm: FC = () => {
                             </div>
                         </div>
 
-                        <Button 
+                        <Button
                             as="DIV"
-                            type="GREY"
-                            className="
-                                h-[48px]
-                                w-[48px]
-                                rounded-[16px]
-                            "
+                            className="h-[48px] rounded-[16px]"
                         >
-                            <AddUserSVG />
+                            {coAuthors.map((author, index) => (
+                                <Image
+                                    key={author.id}
+                                    src={sampleAvatar}
+                                    alt="avatar"
+                                    className={`
+                                        relative
+                                        w-[48px]
+                                        h-[48px]
+                                        rounded-full
+                                        no-drag
+                                        border-[1px]
+                                        border-white
+                                        ${index === 0? "left-[48px]": "left-[24px]"}
+                                    `}
+                                />
+                            ))}
+
+                            <Button
+                                as="DIV"
+                                className="
+                                    w-[48px]
+                                    h-[48px]
+                                    rounded-full
+                                    z-[100]
+                                    bg-grey
+                                    border-[1px]
+                                    border-white
+                                "
+                            >
+                                <AddUserSVG />
+                            </Button>
                         </Button>
                     </Button>
 
@@ -179,7 +224,7 @@ const CreateBoardForm: FC = () => {
             </div>}
 
             {mode === 'COAUTHOR' && <div>
-                <CoAuthorAdd />
+                <CoAuthorAdd coAuthors={coAuthors} handleCoAuthor={handleCoAuthor}/>
             </div>}
 
             {false && <Button
