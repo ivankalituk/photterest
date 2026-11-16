@@ -145,10 +145,8 @@ const CreateBoardForm: FC = () => {
                     <Button
                         className="
                             justify-between
-                            py-[10px]
-                            pointer
+                            cursor-pointer
                         "
-                        hover="GREY"
                         onClick={() => setMode('COAUTHOR')}
                     >
                         <div
