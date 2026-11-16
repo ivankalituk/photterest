@@ -66,7 +66,8 @@ const CreateBoardForm: FC = () => {
         try{
             const response = await createBoard({
                 name: name,
-                private: boardPrivacy
+                private: boardPrivacy,
+                coauthors: coAuthors.map(coAuthor => coAuthor.id)
             })
 
             console.log(response)

@@ -3,6 +3,7 @@ import { clientApi } from "../client"
 interface BoardInputData {
     name: string
     private: boolean
+    coauthors: string[]
 }
 
 export interface Board {
