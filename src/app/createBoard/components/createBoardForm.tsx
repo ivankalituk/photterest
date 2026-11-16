@@ -178,14 +178,14 @@ const CreateBoardForm: FC = () => {
                                     src={sampleAvatar}
                                     alt="avatar"
                                     className={`
-                                        relative
+                                        absolute
                                         w-[48px]
                                         h-[48px]
                                         rounded-full
                                         no-drag
                                         border-[1px]
                                         border-white
-                                        ${index === 0? "left-[48px]": "left-[24px]"}
+                                        ${index === 1? "right-[72px] z-[1]": "right-[48px] z-[2]"}
                                     `}
                                 />
                             ))}
